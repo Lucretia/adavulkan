@@ -47,3 +47,4 @@ Roadmap
     generator such that new Ada bindings can be generated when a new vk.xml file is released.
 4) Provide an Ada specific Vulkan SDK, possibly porting some of the C/C++ demos and showing framerates and other
    statistics to show Ada is a good fit for this area of software development.
+5) Ada 2012 based shader language -> [SPIR-V](https://github.com/Lucretia/adaspir-v)
