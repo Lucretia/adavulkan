@@ -1,13 +1,51 @@
-pragma Ada_2005;
-pragma Style_Checks (Off);
-
+--------------------------------------------------------------------------------------------------------------------
+--  Copyright (c) 201 Luke A. Guest
+--
+--  This software is provided 'as-is', without any express or implied
+--  warranty. In no event will the authors be held liable for any damages
+--  arising from the use of this software.
+--
+--  Permission is granted to anyone to use this software for any purpose,
+--  including commercial applications, and to alter it and redistribute it
+--  freely, subject to the following restrictions:
+--
+--     1. The origin of this software must not be misrepresented; you must not
+--     claim that you wrote the original software. If you use this software
+--     in a product, an acknowledgment in the product documentation would be
+--     appreciated but is not required.
+--
+--     2. Altered source versions must be plainly marked as such, and must not be
+--     misrepresented as being the original software.
+--
+--     3. This notice may not be removed or altered from any source
+--     distribution.
+--------------------------------------------------------------------------------------------------------------------
+--  Vulkan
+--
+--  Ada 2012 bindings to the Vulkan library.
+--------------------------------------------------------------------------------------------------------------------
 with Interfaces.C; use Interfaces.C;
 with stdint_h;
 with System;
 with stddef_h;
 with Interfaces.C.Strings;
 
-package vulkan_h is
+package Vulkan is
+   type Versions is
+      record
+         Major : Int;
+         Minor : Int;
+         Patch : Int;
+      end record;
+
+   for Versions use
+      record
+         Major at 0 range 31 .. 22;
+         Minor at 0 range 21 .. 12;
+         Patch at 0 range 11 ..  0;
+      end record;
+
+   API_Version : constant Version := (Major => 1, Minor => 0, Patch => 3);
 
    --  unsupported macro: VK_VERSION_1_0 1
    --  arg-macro: function VK_MAKE_VERSION (((major) << 22) or ((minor) << 12) or (patch)
@@ -72,11 +110,11 @@ package vulkan_h is
   --** CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
   --** TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   --** MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
-  -- 
+  --
 
   --** This header is generated from the Khronos Vulkan XML API Registry.
   --**
-  -- 
+  --
 
   -- Vulkan API version supported by this file
    subtype VkFlags is stdint_h.uint32_t;  -- src/vulkan/vulkan.h:65
@@ -1045,7 +1083,7 @@ package vulkan_h is
 
    subtype VkPipelineRasterizationStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:989
 
-   type VkCullModeFlagBits is 
+   type VkCullModeFlagBits is
      (VK_CULL_MODE_NONE,
       VK_CULL_MODE_FRONT_BIT,
       VK_CULL_MODE_BACK_BIT,
@@ -4633,7 +4671,7 @@ package vulkan_h is
 
    --  skipped empty struct VkDebugReportCallbackEXT_T
 
-   type VkDebugReportObjectTypeEXT is 
+   type VkDebugReportObjectTypeEXT is
      (VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT,
       VK_DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT,
       VK_DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT,
@@ -4665,7 +4703,7 @@ package vulkan_h is
       VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT);
    pragma Convention (C, VkDebugReportObjectTypeEXT);  -- src/vulkan/vulkan.h:3677
 
-   type VkDebugReportErrorEXT is 
+   type VkDebugReportErrorEXT is
      (VK_DEBUG_REPORT_ERROR_NONE_EXT,
       VK_DEBUG_REPORT_ERROR_CALLBACK_REF_EXT);
    pragma Convention (C, VkDebugReportErrorEXT);  -- src/vulkan/vulkan.h:3709
@@ -4747,4 +4785,61 @@ package vulkan_h is
       pMessage : Interfaces.C.Strings.chars_ptr);  -- src/vulkan/vulkan.h:3760
    pragma Import (C, vkDebugReportMessageEXT, "vkDebugReportMessageEXT");
 
-end vulkan_h;
+
+   --  START: Package structure.
+   --  Here lists the various child-packages:
+   package Instances is
+      generic
+         type P is access procedure; -- TODO
+      procedure Get_Procedure;
+   end Instances;
+
+   package Devices is
+      generic
+         type P is access procedure; -- TODO
+      procedure Get_Procedure;
+   end Devices;
+
+   package Command_Buffers is
+   end Command_Buffers;
+
+   package Queues is
+   end Queues;
+
+   package Caches is
+   end Caches;
+
+   package Synchronisation is
+   end Synchronisation;
+
+   package Render_Passes is
+   end Render_Passes;
+
+   package Shaders is
+   end Shaders;
+
+   package Pipelines is
+   end Pipelines;
+
+   package Memories is
+   end Memories;
+
+   package Resources is
+      package Sparse is
+      end Sparse;
+   end Resources;
+
+   package Samplers is
+   end Samplers;
+
+   package Layers is
+   end Layers;
+
+   package WSI is
+      --  Separate various WSI's into directories for inclusion based on command line options as they are platform
+      --  specific.
+   end WSI;
+
+   --  TODO: Other subprograms in the other sections of the API should fit into one of the above packages.
+   --  END: Package structure.
+end Vulkan;
