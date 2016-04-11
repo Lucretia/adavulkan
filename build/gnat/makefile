@@ -15,12 +15,24 @@ CAT		=	cat
 
 #########################################################################################################################
 
-ifeq ($(VULKAN_BUILD),)
-VULKAN_BUILD       =       static
+ifeq ($(VULKAN_PLATFORM),)
+VULKAN_PLATFORM    =       linux
 endif
 
 ifeq ($(VULKAN_MODE),)
 VULKAN_MODE        =       debug
+endif
+
+ifeq ($(VULKAN_BUILD),)
+VULKAN_BUILD       =       static
+endif
+
+ifeq ($(VULKAN_BITS),)
+VULKAN_BITS        =       64
+endif
+
+ifeq ($(VULKAN_WINAPI),)
+VULKAN_WINAPI      =       none
 endif
 
 ifeq ($(VULKAN_BUILD),static)
@@ -43,14 +55,16 @@ all: tools $(LIB_NAME) tests
 
 $(LIB_NAME): vulkan.gpr $(GEN_KB)
         $(GPRMAKE) -p -gnat2012 \
-		-XVULKAN_BUILD=$(VULKAN_BUILD) -XVULKAN_MODE=$(VULKAN_MODE) -XVULKAN_PLATFORM=$(VULKAN_PLATFORM) \
+		-XVULKAN_PLATFORM=$(VULKAN_PLATFORM) -XVULKAN_MODE=$(VULKAN_MODE) -XVULKAN_BUILD=$(VULKAN_BUILD) \
+		-XVULKAN_BITS=$(VULKAN_BITS) -XVULKAN_WINAPI=$(VULKAN_WINAPI) \
                 -Pvulkan.gpr
 
 .PHONY: clean-lib
 
 clean-lib:
         $(GPRCLEAN) -Pvulkan.gpr \
-		-XVULKAN_BUILD=$(VULKAN_BUILD) -XVULKAN_MODE=$(VULKAN_MODE) -XVULKAN_PLATFORM=$(VULKAN_PLATFORM)
+		-XVULKAN_PLATFORM=$(VULKAN_PLATFORM) -XVULKAN_MODE=$(VULKAN_MODE) -XVULKAN_BUILD=$(VULKAN_BUILD) \
+		-XVULKAN_BITS=$(VULKAN_BITS) -XVULKAN_WINAPI=$(VULKAN_WINAPI) \
 
 #####################################################################################
 #####################################################################################
@@ -75,8 +89,9 @@ clean-unit_tests:
 
 # TODO: Redo this to not use gprinstall, install our own gpr's.
 install: all
-        $(GPRINSTALL) --prefix=$(DESTDIR)/sdlada --build-name=$(VULKAN_MODE).$(VULKAN_BUILD) -p -f \
-                -XVULKAN_BUILD=$(VULKAN_BUILD) -XVULKAN_MODE=$(VULKAN_MODE) -XVULKAN_PLATFORM=$(VULKAN_PLATFORM) \
+        $(GPRINSTALL) --prefix=$(DESTDIR)/sdlada --build-name=$(VULKAN_MODE).$(VULKAN_BUILD).$(VULKAN_BITS) -p -f \
+		-XVULKAN_PLATFORM=$(VULKAN_PLATFORM) -XVULKAN_MODE=$(VULKAN_MODE) -XVULKAN_BUILD=$(VULKAN_BUILD) \
+		-XVULKAN_BITS=$(VULKAN_BITS) -XVULKAN_WINAPI=$(VULKAN_WINAPI) \
                 -Pvulkan.gpr
 
 #####################################################################################
