@@ -45,18 +45,8 @@ package Vulkan is
          Patch at 0 range 11 ..  0;
       end record;
 
-   API_Version : constant Version := (Major => 1, Minor => 0, Patch => 3);
+   API_Version : constant Version := (Major => 1, Minor => 0, Patch => 9);
 
-   --  unsupported macro: VK_VERSION_1_0 1
-   --  arg-macro: function VK_MAKE_VERSION (((major) << 22) or ((minor) << 12) or (patch)
-   --    return ((major) << 22) or ((minor) << 12) or (patch);
-   --  unsupported macro: VK_API_VERSION VK_MAKE_VERSION(1, 0, 3)
-   --  arg-macro: function VK_VERSION_MAJOR ((uint32_t)(version) >> 22
-   --    return (uint32_t)(version) >> 22;
-   --  arg-macro: function VK_VERSION_MINOR (((uint32_t)(version) >> 12) and 0x3ff
-   --    return ((uint32_t)(version) >> 12) and 0x3ff;
-   --  arg-macro: function VK_VERSION_PATCH ((uint32_t)(version) and 0xfff
-   --    return (uint32_t)(version) and 0xfff;
    --  unsupported macro: VK_NULL_HANDLE 0
    --  unsupported macro: VK_DEFINE_HANDLE(object) typedef struct object ##_T* object;
    --  unsupported macro: VK_DEFINE_NON_DISPATCHABLE_HANDLE(object) typedef struct object ##_T *object;
@@ -87,150 +77,133 @@ package Vulkan is
    --  unsupported macro: VK_KHR_display_swapchain 1
    --  unsupported macro: VK_KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION 9
    --  unsupported macro: VK_KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME "VK_KHR_display_swapchain"
+   --  unsupported macro: VK_KHR_sampler_mirror_clamp_to_edge 1
+   --  unsupported macro: VK_KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_SPEC_VERSION 1
+   --  unsupported macro: VK_KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_EXTENSION_NAME "VK_KHR_sampler_mirror_clamp_to_edge"
    --  unsupported macro: VK_EXT_debug_report 1
-   --  unsupported macro: VK_EXT_DEBUG_REPORT_SPEC_VERSION 1
+   --  unsupported macro: VK_EXT_DEBUG_REPORT_SPEC_VERSION 2
    --  unsupported macro: VK_EXT_DEBUG_REPORT_EXTENSION_NAME "VK_EXT_debug_report"
-  --** Copyright (c) 2015-2016 The Khronos Group Inc.
-  --**
-  --** Permission is hereby granted, free of charge, to any person obtaining a
-  --** copy of this software and/or associated documentation files (the
-  --** "Materials"), to deal in the Materials without restriction, including
-  --** without limitation the rights to use, copy, modify, merge, publish,
-  --** distribute, sublicense, and/or sell copies of the Materials, and to
-  --** permit persons to whom the Materials are furnished to do so, subject to
-  --** the following conditions:
-  --**
-  --** The above copyright notice and this permission notice shall be included
-  --** in all copies or substantial portions of the Materials.
-  --**
-  --** THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  --** EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  --** MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-  --** IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-  --** CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-  --** TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-  --** MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
-  --
+   --  unsupported macro: VK_STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT
+   --  unsupported macro: VK_NV_glsl_shader 1
+   --  unsupported macro: VK_NV_GLSL_SHADER_SPEC_VERSION 1
+   --  unsupported macro: VK_NV_GLSL_SHADER_EXTENSION_NAME "VK_NV_glsl_shader"
+   --  unsupported macro: VK_IMG_filter_cubic 1
+   --  unsupported macro: VK_IMG_FILTER_CUBIC_SPEC_VERSION 1
+   --  unsupported macro: VK_IMG_FILTER_CUBIC_EXTENSION_NAME "VK_IMG_filter_cubic"
+   subtype VkFlags is stdint_h.uint32_t;  -- src/vulkan/vulkan.h:71
 
-  --** This header is generated from the Khronos Vulkan XML API Registry.
-  --**
-  --
+   subtype VkBool32 is stdint_h.uint32_t;  -- src/vulkan/vulkan.h:72
 
-  -- Vulkan API version supported by this file
-   subtype VkFlags is stdint_h.uint32_t;  -- src/vulkan/vulkan.h:65
+   subtype VkDeviceSize is stdint_h.uint64_t;  -- src/vulkan/vulkan.h:73
 
-   subtype VkBool32 is stdint_h.uint32_t;  -- src/vulkan/vulkan.h:66
-
-   subtype VkDeviceSize is stdint_h.uint64_t;  -- src/vulkan/vulkan.h:67
-
-   subtype VkSampleMask is stdint_h.uint32_t;  -- src/vulkan/vulkan.h:68
-
-   type VkInstance is new System.Address;  -- src/vulkan/vulkan.h:70
+   subtype VkSampleMask is stdint_h.uint32_t;  -- src/vulkan/vulkan.h:74
 
    --  skipped empty struct VkInstance_T
 
-   type VkPhysicalDevice is new System.Address;  -- src/vulkan/vulkan.h:71
+   type VkInstance is new System.Address;  -- src/vulkan/vulkan.h:76
 
    --  skipped empty struct VkPhysicalDevice_T
 
-   type VkDevice is new System.Address;  -- src/vulkan/vulkan.h:72
+   type VkPhysicalDevice is new System.Address;  -- src/vulkan/vulkan.h:77
 
    --  skipped empty struct VkDevice_T
 
-   type VkQueue is new System.Address;  -- src/vulkan/vulkan.h:73
+   type VkDevice is new System.Address;  -- src/vulkan/vulkan.h:78
 
    --  skipped empty struct VkQueue_T
 
-   type VkSemaphore is new System.Address;  -- src/vulkan/vulkan.h:74
+   type VkQueue is new System.Address;  -- src/vulkan/vulkan.h:79
 
    --  skipped empty struct VkSemaphore_T
 
-   type VkCommandBuffer is new System.Address;  -- src/vulkan/vulkan.h:75
+   type VkSemaphore is new System.Address;  -- src/vulkan/vulkan.h:80
 
    --  skipped empty struct VkCommandBuffer_T
 
-   type VkFence is new System.Address;  -- src/vulkan/vulkan.h:76
+   type VkCommandBuffer is new System.Address;  -- src/vulkan/vulkan.h:81
 
    --  skipped empty struct VkFence_T
 
-   type VkDeviceMemory is new System.Address;  -- src/vulkan/vulkan.h:77
+   type VkFence is new System.Address;  -- src/vulkan/vulkan.h:82
 
    --  skipped empty struct VkDeviceMemory_T
 
-   type VkBuffer is new System.Address;  -- src/vulkan/vulkan.h:78
+   type VkDeviceMemory is new System.Address;  -- src/vulkan/vulkan.h:83
 
    --  skipped empty struct VkBuffer_T
 
-   type VkImage is new System.Address;  -- src/vulkan/vulkan.h:79
+   type VkBuffer is new System.Address;  -- src/vulkan/vulkan.h:84
 
    --  skipped empty struct VkImage_T
 
-   type VkEvent is new System.Address;  -- src/vulkan/vulkan.h:80
+   type VkImage is new System.Address;  -- src/vulkan/vulkan.h:85
 
    --  skipped empty struct VkEvent_T
 
-   type VkQueryPool is new System.Address;  -- src/vulkan/vulkan.h:81
+   type VkEvent is new System.Address;  -- src/vulkan/vulkan.h:86
 
    --  skipped empty struct VkQueryPool_T
 
-   type VkBufferView is new System.Address;  -- src/vulkan/vulkan.h:82
+   type VkQueryPool is new System.Address;  -- src/vulkan/vulkan.h:87
 
    --  skipped empty struct VkBufferView_T
 
-   type VkImageView is new System.Address;  -- src/vulkan/vulkan.h:83
+   type VkBufferView is new System.Address;  -- src/vulkan/vulkan.h:88
 
    --  skipped empty struct VkImageView_T
 
-   type VkShaderModule is new System.Address;  -- src/vulkan/vulkan.h:84
+   type VkImageView is new System.Address;  -- src/vulkan/vulkan.h:89
 
    --  skipped empty struct VkShaderModule_T
 
-   type VkPipelineCache is new System.Address;  -- src/vulkan/vulkan.h:85
+   type VkShaderModule is new System.Address;  -- src/vulkan/vulkan.h:90
 
    --  skipped empty struct VkPipelineCache_T
 
-   type VkPipelineLayout is new System.Address;  -- src/vulkan/vulkan.h:86
+   type VkPipelineCache is new System.Address;  -- src/vulkan/vulkan.h:91
 
    --  skipped empty struct VkPipelineLayout_T
 
-   type VkRenderPass is new System.Address;  -- src/vulkan/vulkan.h:87
+   type VkPipelineLayout is new System.Address;  -- src/vulkan/vulkan.h:92
 
    --  skipped empty struct VkRenderPass_T
 
-   type VkPipeline is new System.Address;  -- src/vulkan/vulkan.h:88
+   type VkRenderPass is new System.Address;  -- src/vulkan/vulkan.h:93
 
    --  skipped empty struct VkPipeline_T
 
-   type VkDescriptorSetLayout is new System.Address;  -- src/vulkan/vulkan.h:89
+   type VkPipeline is new System.Address;  -- src/vulkan/vulkan.h:94
 
    --  skipped empty struct VkDescriptorSetLayout_T
 
-   type VkSampler is new System.Address;  -- src/vulkan/vulkan.h:90
+   type VkDescriptorSetLayout is new System.Address;  -- src/vulkan/vulkan.h:95
 
    --  skipped empty struct VkSampler_T
 
-   type VkDescriptorPool is new System.Address;  -- src/vulkan/vulkan.h:91
+   type VkSampler is new System.Address;  -- src/vulkan/vulkan.h:96
 
    --  skipped empty struct VkDescriptorPool_T
 
-   type VkDescriptorSet is new System.Address;  -- src/vulkan/vulkan.h:92
+   type VkDescriptorPool is new System.Address;  -- src/vulkan/vulkan.h:97
 
    --  skipped empty struct VkDescriptorSet_T
 
-   type VkFramebuffer is new System.Address;  -- src/vulkan/vulkan.h:93
+   type VkDescriptorSet is new System.Address;  -- src/vulkan/vulkan.h:98
 
    --  skipped empty struct VkFramebuffer_T
 
-   type VkCommandPool is new System.Address;  -- src/vulkan/vulkan.h:94
+   type VkFramebuffer is new System.Address;  -- src/vulkan/vulkan.h:99
 
    --  skipped empty struct VkCommandPool_T
+
+   type VkCommandPool is new System.Address;  -- src/vulkan/vulkan.h:100
 
    subtype VkPipelineCacheHeaderVersion is unsigned;
    VK_PIPELINE_CACHE_HEADER_VERSION_ONE : constant VkPipelineCacheHeaderVersion := 1;
    VK_PIPELINE_CACHE_HEADER_VERSION_BEGIN_RANGE : constant VkPipelineCacheHeaderVersion := 1;
    VK_PIPELINE_CACHE_HEADER_VERSION_END_RANGE : constant VkPipelineCacheHeaderVersion := 1;
    VK_PIPELINE_CACHE_HEADER_VERSION_RANGE_SIZE : constant VkPipelineCacheHeaderVersion := 1;
-   VK_PIPELINE_CACHE_HEADER_VERSION_MAX_ENUM : constant VkPipelineCacheHeaderVersion := 2147483647;  -- src/vulkan/vulkan.h:113
+   VK_PIPELINE_CACHE_HEADER_VERSION_MAX_ENUM : constant VkPipelineCacheHeaderVersion := 2147483647;  -- src/vulkan/vulkan.h:119
 
    subtype VkResult is unsigned;
    VK_SUCCESS : constant VkResult := 0;
@@ -256,10 +229,11 @@ package Vulkan is
    VK_ERROR_OUT_OF_DATE_KHR : constant VkResult := -1000001004;
    VK_ERROR_INCOMPATIBLE_DISPLAY_KHR : constant VkResult := -1000003001;
    VK_ERROR_VALIDATION_FAILED_EXT : constant VkResult := -1000011001;
+   VK_ERROR_INVALID_SHADER_NV : constant VkResult := -1000012000;
    VK_RESULT_BEGIN_RANGE : constant VkResult := -11;
    VK_RESULT_END_RANGE : constant VkResult := 5;
    VK_RESULT_RANGE_SIZE : constant VkResult := 17;
-   VK_RESULT_MAX_ENUM : constant VkResult := 2147483647;  -- src/vulkan/vulkan.h:121
+   VK_RESULT_MAX_ENUM : constant VkResult := 2147483647;  -- src/vulkan/vulkan.h:127
 
    subtype VkStructureType is unsigned;
    VK_STRUCTURE_TYPE_APPLICATION_INFO : constant VkStructureType := 0;
@@ -322,11 +296,11 @@ package Vulkan is
    VK_STRUCTURE_TYPE_MIR_SURFACE_CREATE_INFO_KHR : constant VkStructureType := 1000007000;
    VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR : constant VkStructureType := 1000008000;
    VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR : constant VkStructureType := 1000009000;
-   VK_STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT : constant VkStructureType := 1000011000;
+   VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT : constant VkStructureType := 1000011000;
    VK_STRUCTURE_TYPE_BEGIN_RANGE : constant VkStructureType := 0;
    VK_STRUCTURE_TYPE_END_RANGE : constant VkStructureType := 48;
    VK_STRUCTURE_TYPE_RANGE_SIZE : constant VkStructureType := 49;
-   VK_STRUCTURE_TYPE_MAX_ENUM : constant VkStructureType := 2147483647;  -- src/vulkan/vulkan.h:151
+   VK_STRUCTURE_TYPE_MAX_ENUM : constant VkStructureType := 2147483647;  -- src/vulkan/vulkan.h:158
 
    subtype VkSystemAllocationScope is unsigned;
    VK_SYSTEM_ALLOCATION_SCOPE_COMMAND : constant VkSystemAllocationScope := 0;
@@ -337,14 +311,14 @@ package Vulkan is
    VK_SYSTEM_ALLOCATION_SCOPE_BEGIN_RANGE : constant VkSystemAllocationScope := 0;
    VK_SYSTEM_ALLOCATION_SCOPE_END_RANGE : constant VkSystemAllocationScope := 4;
    VK_SYSTEM_ALLOCATION_SCOPE_RANGE_SIZE : constant VkSystemAllocationScope := 5;
-   VK_SYSTEM_ALLOCATION_SCOPE_MAX_ENUM : constant VkSystemAllocationScope := 2147483647;  -- src/vulkan/vulkan.h:219
+   VK_SYSTEM_ALLOCATION_SCOPE_MAX_ENUM : constant VkSystemAllocationScope := 2147483647;  -- src/vulkan/vulkan.h:226
 
    subtype VkInternalAllocationType is unsigned;
    VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE : constant VkInternalAllocationType := 0;
    VK_INTERNAL_ALLOCATION_TYPE_BEGIN_RANGE : constant VkInternalAllocationType := 0;
    VK_INTERNAL_ALLOCATION_TYPE_END_RANGE : constant VkInternalAllocationType := 0;
    VK_INTERNAL_ALLOCATION_TYPE_RANGE_SIZE : constant VkInternalAllocationType := 1;
-   VK_INTERNAL_ALLOCATION_TYPE_MAX_ENUM : constant VkInternalAllocationType := 2147483647;  -- src/vulkan/vulkan.h:231
+   VK_INTERNAL_ALLOCATION_TYPE_MAX_ENUM : constant VkInternalAllocationType := 2147483647;  -- src/vulkan/vulkan.h:238
 
    subtype VkFormat is unsigned;
    VK_FORMAT_UNDEFINED : constant VkFormat := 0;
@@ -535,7 +509,7 @@ package Vulkan is
    VK_FORMAT_BEGIN_RANGE : constant VkFormat := 0;
    VK_FORMAT_END_RANGE : constant VkFormat := 184;
    VK_FORMAT_RANGE_SIZE : constant VkFormat := 185;
-   VK_FORMAT_MAX_ENUM : constant VkFormat := 2147483647;  -- src/vulkan/vulkan.h:239
+   VK_FORMAT_MAX_ENUM : constant VkFormat := 2147483647;  -- src/vulkan/vulkan.h:246
 
    subtype VkImageType is unsigned;
    VK_IMAGE_TYPE_1D : constant VkImageType := 0;
@@ -544,7 +518,7 @@ package Vulkan is
    VK_IMAGE_TYPE_BEGIN_RANGE : constant VkImageType := 0;
    VK_IMAGE_TYPE_END_RANGE : constant VkImageType := 2;
    VK_IMAGE_TYPE_RANGE_SIZE : constant VkImageType := 3;
-   VK_IMAGE_TYPE_MAX_ENUM : constant VkImageType := 2147483647;  -- src/vulkan/vulkan.h:431
+   VK_IMAGE_TYPE_MAX_ENUM : constant VkImageType := 2147483647;  -- src/vulkan/vulkan.h:438
 
    subtype VkImageTiling is unsigned;
    VK_IMAGE_TILING_OPTIMAL : constant VkImageTiling := 0;
@@ -552,7 +526,7 @@ package Vulkan is
    VK_IMAGE_TILING_BEGIN_RANGE : constant VkImageTiling := 0;
    VK_IMAGE_TILING_END_RANGE : constant VkImageTiling := 1;
    VK_IMAGE_TILING_RANGE_SIZE : constant VkImageTiling := 2;
-   VK_IMAGE_TILING_MAX_ENUM : constant VkImageTiling := 2147483647;  -- src/vulkan/vulkan.h:441
+   VK_IMAGE_TILING_MAX_ENUM : constant VkImageTiling := 2147483647;  -- src/vulkan/vulkan.h:448
 
    subtype VkPhysicalDeviceType is unsigned;
    VK_PHYSICAL_DEVICE_TYPE_OTHER : constant VkPhysicalDeviceType := 0;
@@ -563,7 +537,7 @@ package Vulkan is
    VK_PHYSICAL_DEVICE_TYPE_BEGIN_RANGE : constant VkPhysicalDeviceType := 0;
    VK_PHYSICAL_DEVICE_TYPE_END_RANGE : constant VkPhysicalDeviceType := 4;
    VK_PHYSICAL_DEVICE_TYPE_RANGE_SIZE : constant VkPhysicalDeviceType := 5;
-   VK_PHYSICAL_DEVICE_TYPE_MAX_ENUM : constant VkPhysicalDeviceType := 2147483647;  -- src/vulkan/vulkan.h:450
+   VK_PHYSICAL_DEVICE_TYPE_MAX_ENUM : constant VkPhysicalDeviceType := 2147483647;  -- src/vulkan/vulkan.h:457
 
    subtype VkQueryType is unsigned;
    VK_QUERY_TYPE_OCCLUSION : constant VkQueryType := 0;
@@ -572,7 +546,7 @@ package Vulkan is
    VK_QUERY_TYPE_BEGIN_RANGE : constant VkQueryType := 0;
    VK_QUERY_TYPE_END_RANGE : constant VkQueryType := 2;
    VK_QUERY_TYPE_RANGE_SIZE : constant VkQueryType := 3;
-   VK_QUERY_TYPE_MAX_ENUM : constant VkQueryType := 2147483647;  -- src/vulkan/vulkan.h:462
+   VK_QUERY_TYPE_MAX_ENUM : constant VkQueryType := 2147483647;  -- src/vulkan/vulkan.h:469
 
    subtype VkSharingMode is unsigned;
    VK_SHARING_MODE_EXCLUSIVE : constant VkSharingMode := 0;
@@ -580,7 +554,7 @@ package Vulkan is
    VK_SHARING_MODE_BEGIN_RANGE : constant VkSharingMode := 0;
    VK_SHARING_MODE_END_RANGE : constant VkSharingMode := 1;
    VK_SHARING_MODE_RANGE_SIZE : constant VkSharingMode := 2;
-   VK_SHARING_MODE_MAX_ENUM : constant VkSharingMode := 2147483647;  -- src/vulkan/vulkan.h:472
+   VK_SHARING_MODE_MAX_ENUM : constant VkSharingMode := 2147483647;  -- src/vulkan/vulkan.h:479
 
    subtype VkImageLayout is unsigned;
    VK_IMAGE_LAYOUT_UNDEFINED : constant VkImageLayout := 0;
@@ -596,7 +570,7 @@ package Vulkan is
    VK_IMAGE_LAYOUT_BEGIN_RANGE : constant VkImageLayout := 0;
    VK_IMAGE_LAYOUT_END_RANGE : constant VkImageLayout := 8;
    VK_IMAGE_LAYOUT_RANGE_SIZE : constant VkImageLayout := 9;
-   VK_IMAGE_LAYOUT_MAX_ENUM : constant VkImageLayout := 2147483647;  -- src/vulkan/vulkan.h:481
+   VK_IMAGE_LAYOUT_MAX_ENUM : constant VkImageLayout := 2147483647;  -- src/vulkan/vulkan.h:488
 
    subtype VkImageViewType is unsigned;
    VK_IMAGE_VIEW_TYPE_1D : constant VkImageViewType := 0;
@@ -609,7 +583,7 @@ package Vulkan is
    VK_IMAGE_VIEW_TYPE_BEGIN_RANGE : constant VkImageViewType := 0;
    VK_IMAGE_VIEW_TYPE_END_RANGE : constant VkImageViewType := 6;
    VK_IMAGE_VIEW_TYPE_RANGE_SIZE : constant VkImageViewType := 7;
-   VK_IMAGE_VIEW_TYPE_MAX_ENUM : constant VkImageViewType := 2147483647;  -- src/vulkan/vulkan.h:498
+   VK_IMAGE_VIEW_TYPE_MAX_ENUM : constant VkImageViewType := 2147483647;  -- src/vulkan/vulkan.h:505
 
    subtype VkComponentSwizzle is unsigned;
    VK_COMPONENT_SWIZZLE_IDENTITY : constant VkComponentSwizzle := 0;
@@ -622,7 +596,7 @@ package Vulkan is
    VK_COMPONENT_SWIZZLE_BEGIN_RANGE : constant VkComponentSwizzle := 0;
    VK_COMPONENT_SWIZZLE_END_RANGE : constant VkComponentSwizzle := 6;
    VK_COMPONENT_SWIZZLE_RANGE_SIZE : constant VkComponentSwizzle := 7;
-   VK_COMPONENT_SWIZZLE_MAX_ENUM : constant VkComponentSwizzle := 2147483647;  -- src/vulkan/vulkan.h:512
+   VK_COMPONENT_SWIZZLE_MAX_ENUM : constant VkComponentSwizzle := 2147483647;  -- src/vulkan/vulkan.h:519
 
    subtype VkVertexInputRate is unsigned;
    VK_VERTEX_INPUT_RATE_VERTEX : constant VkVertexInputRate := 0;
@@ -630,7 +604,7 @@ package Vulkan is
    VK_VERTEX_INPUT_RATE_BEGIN_RANGE : constant VkVertexInputRate := 0;
    VK_VERTEX_INPUT_RATE_END_RANGE : constant VkVertexInputRate := 1;
    VK_VERTEX_INPUT_RATE_RANGE_SIZE : constant VkVertexInputRate := 2;
-   VK_VERTEX_INPUT_RATE_MAX_ENUM : constant VkVertexInputRate := 2147483647;  -- src/vulkan/vulkan.h:526
+   VK_VERTEX_INPUT_RATE_MAX_ENUM : constant VkVertexInputRate := 2147483647;  -- src/vulkan/vulkan.h:533
 
    subtype VkPrimitiveTopology is unsigned;
    VK_PRIMITIVE_TOPOLOGY_POINT_LIST : constant VkPrimitiveTopology := 0;
@@ -647,7 +621,7 @@ package Vulkan is
    VK_PRIMITIVE_TOPOLOGY_BEGIN_RANGE : constant VkPrimitiveTopology := 0;
    VK_PRIMITIVE_TOPOLOGY_END_RANGE : constant VkPrimitiveTopology := 10;
    VK_PRIMITIVE_TOPOLOGY_RANGE_SIZE : constant VkPrimitiveTopology := 11;
-   VK_PRIMITIVE_TOPOLOGY_MAX_ENUM : constant VkPrimitiveTopology := 2147483647;  -- src/vulkan/vulkan.h:535
+   VK_PRIMITIVE_TOPOLOGY_MAX_ENUM : constant VkPrimitiveTopology := 2147483647;  -- src/vulkan/vulkan.h:542
 
    subtype VkPolygonMode is unsigned;
    VK_POLYGON_MODE_FILL : constant VkPolygonMode := 0;
@@ -656,7 +630,7 @@ package Vulkan is
    VK_POLYGON_MODE_BEGIN_RANGE : constant VkPolygonMode := 0;
    VK_POLYGON_MODE_END_RANGE : constant VkPolygonMode := 2;
    VK_POLYGON_MODE_RANGE_SIZE : constant VkPolygonMode := 3;
-   VK_POLYGON_MODE_MAX_ENUM : constant VkPolygonMode := 2147483647;  -- src/vulkan/vulkan.h:553
+   VK_POLYGON_MODE_MAX_ENUM : constant VkPolygonMode := 2147483647;  -- src/vulkan/vulkan.h:560
 
    subtype VkFrontFace is unsigned;
    VK_FRONT_FACE_COUNTER_CLOCKWISE : constant VkFrontFace := 0;
@@ -664,7 +638,7 @@ package Vulkan is
    VK_FRONT_FACE_BEGIN_RANGE : constant VkFrontFace := 0;
    VK_FRONT_FACE_END_RANGE : constant VkFrontFace := 1;
    VK_FRONT_FACE_RANGE_SIZE : constant VkFrontFace := 2;
-   VK_FRONT_FACE_MAX_ENUM : constant VkFrontFace := 2147483647;  -- src/vulkan/vulkan.h:563
+   VK_FRONT_FACE_MAX_ENUM : constant VkFrontFace := 2147483647;  -- src/vulkan/vulkan.h:570
 
    subtype VkCompareOp is unsigned;
    VK_COMPARE_OP_NEVER : constant VkCompareOp := 0;
@@ -678,7 +652,7 @@ package Vulkan is
    VK_COMPARE_OP_BEGIN_RANGE : constant VkCompareOp := 0;
    VK_COMPARE_OP_END_RANGE : constant VkCompareOp := 7;
    VK_COMPARE_OP_RANGE_SIZE : constant VkCompareOp := 8;
-   VK_COMPARE_OP_MAX_ENUM : constant VkCompareOp := 2147483647;  -- src/vulkan/vulkan.h:572
+   VK_COMPARE_OP_MAX_ENUM : constant VkCompareOp := 2147483647;  -- src/vulkan/vulkan.h:579
 
    subtype VkStencilOp is unsigned;
    VK_STENCIL_OP_KEEP : constant VkStencilOp := 0;
@@ -692,7 +666,7 @@ package Vulkan is
    VK_STENCIL_OP_BEGIN_RANGE : constant VkStencilOp := 0;
    VK_STENCIL_OP_END_RANGE : constant VkStencilOp := 7;
    VK_STENCIL_OP_RANGE_SIZE : constant VkStencilOp := 8;
-   VK_STENCIL_OP_MAX_ENUM : constant VkStencilOp := 2147483647;  -- src/vulkan/vulkan.h:587
+   VK_STENCIL_OP_MAX_ENUM : constant VkStencilOp := 2147483647;  -- src/vulkan/vulkan.h:594
 
    subtype VkLogicOp is unsigned;
    VK_LOGIC_OP_CLEAR : constant VkLogicOp := 0;
@@ -714,7 +688,7 @@ package Vulkan is
    VK_LOGIC_OP_BEGIN_RANGE : constant VkLogicOp := 0;
    VK_LOGIC_OP_END_RANGE : constant VkLogicOp := 15;
    VK_LOGIC_OP_RANGE_SIZE : constant VkLogicOp := 16;
-   VK_LOGIC_OP_MAX_ENUM : constant VkLogicOp := 2147483647;  -- src/vulkan/vulkan.h:602
+   VK_LOGIC_OP_MAX_ENUM : constant VkLogicOp := 2147483647;  -- src/vulkan/vulkan.h:609
 
    subtype VkBlendFactor is unsigned;
    VK_BLEND_FACTOR_ZERO : constant VkBlendFactor := 0;
@@ -739,7 +713,7 @@ package Vulkan is
    VK_BLEND_FACTOR_BEGIN_RANGE : constant VkBlendFactor := 0;
    VK_BLEND_FACTOR_END_RANGE : constant VkBlendFactor := 18;
    VK_BLEND_FACTOR_RANGE_SIZE : constant VkBlendFactor := 19;
-   VK_BLEND_FACTOR_MAX_ENUM : constant VkBlendFactor := 2147483647;  -- src/vulkan/vulkan.h:625
+   VK_BLEND_FACTOR_MAX_ENUM : constant VkBlendFactor := 2147483647;  -- src/vulkan/vulkan.h:632
 
    subtype VkBlendOp is unsigned;
    VK_BLEND_OP_ADD : constant VkBlendOp := 0;
@@ -750,7 +724,7 @@ package Vulkan is
    VK_BLEND_OP_BEGIN_RANGE : constant VkBlendOp := 0;
    VK_BLEND_OP_END_RANGE : constant VkBlendOp := 4;
    VK_BLEND_OP_RANGE_SIZE : constant VkBlendOp := 5;
-   VK_BLEND_OP_MAX_ENUM : constant VkBlendOp := 2147483647;  -- src/vulkan/vulkan.h:651
+   VK_BLEND_OP_MAX_ENUM : constant VkBlendOp := 2147483647;  -- src/vulkan/vulkan.h:658
 
    subtype VkDynamicState is unsigned;
    VK_DYNAMIC_STATE_VIEWPORT : constant VkDynamicState := 0;
@@ -765,15 +739,16 @@ package Vulkan is
    VK_DYNAMIC_STATE_BEGIN_RANGE : constant VkDynamicState := 0;
    VK_DYNAMIC_STATE_END_RANGE : constant VkDynamicState := 8;
    VK_DYNAMIC_STATE_RANGE_SIZE : constant VkDynamicState := 9;
-   VK_DYNAMIC_STATE_MAX_ENUM : constant VkDynamicState := 2147483647;  -- src/vulkan/vulkan.h:663
+   VK_DYNAMIC_STATE_MAX_ENUM : constant VkDynamicState := 2147483647;  -- src/vulkan/vulkan.h:670
 
    subtype VkFilter is unsigned;
    VK_FILTER_NEAREST : constant VkFilter := 0;
    VK_FILTER_LINEAR : constant VkFilter := 1;
+   VK_FILTER_CUBIC_IMG : constant VkFilter := 1000015000;
    VK_FILTER_BEGIN_RANGE : constant VkFilter := 0;
    VK_FILTER_END_RANGE : constant VkFilter := 1;
    VK_FILTER_RANGE_SIZE : constant VkFilter := 2;
-   VK_FILTER_MAX_ENUM : constant VkFilter := 2147483647;  -- src/vulkan/vulkan.h:679
+   VK_FILTER_MAX_ENUM : constant VkFilter := 2147483647;  -- src/vulkan/vulkan.h:686
 
    subtype VkSamplerMipmapMode is unsigned;
    VK_SAMPLER_MIPMAP_MODE_NEAREST : constant VkSamplerMipmapMode := 0;
@@ -781,7 +756,7 @@ package Vulkan is
    VK_SAMPLER_MIPMAP_MODE_BEGIN_RANGE : constant VkSamplerMipmapMode := 0;
    VK_SAMPLER_MIPMAP_MODE_END_RANGE : constant VkSamplerMipmapMode := 1;
    VK_SAMPLER_MIPMAP_MODE_RANGE_SIZE : constant VkSamplerMipmapMode := 2;
-   VK_SAMPLER_MIPMAP_MODE_MAX_ENUM : constant VkSamplerMipmapMode := 2147483647;  -- src/vulkan/vulkan.h:688
+   VK_SAMPLER_MIPMAP_MODE_MAX_ENUM : constant VkSamplerMipmapMode := 2147483647;  -- src/vulkan/vulkan.h:696
 
    subtype VkSamplerAddressMode is unsigned;
    VK_SAMPLER_ADDRESS_MODE_REPEAT : constant VkSamplerAddressMode := 0;
@@ -790,9 +765,9 @@ package Vulkan is
    VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER : constant VkSamplerAddressMode := 3;
    VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE : constant VkSamplerAddressMode := 4;
    VK_SAMPLER_ADDRESS_MODE_BEGIN_RANGE : constant VkSamplerAddressMode := 0;
-   VK_SAMPLER_ADDRESS_MODE_END_RANGE : constant VkSamplerAddressMode := 4;
-   VK_SAMPLER_ADDRESS_MODE_RANGE_SIZE : constant VkSamplerAddressMode := 5;
-   VK_SAMPLER_ADDRESS_MODE_MAX_ENUM : constant VkSamplerAddressMode := 2147483647;  -- src/vulkan/vulkan.h:697
+   VK_SAMPLER_ADDRESS_MODE_END_RANGE : constant VkSamplerAddressMode := 3;
+   VK_SAMPLER_ADDRESS_MODE_RANGE_SIZE : constant VkSamplerAddressMode := 4;
+   VK_SAMPLER_ADDRESS_MODE_MAX_ENUM : constant VkSamplerAddressMode := 2147483647;  -- src/vulkan/vulkan.h:705
 
    subtype VkBorderColor is unsigned;
    VK_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK : constant VkBorderColor := 0;
@@ -804,7 +779,7 @@ package Vulkan is
    VK_BORDER_COLOR_BEGIN_RANGE : constant VkBorderColor := 0;
    VK_BORDER_COLOR_END_RANGE : constant VkBorderColor := 5;
    VK_BORDER_COLOR_RANGE_SIZE : constant VkBorderColor := 6;
-   VK_BORDER_COLOR_MAX_ENUM : constant VkBorderColor := 2147483647;  -- src/vulkan/vulkan.h:709
+   VK_BORDER_COLOR_MAX_ENUM : constant VkBorderColor := 2147483647;  -- src/vulkan/vulkan.h:717
 
    subtype VkDescriptorType is unsigned;
    VK_DESCRIPTOR_TYPE_SAMPLER : constant VkDescriptorType := 0;
@@ -821,7 +796,7 @@ package Vulkan is
    VK_DESCRIPTOR_TYPE_BEGIN_RANGE : constant VkDescriptorType := 0;
    VK_DESCRIPTOR_TYPE_END_RANGE : constant VkDescriptorType := 10;
    VK_DESCRIPTOR_TYPE_RANGE_SIZE : constant VkDescriptorType := 11;
-   VK_DESCRIPTOR_TYPE_MAX_ENUM : constant VkDescriptorType := 2147483647;  -- src/vulkan/vulkan.h:722
+   VK_DESCRIPTOR_TYPE_MAX_ENUM : constant VkDescriptorType := 2147483647;  -- src/vulkan/vulkan.h:730
 
    subtype VkAttachmentLoadOp is unsigned;
    VK_ATTACHMENT_LOAD_OP_LOAD : constant VkAttachmentLoadOp := 0;
@@ -830,7 +805,7 @@ package Vulkan is
    VK_ATTACHMENT_LOAD_OP_BEGIN_RANGE : constant VkAttachmentLoadOp := 0;
    VK_ATTACHMENT_LOAD_OP_END_RANGE : constant VkAttachmentLoadOp := 2;
    VK_ATTACHMENT_LOAD_OP_RANGE_SIZE : constant VkAttachmentLoadOp := 3;
-   VK_ATTACHMENT_LOAD_OP_MAX_ENUM : constant VkAttachmentLoadOp := 2147483647;  -- src/vulkan/vulkan.h:740
+   VK_ATTACHMENT_LOAD_OP_MAX_ENUM : constant VkAttachmentLoadOp := 2147483647;  -- src/vulkan/vulkan.h:748
 
    subtype VkAttachmentStoreOp is unsigned;
    VK_ATTACHMENT_STORE_OP_STORE : constant VkAttachmentStoreOp := 0;
@@ -838,7 +813,7 @@ package Vulkan is
    VK_ATTACHMENT_STORE_OP_BEGIN_RANGE : constant VkAttachmentStoreOp := 0;
    VK_ATTACHMENT_STORE_OP_END_RANGE : constant VkAttachmentStoreOp := 1;
    VK_ATTACHMENT_STORE_OP_RANGE_SIZE : constant VkAttachmentStoreOp := 2;
-   VK_ATTACHMENT_STORE_OP_MAX_ENUM : constant VkAttachmentStoreOp := 2147483647;  -- src/vulkan/vulkan.h:750
+   VK_ATTACHMENT_STORE_OP_MAX_ENUM : constant VkAttachmentStoreOp := 2147483647;  -- src/vulkan/vulkan.h:758
 
    subtype VkPipelineBindPoint is unsigned;
    VK_PIPELINE_BIND_POINT_GRAPHICS : constant VkPipelineBindPoint := 0;
@@ -846,7 +821,7 @@ package Vulkan is
    VK_PIPELINE_BIND_POINT_BEGIN_RANGE : constant VkPipelineBindPoint := 0;
    VK_PIPELINE_BIND_POINT_END_RANGE : constant VkPipelineBindPoint := 1;
    VK_PIPELINE_BIND_POINT_RANGE_SIZE : constant VkPipelineBindPoint := 2;
-   VK_PIPELINE_BIND_POINT_MAX_ENUM : constant VkPipelineBindPoint := 2147483647;  -- src/vulkan/vulkan.h:759
+   VK_PIPELINE_BIND_POINT_MAX_ENUM : constant VkPipelineBindPoint := 2147483647;  -- src/vulkan/vulkan.h:767
 
    subtype VkCommandBufferLevel is unsigned;
    VK_COMMAND_BUFFER_LEVEL_PRIMARY : constant VkCommandBufferLevel := 0;
@@ -854,7 +829,7 @@ package Vulkan is
    VK_COMMAND_BUFFER_LEVEL_BEGIN_RANGE : constant VkCommandBufferLevel := 0;
    VK_COMMAND_BUFFER_LEVEL_END_RANGE : constant VkCommandBufferLevel := 1;
    VK_COMMAND_BUFFER_LEVEL_RANGE_SIZE : constant VkCommandBufferLevel := 2;
-   VK_COMMAND_BUFFER_LEVEL_MAX_ENUM : constant VkCommandBufferLevel := 2147483647;  -- src/vulkan/vulkan.h:768
+   VK_COMMAND_BUFFER_LEVEL_MAX_ENUM : constant VkCommandBufferLevel := 2147483647;  -- src/vulkan/vulkan.h:776
 
    subtype VkIndexType is unsigned;
    VK_INDEX_TYPE_UINT16 : constant VkIndexType := 0;
@@ -862,7 +837,7 @@ package Vulkan is
    VK_INDEX_TYPE_BEGIN_RANGE : constant VkIndexType := 0;
    VK_INDEX_TYPE_END_RANGE : constant VkIndexType := 1;
    VK_INDEX_TYPE_RANGE_SIZE : constant VkIndexType := 2;
-   VK_INDEX_TYPE_MAX_ENUM : constant VkIndexType := 2147483647;  -- src/vulkan/vulkan.h:777
+   VK_INDEX_TYPE_MAX_ENUM : constant VkIndexType := 2147483647;  -- src/vulkan/vulkan.h:785
 
    subtype VkSubpassContents is unsigned;
    VK_SUBPASS_CONTENTS_INLINE : constant VkSubpassContents := 0;
@@ -870,9 +845,9 @@ package Vulkan is
    VK_SUBPASS_CONTENTS_BEGIN_RANGE : constant VkSubpassContents := 0;
    VK_SUBPASS_CONTENTS_END_RANGE : constant VkSubpassContents := 1;
    VK_SUBPASS_CONTENTS_RANGE_SIZE : constant VkSubpassContents := 2;
-   VK_SUBPASS_CONTENTS_MAX_ENUM : constant VkSubpassContents := 2147483647;  -- src/vulkan/vulkan.h:786
+   VK_SUBPASS_CONTENTS_MAX_ENUM : constant VkSubpassContents := 2147483647;  -- src/vulkan/vulkan.h:794
 
-   subtype VkInstanceCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:795
+   subtype VkInstanceCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:803
 
    subtype VkFormatFeatureFlagBits is unsigned;
    VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT : constant VkFormatFeatureFlagBits := 1;
@@ -887,9 +862,11 @@ package Vulkan is
    VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT : constant VkFormatFeatureFlagBits := 512;
    VK_FORMAT_FEATURE_BLIT_SRC_BIT : constant VkFormatFeatureFlagBits := 1024;
    VK_FORMAT_FEATURE_BLIT_DST_BIT : constant VkFormatFeatureFlagBits := 2048;
-   VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT : constant VkFormatFeatureFlagBits := 4096;  -- src/vulkan/vulkan.h:797
+   VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT : constant VkFormatFeatureFlagBits := 4096;
+   VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG : constant VkFormatFeatureFlagBits := 8192;
+   VK_FORMAT_FEATURE_FLAG_BITS_MAX_ENUM : constant VkFormatFeatureFlagBits := 2147483647;  -- src/vulkan/vulkan.h:805
 
-   subtype VkFormatFeatureFlags is VkFlags;  -- src/vulkan/vulkan.h:812
+   subtype VkFormatFeatureFlags is VkFlags;  -- src/vulkan/vulkan.h:822
 
    subtype VkImageUsageFlagBits is unsigned;
    VK_IMAGE_USAGE_TRANSFER_SRC_BIT : constant VkImageUsageFlagBits := 1;
@@ -899,18 +876,20 @@ package Vulkan is
    VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT : constant VkImageUsageFlagBits := 16;
    VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT : constant VkImageUsageFlagBits := 32;
    VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT : constant VkImageUsageFlagBits := 64;
-   VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT : constant VkImageUsageFlagBits := 128;  -- src/vulkan/vulkan.h:814
+   VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT : constant VkImageUsageFlagBits := 128;
+   VK_IMAGE_USAGE_FLAG_BITS_MAX_ENUM : constant VkImageUsageFlagBits := 2147483647;  -- src/vulkan/vulkan.h:824
 
-   subtype VkImageUsageFlags is VkFlags;  -- src/vulkan/vulkan.h:824
+   subtype VkImageUsageFlags is VkFlags;  -- src/vulkan/vulkan.h:835
 
    subtype VkImageCreateFlagBits is unsigned;
    VK_IMAGE_CREATE_SPARSE_BINDING_BIT : constant VkImageCreateFlagBits := 1;
    VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT : constant VkImageCreateFlagBits := 2;
    VK_IMAGE_CREATE_SPARSE_ALIASED_BIT : constant VkImageCreateFlagBits := 4;
    VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT : constant VkImageCreateFlagBits := 8;
-   VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT : constant VkImageCreateFlagBits := 16;  -- src/vulkan/vulkan.h:826
+   VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT : constant VkImageCreateFlagBits := 16;
+   VK_IMAGE_CREATE_FLAG_BITS_MAX_ENUM : constant VkImageCreateFlagBits := 2147483647;  -- src/vulkan/vulkan.h:837
 
-   subtype VkImageCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:833
+   subtype VkImageCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:845
 
    subtype VkSampleCountFlagBits is unsigned;
    VK_SAMPLE_COUNT_1_BIT : constant VkSampleCountFlagBits := 1;
@@ -919,35 +898,39 @@ package Vulkan is
    VK_SAMPLE_COUNT_8_BIT : constant VkSampleCountFlagBits := 8;
    VK_SAMPLE_COUNT_16_BIT : constant VkSampleCountFlagBits := 16;
    VK_SAMPLE_COUNT_32_BIT : constant VkSampleCountFlagBits := 32;
-   VK_SAMPLE_COUNT_64_BIT : constant VkSampleCountFlagBits := 64;  -- src/vulkan/vulkan.h:835
+   VK_SAMPLE_COUNT_64_BIT : constant VkSampleCountFlagBits := 64;
+   VK_SAMPLE_COUNT_FLAG_BITS_MAX_ENUM : constant VkSampleCountFlagBits := 2147483647;  -- src/vulkan/vulkan.h:847
 
-   subtype VkSampleCountFlags is VkFlags;  -- src/vulkan/vulkan.h:844
+   subtype VkSampleCountFlags is VkFlags;  -- src/vulkan/vulkan.h:857
 
    subtype VkQueueFlagBits is unsigned;
    VK_QUEUE_GRAPHICS_BIT : constant VkQueueFlagBits := 1;
    VK_QUEUE_COMPUTE_BIT : constant VkQueueFlagBits := 2;
    VK_QUEUE_TRANSFER_BIT : constant VkQueueFlagBits := 4;
-   VK_QUEUE_SPARSE_BINDING_BIT : constant VkQueueFlagBits := 8;  -- src/vulkan/vulkan.h:846
+   VK_QUEUE_SPARSE_BINDING_BIT : constant VkQueueFlagBits := 8;
+   VK_QUEUE_FLAG_BITS_MAX_ENUM : constant VkQueueFlagBits := 2147483647;  -- src/vulkan/vulkan.h:859
 
-   subtype VkQueueFlags is VkFlags;  -- src/vulkan/vulkan.h:852
+   subtype VkQueueFlags is VkFlags;  -- src/vulkan/vulkan.h:866
 
    subtype VkMemoryPropertyFlagBits is unsigned;
    VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT : constant VkMemoryPropertyFlagBits := 1;
    VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT : constant VkMemoryPropertyFlagBits := 2;
    VK_MEMORY_PROPERTY_HOST_COHERENT_BIT : constant VkMemoryPropertyFlagBits := 4;
    VK_MEMORY_PROPERTY_HOST_CACHED_BIT : constant VkMemoryPropertyFlagBits := 8;
-   VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT : constant VkMemoryPropertyFlagBits := 16;  -- src/vulkan/vulkan.h:854
+   VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT : constant VkMemoryPropertyFlagBits := 16;
+   VK_MEMORY_PROPERTY_FLAG_BITS_MAX_ENUM : constant VkMemoryPropertyFlagBits := 2147483647;  -- src/vulkan/vulkan.h:868
 
-   subtype VkMemoryPropertyFlags is VkFlags;  -- src/vulkan/vulkan.h:861
+   subtype VkMemoryPropertyFlags is VkFlags;  -- src/vulkan/vulkan.h:876
 
    subtype VkMemoryHeapFlagBits is unsigned;
-   VK_MEMORY_HEAP_DEVICE_LOCAL_BIT : constant VkMemoryHeapFlagBits := 1;  -- src/vulkan/vulkan.h:863
+   VK_MEMORY_HEAP_DEVICE_LOCAL_BIT : constant VkMemoryHeapFlagBits := 1;
+   VK_MEMORY_HEAP_FLAG_BITS_MAX_ENUM : constant VkMemoryHeapFlagBits := 2147483647;  -- src/vulkan/vulkan.h:878
 
-   subtype VkMemoryHeapFlags is VkFlags;  -- src/vulkan/vulkan.h:866
+   subtype VkMemoryHeapFlags is VkFlags;  -- src/vulkan/vulkan.h:882
 
-   subtype VkDeviceCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:867
+   subtype VkDeviceCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:883
 
-   subtype VkDeviceQueueCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:868
+   subtype VkDeviceQueueCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:884
 
    subtype VkPipelineStageFlagBits is unsigned;
    VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT : constant VkPipelineStageFlagBits := 1;
@@ -966,42 +949,47 @@ package Vulkan is
    VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT : constant VkPipelineStageFlagBits := 8192;
    VK_PIPELINE_STAGE_HOST_BIT : constant VkPipelineStageFlagBits := 16384;
    VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT : constant VkPipelineStageFlagBits := 32768;
-   VK_PIPELINE_STAGE_ALL_COMMANDS_BIT : constant VkPipelineStageFlagBits := 65536;  -- src/vulkan/vulkan.h:870
+   VK_PIPELINE_STAGE_ALL_COMMANDS_BIT : constant VkPipelineStageFlagBits := 65536;
+   VK_PIPELINE_STAGE_FLAG_BITS_MAX_ENUM : constant VkPipelineStageFlagBits := 2147483647;  -- src/vulkan/vulkan.h:886
 
-   subtype VkPipelineStageFlags is VkFlags;  -- src/vulkan/vulkan.h:889
+   subtype VkPipelineStageFlags is VkFlags;  -- src/vulkan/vulkan.h:906
 
-   subtype VkMemoryMapFlags is VkFlags;  -- src/vulkan/vulkan.h:890
+   subtype VkMemoryMapFlags is VkFlags;  -- src/vulkan/vulkan.h:907
 
    subtype VkImageAspectFlagBits is unsigned;
    VK_IMAGE_ASPECT_COLOR_BIT : constant VkImageAspectFlagBits := 1;
    VK_IMAGE_ASPECT_DEPTH_BIT : constant VkImageAspectFlagBits := 2;
    VK_IMAGE_ASPECT_STENCIL_BIT : constant VkImageAspectFlagBits := 4;
-   VK_IMAGE_ASPECT_METADATA_BIT : constant VkImageAspectFlagBits := 8;  -- src/vulkan/vulkan.h:892
+   VK_IMAGE_ASPECT_METADATA_BIT : constant VkImageAspectFlagBits := 8;
+   VK_IMAGE_ASPECT_FLAG_BITS_MAX_ENUM : constant VkImageAspectFlagBits := 2147483647;  -- src/vulkan/vulkan.h:909
 
-   subtype VkImageAspectFlags is VkFlags;  -- src/vulkan/vulkan.h:898
+   subtype VkImageAspectFlags is VkFlags;  -- src/vulkan/vulkan.h:916
 
    subtype VkSparseImageFormatFlagBits is unsigned;
    VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT : constant VkSparseImageFormatFlagBits := 1;
    VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT : constant VkSparseImageFormatFlagBits := 2;
-   VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT : constant VkSparseImageFormatFlagBits := 4;  -- src/vulkan/vulkan.h:900
+   VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT : constant VkSparseImageFormatFlagBits := 4;
+   VK_SPARSE_IMAGE_FORMAT_FLAG_BITS_MAX_ENUM : constant VkSparseImageFormatFlagBits := 2147483647;  -- src/vulkan/vulkan.h:918
 
-   subtype VkSparseImageFormatFlags is VkFlags;  -- src/vulkan/vulkan.h:905
+   subtype VkSparseImageFormatFlags is VkFlags;  -- src/vulkan/vulkan.h:924
 
    subtype VkSparseMemoryBindFlagBits is unsigned;
-   VK_SPARSE_MEMORY_BIND_METADATA_BIT : constant VkSparseMemoryBindFlagBits := 1;  -- src/vulkan/vulkan.h:907
+   VK_SPARSE_MEMORY_BIND_METADATA_BIT : constant VkSparseMemoryBindFlagBits := 1;
+   VK_SPARSE_MEMORY_BIND_FLAG_BITS_MAX_ENUM : constant VkSparseMemoryBindFlagBits := 2147483647;  -- src/vulkan/vulkan.h:926
 
-   subtype VkSparseMemoryBindFlags is VkFlags;  -- src/vulkan/vulkan.h:910
+   subtype VkSparseMemoryBindFlags is VkFlags;  -- src/vulkan/vulkan.h:930
 
    subtype VkFenceCreateFlagBits is unsigned;
-   VK_FENCE_CREATE_SIGNALED_BIT : constant VkFenceCreateFlagBits := 1;  -- src/vulkan/vulkan.h:912
+   VK_FENCE_CREATE_SIGNALED_BIT : constant VkFenceCreateFlagBits := 1;
+   VK_FENCE_CREATE_FLAG_BITS_MAX_ENUM : constant VkFenceCreateFlagBits := 2147483647;  -- src/vulkan/vulkan.h:932
 
-   subtype VkFenceCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:915
+   subtype VkFenceCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:936
 
-   subtype VkSemaphoreCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:916
+   subtype VkSemaphoreCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:937
 
-   subtype VkEventCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:917
+   subtype VkEventCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:938
 
-   subtype VkQueryPoolCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:918
+   subtype VkQueryPoolCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:939
 
    subtype VkQueryPipelineStatisticFlagBits is unsigned;
    VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT : constant VkQueryPipelineStatisticFlagBits := 1;
@@ -1014,24 +1002,27 @@ package Vulkan is
    VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT : constant VkQueryPipelineStatisticFlagBits := 128;
    VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT : constant VkQueryPipelineStatisticFlagBits := 256;
    VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT : constant VkQueryPipelineStatisticFlagBits := 512;
-   VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT : constant VkQueryPipelineStatisticFlagBits := 1024;  -- src/vulkan/vulkan.h:920
+   VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT : constant VkQueryPipelineStatisticFlagBits := 1024;
+   VK_QUERY_PIPELINE_STATISTIC_FLAG_BITS_MAX_ENUM : constant VkQueryPipelineStatisticFlagBits := 2147483647;  -- src/vulkan/vulkan.h:941
 
-   subtype VkQueryPipelineStatisticFlags is VkFlags;  -- src/vulkan/vulkan.h:933
+   subtype VkQueryPipelineStatisticFlags is VkFlags;  -- src/vulkan/vulkan.h:955
 
    subtype VkQueryResultFlagBits is unsigned;
    VK_QUERY_RESULT_64_BIT : constant VkQueryResultFlagBits := 1;
    VK_QUERY_RESULT_WAIT_BIT : constant VkQueryResultFlagBits := 2;
    VK_QUERY_RESULT_WITH_AVAILABILITY_BIT : constant VkQueryResultFlagBits := 4;
-   VK_QUERY_RESULT_PARTIAL_BIT : constant VkQueryResultFlagBits := 8;  -- src/vulkan/vulkan.h:935
+   VK_QUERY_RESULT_PARTIAL_BIT : constant VkQueryResultFlagBits := 8;
+   VK_QUERY_RESULT_FLAG_BITS_MAX_ENUM : constant VkQueryResultFlagBits := 2147483647;  -- src/vulkan/vulkan.h:957
 
-   subtype VkQueryResultFlags is VkFlags;  -- src/vulkan/vulkan.h:941
+   subtype VkQueryResultFlags is VkFlags;  -- src/vulkan/vulkan.h:964
 
    subtype VkBufferCreateFlagBits is unsigned;
    VK_BUFFER_CREATE_SPARSE_BINDING_BIT : constant VkBufferCreateFlagBits := 1;
    VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT : constant VkBufferCreateFlagBits := 2;
-   VK_BUFFER_CREATE_SPARSE_ALIASED_BIT : constant VkBufferCreateFlagBits := 4;  -- src/vulkan/vulkan.h:943
+   VK_BUFFER_CREATE_SPARSE_ALIASED_BIT : constant VkBufferCreateFlagBits := 4;
+   VK_BUFFER_CREATE_FLAG_BITS_MAX_ENUM : constant VkBufferCreateFlagBits := 2147483647;  -- src/vulkan/vulkan.h:966
 
-   subtype VkBufferCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:948
+   subtype VkBufferCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:972
 
    subtype VkBufferUsageFlagBits is unsigned;
    VK_BUFFER_USAGE_TRANSFER_SRC_BIT : constant VkBufferUsageFlagBits := 1;
@@ -1042,26 +1033,28 @@ package Vulkan is
    VK_BUFFER_USAGE_STORAGE_BUFFER_BIT : constant VkBufferUsageFlagBits := 32;
    VK_BUFFER_USAGE_INDEX_BUFFER_BIT : constant VkBufferUsageFlagBits := 64;
    VK_BUFFER_USAGE_VERTEX_BUFFER_BIT : constant VkBufferUsageFlagBits := 128;
-   VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT : constant VkBufferUsageFlagBits := 256;  -- src/vulkan/vulkan.h:950
+   VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT : constant VkBufferUsageFlagBits := 256;
+   VK_BUFFER_USAGE_FLAG_BITS_MAX_ENUM : constant VkBufferUsageFlagBits := 2147483647;  -- src/vulkan/vulkan.h:974
 
-   subtype VkBufferUsageFlags is VkFlags;  -- src/vulkan/vulkan.h:961
+   subtype VkBufferUsageFlags is VkFlags;  -- src/vulkan/vulkan.h:986
 
-   subtype VkBufferViewCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:962
+   subtype VkBufferViewCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:987
 
-   subtype VkImageViewCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:963
+   subtype VkImageViewCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:988
 
-   subtype VkShaderModuleCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:964
+   subtype VkShaderModuleCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:989
 
-   subtype VkPipelineCacheCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:965
+   subtype VkPipelineCacheCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:990
 
    subtype VkPipelineCreateFlagBits is unsigned;
    VK_PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT : constant VkPipelineCreateFlagBits := 1;
    VK_PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT : constant VkPipelineCreateFlagBits := 2;
-   VK_PIPELINE_CREATE_DERIVATIVE_BIT : constant VkPipelineCreateFlagBits := 4;  -- src/vulkan/vulkan.h:967
+   VK_PIPELINE_CREATE_DERIVATIVE_BIT : constant VkPipelineCreateFlagBits := 4;
+   VK_PIPELINE_CREATE_FLAG_BITS_MAX_ENUM : constant VkPipelineCreateFlagBits := 2147483647;  -- src/vulkan/vulkan.h:992
 
-   subtype VkPipelineCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:972
+   subtype VkPipelineCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:998
 
-   subtype VkPipelineShaderStageCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:973
+   subtype VkPipelineShaderStageCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:999
 
    subtype VkShaderStageFlagBits is unsigned;
    VK_SHADER_STAGE_VERTEX_BIT : constant VkShaderStageFlagBits := 1;
@@ -1071,68 +1064,79 @@ package Vulkan is
    VK_SHADER_STAGE_FRAGMENT_BIT : constant VkShaderStageFlagBits := 16;
    VK_SHADER_STAGE_COMPUTE_BIT : constant VkShaderStageFlagBits := 32;
    VK_SHADER_STAGE_ALL_GRAPHICS : constant VkShaderStageFlagBits := 31;
-   VK_SHADER_STAGE_ALL : constant VkShaderStageFlagBits := 2147483647;  -- src/vulkan/vulkan.h:975
+   VK_SHADER_STAGE_ALL : constant VkShaderStageFlagBits := 2147483647;
+   VK_SHADER_STAGE_FLAG_BITS_MAX_ENUM : constant VkShaderStageFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1001
 
-   subtype VkPipelineVertexInputStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:985
+   subtype VkPipelineVertexInputStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1012
 
-   subtype VkPipelineInputAssemblyStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:986
+   subtype VkPipelineInputAssemblyStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1013
 
-   subtype VkPipelineTessellationStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:987
+   subtype VkPipelineTessellationStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1014
 
-   subtype VkPipelineViewportStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:988
+   subtype VkPipelineViewportStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1015
 
-   subtype VkPipelineRasterizationStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:989
+   subtype VkPipelineRasterizationStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1016
 
    type VkCullModeFlagBits is
      (VK_CULL_MODE_NONE,
       VK_CULL_MODE_FRONT_BIT,
       VK_CULL_MODE_BACK_BIT,
       VK_CULL_MODE_FRONT_AND_BACK);
-   pragma Convention (C, VkCullModeFlagBits);  -- src/vulkan/vulkan.h:991
+   pragma Convention (C, VkCullModeFlagBits);  -- src/vulkan/vulkan.h:1018
 
-   subtype VkCullModeFlags is VkFlags;  -- src/vulkan/vulkan.h:997
+   --  subtype VkCullModeFlagBits is unsigned;
+   --  VK_CULL_MODE_NONE : constant VkCullModeFlagBits := 0;
+   --  VK_CULL_MODE_FRONT_BIT : constant VkCullModeFlagBits := 1;
+   --  VK_CULL_MODE_BACK_BIT : constant VkCullModeFlagBits := 2;
+   --  VK_CULL_MODE_FRONT_AND_BACK : constant VkCullModeFlagBits := 3;
+   --  VK_CULL_MODE_FLAG_BITS_MAX_ENUM : constant VkCullModeFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1018
 
-   subtype VkPipelineMultisampleStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:998
+   subtype VkCullModeFlags is VkFlags;  -- src/vulkan/vulkan.h:1025
 
-   subtype VkPipelineDepthStencilStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:999
+   subtype VkPipelineMultisampleStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1026
 
-   subtype VkPipelineColorBlendStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1000
+   subtype VkPipelineDepthStencilStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1027
+
+   subtype VkPipelineColorBlendStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1028
 
    subtype VkColorComponentFlagBits is unsigned;
    VK_COLOR_COMPONENT_R_BIT : constant VkColorComponentFlagBits := 1;
    VK_COLOR_COMPONENT_G_BIT : constant VkColorComponentFlagBits := 2;
    VK_COLOR_COMPONENT_B_BIT : constant VkColorComponentFlagBits := 4;
-   VK_COLOR_COMPONENT_A_BIT : constant VkColorComponentFlagBits := 8;  -- src/vulkan/vulkan.h:1002
+   VK_COLOR_COMPONENT_A_BIT : constant VkColorComponentFlagBits := 8;
+   VK_COLOR_COMPONENT_FLAG_BITS_MAX_ENUM : constant VkColorComponentFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1030
 
-   subtype VkColorComponentFlags is VkFlags;  -- src/vulkan/vulkan.h:1008
+   subtype VkColorComponentFlags is VkFlags;  -- src/vulkan/vulkan.h:1037
 
-   subtype VkPipelineDynamicStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1009
+   subtype VkPipelineDynamicStateCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1038
 
-   subtype VkPipelineLayoutCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1010
+   subtype VkPipelineLayoutCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1039
 
-   subtype VkShaderStageFlags is VkFlags;  -- src/vulkan/vulkan.h:1011
+   subtype VkShaderStageFlags is VkFlags;  -- src/vulkan/vulkan.h:1040
 
-   subtype VkSamplerCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1012
+   subtype VkSamplerCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1041
 
-   subtype VkDescriptorSetLayoutCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1013
+   subtype VkDescriptorSetLayoutCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1042
 
    subtype VkDescriptorPoolCreateFlagBits is unsigned;
-   VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT : constant VkDescriptorPoolCreateFlagBits := 1;  -- src/vulkan/vulkan.h:1015
+   VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT : constant VkDescriptorPoolCreateFlagBits := 1;
+   VK_DESCRIPTOR_POOL_CREATE_FLAG_BITS_MAX_ENUM : constant VkDescriptorPoolCreateFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1044
 
-   subtype VkDescriptorPoolCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1018
+   subtype VkDescriptorPoolCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1048
 
-   subtype VkDescriptorPoolResetFlags is VkFlags;  -- src/vulkan/vulkan.h:1019
+   subtype VkDescriptorPoolResetFlags is VkFlags;  -- src/vulkan/vulkan.h:1049
 
-   subtype VkFramebufferCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1020
+   subtype VkFramebufferCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1050
 
-   subtype VkRenderPassCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1021
+   subtype VkRenderPassCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1051
 
    subtype VkAttachmentDescriptionFlagBits is unsigned;
-   VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT : constant VkAttachmentDescriptionFlagBits := 1;  -- src/vulkan/vulkan.h:1023
+   VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT : constant VkAttachmentDescriptionFlagBits := 1;
+   VK_ATTACHMENT_DESCRIPTION_FLAG_BITS_MAX_ENUM : constant VkAttachmentDescriptionFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1053
 
-   subtype VkAttachmentDescriptionFlags is VkFlags;  -- src/vulkan/vulkan.h:1026
+   subtype VkAttachmentDescriptionFlags is VkFlags;  -- src/vulkan/vulkan.h:1057
 
-   subtype VkSubpassDescriptionFlags is VkFlags;  -- src/vulkan/vulkan.h:1027
+   subtype VkSubpassDescriptionFlags is VkFlags;  -- src/vulkan/vulkan.h:1058
 
    subtype VkAccessFlagBits is unsigned;
    VK_ACCESS_INDIRECT_COMMAND_READ_BIT : constant VkAccessFlagBits := 1;
@@ -1151,56 +1155,64 @@ package Vulkan is
    VK_ACCESS_HOST_READ_BIT : constant VkAccessFlagBits := 8192;
    VK_ACCESS_HOST_WRITE_BIT : constant VkAccessFlagBits := 16384;
    VK_ACCESS_MEMORY_READ_BIT : constant VkAccessFlagBits := 32768;
-   VK_ACCESS_MEMORY_WRITE_BIT : constant VkAccessFlagBits := 65536;  -- src/vulkan/vulkan.h:1029
+   VK_ACCESS_MEMORY_WRITE_BIT : constant VkAccessFlagBits := 65536;
+   VK_ACCESS_FLAG_BITS_MAX_ENUM : constant VkAccessFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1060
 
-   subtype VkAccessFlags is VkFlags;  -- src/vulkan/vulkan.h:1048
+   subtype VkAccessFlags is VkFlags;  -- src/vulkan/vulkan.h:1080
 
    subtype VkDependencyFlagBits is unsigned;
-   VK_DEPENDENCY_BY_REGION_BIT : constant VkDependencyFlagBits := 1;  -- src/vulkan/vulkan.h:1050
+   VK_DEPENDENCY_BY_REGION_BIT : constant VkDependencyFlagBits := 1;
+   VK_DEPENDENCY_FLAG_BITS_MAX_ENUM : constant VkDependencyFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1082
 
-   subtype VkDependencyFlags is VkFlags;  -- src/vulkan/vulkan.h:1053
+   subtype VkDependencyFlags is VkFlags;  -- src/vulkan/vulkan.h:1086
 
    subtype VkCommandPoolCreateFlagBits is unsigned;
    VK_COMMAND_POOL_CREATE_TRANSIENT_BIT : constant VkCommandPoolCreateFlagBits := 1;
-   VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT : constant VkCommandPoolCreateFlagBits := 2;  -- src/vulkan/vulkan.h:1055
+   VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT : constant VkCommandPoolCreateFlagBits := 2;
+   VK_COMMAND_POOL_CREATE_FLAG_BITS_MAX_ENUM : constant VkCommandPoolCreateFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1088
 
-   subtype VkCommandPoolCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1059
+   subtype VkCommandPoolCreateFlags is VkFlags;  -- src/vulkan/vulkan.h:1093
 
    subtype VkCommandPoolResetFlagBits is unsigned;
-   VK_COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT : constant VkCommandPoolResetFlagBits := 1;  -- src/vulkan/vulkan.h:1061
+   VK_COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT : constant VkCommandPoolResetFlagBits := 1;
+   VK_COMMAND_POOL_RESET_FLAG_BITS_MAX_ENUM : constant VkCommandPoolResetFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1095
 
-   subtype VkCommandPoolResetFlags is VkFlags;  -- src/vulkan/vulkan.h:1064
+   subtype VkCommandPoolResetFlags is VkFlags;  -- src/vulkan/vulkan.h:1099
 
    subtype VkCommandBufferUsageFlagBits is unsigned;
    VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT : constant VkCommandBufferUsageFlagBits := 1;
    VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT : constant VkCommandBufferUsageFlagBits := 2;
-   VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT : constant VkCommandBufferUsageFlagBits := 4;  -- src/vulkan/vulkan.h:1066
+   VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT : constant VkCommandBufferUsageFlagBits := 4;
+   VK_COMMAND_BUFFER_USAGE_FLAG_BITS_MAX_ENUM : constant VkCommandBufferUsageFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1101
 
-   subtype VkCommandBufferUsageFlags is VkFlags;  -- src/vulkan/vulkan.h:1071
+   subtype VkCommandBufferUsageFlags is VkFlags;  -- src/vulkan/vulkan.h:1107
 
    subtype VkQueryControlFlagBits is unsigned;
-   VK_QUERY_CONTROL_PRECISE_BIT : constant VkQueryControlFlagBits := 1;  -- src/vulkan/vulkan.h:1073
+   VK_QUERY_CONTROL_PRECISE_BIT : constant VkQueryControlFlagBits := 1;
+   VK_QUERY_CONTROL_FLAG_BITS_MAX_ENUM : constant VkQueryControlFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1109
 
-   subtype VkQueryControlFlags is VkFlags;  -- src/vulkan/vulkan.h:1076
+   subtype VkQueryControlFlags is VkFlags;  -- src/vulkan/vulkan.h:1113
 
    subtype VkCommandBufferResetFlagBits is unsigned;
-   VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT : constant VkCommandBufferResetFlagBits := 1;  -- src/vulkan/vulkan.h:1078
+   VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT : constant VkCommandBufferResetFlagBits := 1;
+   VK_COMMAND_BUFFER_RESET_FLAG_BITS_MAX_ENUM : constant VkCommandBufferResetFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1115
 
-   subtype VkCommandBufferResetFlags is VkFlags;  -- src/vulkan/vulkan.h:1081
+   subtype VkCommandBufferResetFlags is VkFlags;  -- src/vulkan/vulkan.h:1119
 
    subtype VkStencilFaceFlagBits is unsigned;
    VK_STENCIL_FACE_FRONT_BIT : constant VkStencilFaceFlagBits := 1;
    VK_STENCIL_FACE_BACK_BIT : constant VkStencilFaceFlagBits := 2;
-   VK_STENCIL_FRONT_AND_BACK : constant VkStencilFaceFlagBits := 3;  -- src/vulkan/vulkan.h:1083
+   VK_STENCIL_FRONT_AND_BACK : constant VkStencilFaceFlagBits := 3;
+   VK_STENCIL_FACE_FLAG_BITS_MAX_ENUM : constant VkStencilFaceFlagBits := 2147483647;  -- src/vulkan/vulkan.h:1121
 
-   subtype VkStencilFaceFlags is VkFlags;  -- src/vulkan/vulkan.h:1088
+   subtype VkStencilFaceFlags is VkFlags;  -- src/vulkan/vulkan.h:1127
 
    type PFN_vkAllocationFunction is access function
         (arg1 : System.Address;
          arg2 : stddef_h.size_t;
          arg3 : stddef_h.size_t;
          arg4 : VkSystemAllocationScope) return System.Address;
-   pragma Convention (C, PFN_vkAllocationFunction);  -- src/vulkan/vulkan.h:1090
+   pragma Convention (C, PFN_vkAllocationFunction);  -- src/vulkan/vulkan.h:1129
 
    type PFN_vkReallocationFunction is access function
         (arg1 : System.Address;
@@ -1208,1263 +1220,1263 @@ package Vulkan is
          arg3 : stddef_h.size_t;
          arg4 : stddef_h.size_t;
          arg5 : VkSystemAllocationScope) return System.Address;
-   pragma Convention (C, PFN_vkReallocationFunction);  -- src/vulkan/vulkan.h:1096
+   pragma Convention (C, PFN_vkReallocationFunction);  -- src/vulkan/vulkan.h:1135
 
    type PFN_vkFreeFunction is access procedure (arg1 : System.Address; arg2 : System.Address);
-   pragma Convention (C, PFN_vkFreeFunction);  -- src/vulkan/vulkan.h:1103
+   pragma Convention (C, PFN_vkFreeFunction);  -- src/vulkan/vulkan.h:1142
 
    type PFN_vkInternalAllocationNotification is access procedure
         (arg1 : System.Address;
          arg2 : stddef_h.size_t;
          arg3 : VkInternalAllocationType;
          arg4 : VkSystemAllocationScope);
-   pragma Convention (C, PFN_vkInternalAllocationNotification);  -- src/vulkan/vulkan.h:1107
+   pragma Convention (C, PFN_vkInternalAllocationNotification);  -- src/vulkan/vulkan.h:1146
 
    type PFN_vkInternalFreeNotification is access procedure
         (arg1 : System.Address;
          arg2 : stddef_h.size_t;
          arg3 : VkInternalAllocationType;
          arg4 : VkSystemAllocationScope);
-   pragma Convention (C, PFN_vkInternalFreeNotification);  -- src/vulkan/vulkan.h:1113
+   pragma Convention (C, PFN_vkInternalFreeNotification);  -- src/vulkan/vulkan.h:1152
 
    type PFN_vkVoidFunction is access procedure;
-   pragma Convention (C, PFN_vkVoidFunction);  -- src/vulkan/vulkan.h:1119
+   pragma Convention (C, PFN_vkVoidFunction);  -- src/vulkan/vulkan.h:1158
 
    type VkApplicationInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1122
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1123
-      pApplicationName : Interfaces.C.Strings.chars_ptr;  -- src/vulkan/vulkan.h:1124
-      applicationVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1125
-      pEngineName : Interfaces.C.Strings.chars_ptr;  -- src/vulkan/vulkan.h:1126
-      engineVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1127
-      apiVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1128
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1161
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1162
+      pApplicationName : Interfaces.C.Strings.chars_ptr;  -- src/vulkan/vulkan.h:1163
+      applicationVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1164
+      pEngineName : Interfaces.C.Strings.chars_ptr;  -- src/vulkan/vulkan.h:1165
+      engineVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1166
+      apiVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1167
    end record;
-   pragma Convention (C_Pass_By_Copy, VkApplicationInfo);  -- src/vulkan/vulkan.h:1121
+   pragma Convention (C_Pass_By_Copy, VkApplicationInfo);  -- src/vulkan/vulkan.h:1160
 
    type VkInstanceCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1132
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1133
-      flags : aliased VkInstanceCreateFlags;  -- src/vulkan/vulkan.h:1134
-      pApplicationInfo : System.Address;  -- src/vulkan/vulkan.h:1135
-      enabledLayerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1136
-      ppEnabledLayerNames : System.Address;  -- src/vulkan/vulkan.h:1137
-      enabledExtensionCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1138
-      ppEnabledExtensionNames : System.Address;  -- src/vulkan/vulkan.h:1139
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1171
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1172
+      flags : aliased VkInstanceCreateFlags;  -- src/vulkan/vulkan.h:1173
+      pApplicationInfo : System.Address;  -- src/vulkan/vulkan.h:1174
+      enabledLayerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1175
+      ppEnabledLayerNames : System.Address;  -- src/vulkan/vulkan.h:1176
+      enabledExtensionCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1177
+      ppEnabledExtensionNames : System.Address;  -- src/vulkan/vulkan.h:1178
    end record;
-   pragma Convention (C_Pass_By_Copy, VkInstanceCreateInfo);  -- src/vulkan/vulkan.h:1131
+   pragma Convention (C_Pass_By_Copy, VkInstanceCreateInfo);  -- src/vulkan/vulkan.h:1170
 
    type VkAllocationCallbacks is record
-      pUserData : System.Address;  -- src/vulkan/vulkan.h:1143
-      pfnAllocation : PFN_vkAllocationFunction;  -- src/vulkan/vulkan.h:1144
-      pfnReallocation : PFN_vkReallocationFunction;  -- src/vulkan/vulkan.h:1145
-      pfnFree : PFN_vkFreeFunction;  -- src/vulkan/vulkan.h:1146
-      pfnInternalAllocation : PFN_vkInternalAllocationNotification;  -- src/vulkan/vulkan.h:1147
-      pfnInternalFree : PFN_vkInternalFreeNotification;  -- src/vulkan/vulkan.h:1148
+      pUserData : System.Address;  -- src/vulkan/vulkan.h:1182
+      pfnAllocation : PFN_vkAllocationFunction;  -- src/vulkan/vulkan.h:1183
+      pfnReallocation : PFN_vkReallocationFunction;  -- src/vulkan/vulkan.h:1184
+      pfnFree : PFN_vkFreeFunction;  -- src/vulkan/vulkan.h:1185
+      pfnInternalAllocation : PFN_vkInternalAllocationNotification;  -- src/vulkan/vulkan.h:1186
+      pfnInternalFree : PFN_vkInternalFreeNotification;  -- src/vulkan/vulkan.h:1187
    end record;
-   pragma Convention (C_Pass_By_Copy, VkAllocationCallbacks);  -- src/vulkan/vulkan.h:1142
+   pragma Convention (C_Pass_By_Copy, VkAllocationCallbacks);  -- src/vulkan/vulkan.h:1181
 
    type VkPhysicalDeviceFeatures is record
-      robustBufferAccess : aliased VkBool32;  -- src/vulkan/vulkan.h:1152
-      fullDrawIndexUint32 : aliased VkBool32;  -- src/vulkan/vulkan.h:1153
-      imageCubeArray : aliased VkBool32;  -- src/vulkan/vulkan.h:1154
-      independentBlend : aliased VkBool32;  -- src/vulkan/vulkan.h:1155
-      geometryShader : aliased VkBool32;  -- src/vulkan/vulkan.h:1156
-      tessellationShader : aliased VkBool32;  -- src/vulkan/vulkan.h:1157
-      sampleRateShading : aliased VkBool32;  -- src/vulkan/vulkan.h:1158
-      dualSrcBlend : aliased VkBool32;  -- src/vulkan/vulkan.h:1159
-      logicOp : aliased VkBool32;  -- src/vulkan/vulkan.h:1160
-      multiDrawIndirect : aliased VkBool32;  -- src/vulkan/vulkan.h:1161
-      drawIndirectFirstInstance : aliased VkBool32;  -- src/vulkan/vulkan.h:1162
-      depthClamp : aliased VkBool32;  -- src/vulkan/vulkan.h:1163
-      depthBiasClamp : aliased VkBool32;  -- src/vulkan/vulkan.h:1164
-      fillModeNonSolid : aliased VkBool32;  -- src/vulkan/vulkan.h:1165
-      depthBounds : aliased VkBool32;  -- src/vulkan/vulkan.h:1166
-      wideLines : aliased VkBool32;  -- src/vulkan/vulkan.h:1167
-      largePoints : aliased VkBool32;  -- src/vulkan/vulkan.h:1168
-      alphaToOne : aliased VkBool32;  -- src/vulkan/vulkan.h:1169
-      multiViewport : aliased VkBool32;  -- src/vulkan/vulkan.h:1170
-      samplerAnisotropy : aliased VkBool32;  -- src/vulkan/vulkan.h:1171
-      textureCompressionETC2 : aliased VkBool32;  -- src/vulkan/vulkan.h:1172
-      textureCompressionASTC_LDR : aliased VkBool32;  -- src/vulkan/vulkan.h:1173
-      textureCompressionBC : aliased VkBool32;  -- src/vulkan/vulkan.h:1174
-      occlusionQueryPrecise : aliased VkBool32;  -- src/vulkan/vulkan.h:1175
-      pipelineStatisticsQuery : aliased VkBool32;  -- src/vulkan/vulkan.h:1176
-      vertexPipelineStoresAndAtomics : aliased VkBool32;  -- src/vulkan/vulkan.h:1177
-      fragmentStoresAndAtomics : aliased VkBool32;  -- src/vulkan/vulkan.h:1178
-      shaderTessellationAndGeometryPointSize : aliased VkBool32;  -- src/vulkan/vulkan.h:1179
-      shaderImageGatherExtended : aliased VkBool32;  -- src/vulkan/vulkan.h:1180
-      shaderStorageImageExtendedFormats : aliased VkBool32;  -- src/vulkan/vulkan.h:1181
-      shaderStorageImageMultisample : aliased VkBool32;  -- src/vulkan/vulkan.h:1182
-      shaderStorageImageReadWithoutFormat : aliased VkBool32;  -- src/vulkan/vulkan.h:1183
-      shaderStorageImageWriteWithoutFormat : aliased VkBool32;  -- src/vulkan/vulkan.h:1184
-      shaderUniformBufferArrayDynamicIndexing : aliased VkBool32;  -- src/vulkan/vulkan.h:1185
-      shaderSampledImageArrayDynamicIndexing : aliased VkBool32;  -- src/vulkan/vulkan.h:1186
-      shaderStorageBufferArrayDynamicIndexing : aliased VkBool32;  -- src/vulkan/vulkan.h:1187
-      shaderStorageImageArrayDynamicIndexing : aliased VkBool32;  -- src/vulkan/vulkan.h:1188
-      shaderClipDistance : aliased VkBool32;  -- src/vulkan/vulkan.h:1189
-      shaderCullDistance : aliased VkBool32;  -- src/vulkan/vulkan.h:1190
-      shaderFloat64 : aliased VkBool32;  -- src/vulkan/vulkan.h:1191
-      shaderInt64 : aliased VkBool32;  -- src/vulkan/vulkan.h:1192
-      shaderInt16 : aliased VkBool32;  -- src/vulkan/vulkan.h:1193
-      shaderResourceResidency : aliased VkBool32;  -- src/vulkan/vulkan.h:1194
-      shaderResourceMinLod : aliased VkBool32;  -- src/vulkan/vulkan.h:1195
-      sparseBinding : aliased VkBool32;  -- src/vulkan/vulkan.h:1196
-      sparseResidencyBuffer : aliased VkBool32;  -- src/vulkan/vulkan.h:1197
-      sparseResidencyImage2D : aliased VkBool32;  -- src/vulkan/vulkan.h:1198
-      sparseResidencyImage3D : aliased VkBool32;  -- src/vulkan/vulkan.h:1199
-      sparseResidency2Samples : aliased VkBool32;  -- src/vulkan/vulkan.h:1200
-      sparseResidency4Samples : aliased VkBool32;  -- src/vulkan/vulkan.h:1201
-      sparseResidency8Samples : aliased VkBool32;  -- src/vulkan/vulkan.h:1202
-      sparseResidency16Samples : aliased VkBool32;  -- src/vulkan/vulkan.h:1203
-      sparseResidencyAliased : aliased VkBool32;  -- src/vulkan/vulkan.h:1204
-      variableMultisampleRate : aliased VkBool32;  -- src/vulkan/vulkan.h:1205
-      inheritedQueries : aliased VkBool32;  -- src/vulkan/vulkan.h:1206
+      robustBufferAccess : aliased VkBool32;  -- src/vulkan/vulkan.h:1191
+      fullDrawIndexUint32 : aliased VkBool32;  -- src/vulkan/vulkan.h:1192
+      imageCubeArray : aliased VkBool32;  -- src/vulkan/vulkan.h:1193
+      independentBlend : aliased VkBool32;  -- src/vulkan/vulkan.h:1194
+      geometryShader : aliased VkBool32;  -- src/vulkan/vulkan.h:1195
+      tessellationShader : aliased VkBool32;  -- src/vulkan/vulkan.h:1196
+      sampleRateShading : aliased VkBool32;  -- src/vulkan/vulkan.h:1197
+      dualSrcBlend : aliased VkBool32;  -- src/vulkan/vulkan.h:1198
+      logicOp : aliased VkBool32;  -- src/vulkan/vulkan.h:1199
+      multiDrawIndirect : aliased VkBool32;  -- src/vulkan/vulkan.h:1200
+      drawIndirectFirstInstance : aliased VkBool32;  -- src/vulkan/vulkan.h:1201
+      depthClamp : aliased VkBool32;  -- src/vulkan/vulkan.h:1202
+      depthBiasClamp : aliased VkBool32;  -- src/vulkan/vulkan.h:1203
+      fillModeNonSolid : aliased VkBool32;  -- src/vulkan/vulkan.h:1204
+      depthBounds : aliased VkBool32;  -- src/vulkan/vulkan.h:1205
+      wideLines : aliased VkBool32;  -- src/vulkan/vulkan.h:1206
+      largePoints : aliased VkBool32;  -- src/vulkan/vulkan.h:1207
+      alphaToOne : aliased VkBool32;  -- src/vulkan/vulkan.h:1208
+      multiViewport : aliased VkBool32;  -- src/vulkan/vulkan.h:1209
+      samplerAnisotropy : aliased VkBool32;  -- src/vulkan/vulkan.h:1210
+      textureCompressionETC2 : aliased VkBool32;  -- src/vulkan/vulkan.h:1211
+      textureCompressionASTC_LDR : aliased VkBool32;  -- src/vulkan/vulkan.h:1212
+      textureCompressionBC : aliased VkBool32;  -- src/vulkan/vulkan.h:1213
+      occlusionQueryPrecise : aliased VkBool32;  -- src/vulkan/vulkan.h:1214
+      pipelineStatisticsQuery : aliased VkBool32;  -- src/vulkan/vulkan.h:1215
+      vertexPipelineStoresAndAtomics : aliased VkBool32;  -- src/vulkan/vulkan.h:1216
+      fragmentStoresAndAtomics : aliased VkBool32;  -- src/vulkan/vulkan.h:1217
+      shaderTessellationAndGeometryPointSize : aliased VkBool32;  -- src/vulkan/vulkan.h:1218
+      shaderImageGatherExtended : aliased VkBool32;  -- src/vulkan/vulkan.h:1219
+      shaderStorageImageExtendedFormats : aliased VkBool32;  -- src/vulkan/vulkan.h:1220
+      shaderStorageImageMultisample : aliased VkBool32;  -- src/vulkan/vulkan.h:1221
+      shaderStorageImageReadWithoutFormat : aliased VkBool32;  -- src/vulkan/vulkan.h:1222
+      shaderStorageImageWriteWithoutFormat : aliased VkBool32;  -- src/vulkan/vulkan.h:1223
+      shaderUniformBufferArrayDynamicIndexing : aliased VkBool32;  -- src/vulkan/vulkan.h:1224
+      shaderSampledImageArrayDynamicIndexing : aliased VkBool32;  -- src/vulkan/vulkan.h:1225
+      shaderStorageBufferArrayDynamicIndexing : aliased VkBool32;  -- src/vulkan/vulkan.h:1226
+      shaderStorageImageArrayDynamicIndexing : aliased VkBool32;  -- src/vulkan/vulkan.h:1227
+      shaderClipDistance : aliased VkBool32;  -- src/vulkan/vulkan.h:1228
+      shaderCullDistance : aliased VkBool32;  -- src/vulkan/vulkan.h:1229
+      shaderFloat64 : aliased VkBool32;  -- src/vulkan/vulkan.h:1230
+      shaderInt64 : aliased VkBool32;  -- src/vulkan/vulkan.h:1231
+      shaderInt16 : aliased VkBool32;  -- src/vulkan/vulkan.h:1232
+      shaderResourceResidency : aliased VkBool32;  -- src/vulkan/vulkan.h:1233
+      shaderResourceMinLod : aliased VkBool32;  -- src/vulkan/vulkan.h:1234
+      sparseBinding : aliased VkBool32;  -- src/vulkan/vulkan.h:1235
+      sparseResidencyBuffer : aliased VkBool32;  -- src/vulkan/vulkan.h:1236
+      sparseResidencyImage2D : aliased VkBool32;  -- src/vulkan/vulkan.h:1237
+      sparseResidencyImage3D : aliased VkBool32;  -- src/vulkan/vulkan.h:1238
+      sparseResidency2Samples : aliased VkBool32;  -- src/vulkan/vulkan.h:1239
+      sparseResidency4Samples : aliased VkBool32;  -- src/vulkan/vulkan.h:1240
+      sparseResidency8Samples : aliased VkBool32;  -- src/vulkan/vulkan.h:1241
+      sparseResidency16Samples : aliased VkBool32;  -- src/vulkan/vulkan.h:1242
+      sparseResidencyAliased : aliased VkBool32;  -- src/vulkan/vulkan.h:1243
+      variableMultisampleRate : aliased VkBool32;  -- src/vulkan/vulkan.h:1244
+      inheritedQueries : aliased VkBool32;  -- src/vulkan/vulkan.h:1245
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceFeatures);  -- src/vulkan/vulkan.h:1151
+   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceFeatures);  -- src/vulkan/vulkan.h:1190
 
    type VkFormatProperties is record
-      linearTilingFeatures : aliased VkFormatFeatureFlags;  -- src/vulkan/vulkan.h:1210
-      optimalTilingFeatures : aliased VkFormatFeatureFlags;  -- src/vulkan/vulkan.h:1211
-      bufferFeatures : aliased VkFormatFeatureFlags;  -- src/vulkan/vulkan.h:1212
+      linearTilingFeatures : aliased VkFormatFeatureFlags;  -- src/vulkan/vulkan.h:1249
+      optimalTilingFeatures : aliased VkFormatFeatureFlags;  -- src/vulkan/vulkan.h:1250
+      bufferFeatures : aliased VkFormatFeatureFlags;  -- src/vulkan/vulkan.h:1251
    end record;
-   pragma Convention (C_Pass_By_Copy, VkFormatProperties);  -- src/vulkan/vulkan.h:1209
+   pragma Convention (C_Pass_By_Copy, VkFormatProperties);  -- src/vulkan/vulkan.h:1248
 
    type VkExtent3D is record
-      width : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1216
-      height : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1217
-      depth : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1218
+      width : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1255
+      height : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1256
+      depth : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1257
    end record;
-   pragma Convention (C_Pass_By_Copy, VkExtent3D);  -- src/vulkan/vulkan.h:1215
+   pragma Convention (C_Pass_By_Copy, VkExtent3D);  -- src/vulkan/vulkan.h:1254
 
    type VkImageFormatProperties is record
-      maxExtent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1222
-      maxMipLevels : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1223
-      maxArrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1224
-      sampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1225
-      maxResourceSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1226
+      maxExtent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1261
+      maxMipLevels : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1262
+      maxArrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1263
+      sampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1264
+      maxResourceSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1265
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageFormatProperties);  -- src/vulkan/vulkan.h:1221
+   pragma Convention (C_Pass_By_Copy, VkImageFormatProperties);  -- src/vulkan/vulkan.h:1260
 
-   type VkPhysicalDeviceLimits_maxComputeWorkGroupCount_array is array (0 .. 2) of aliased stdint_h.uint32_t;
-   type VkPhysicalDeviceLimits_maxComputeWorkGroupSize_array is array (0 .. 2) of aliased stdint_h.uint32_t;
-   type VkPhysicalDeviceLimits_maxViewportDimensions_array is array (0 .. 1) of aliased stdint_h.uint32_t;
-   type VkPhysicalDeviceLimits_viewportBoundsRange_array is array (0 .. 1) of aliased float;
-   type VkPhysicalDeviceLimits_pointSizeRange_array is array (0 .. 1) of aliased float;
-   type VkPhysicalDeviceLimits_lineWidthRange_array is array (0 .. 1) of aliased float;
+   type anon1252_anon1254_array is array (0 .. 2) of aliased stdint_h.uint32_t;
+   type anon1252_anon1254_array is array (0 .. 2) of aliased stdint_h.uint32_t;
+   type anon1252_anon1260_array is array (0 .. 1) of aliased stdint_h.uint32_t;
+   type anon1252_anon1263_array is array (0 .. 1) of aliased float;
+   type anon1252_anon1263_array is array (0 .. 1) of aliased float;
+   type anon1252_anon1263_array is array (0 .. 1) of aliased float;
    type VkPhysicalDeviceLimits is record
-      maxImageDimension1D : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1230
-      maxImageDimension2D : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1231
-      maxImageDimension3D : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1232
-      maxImageDimensionCube : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1233
-      maxImageArrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1234
-      maxTexelBufferElements : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1235
-      maxUniformBufferRange : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1236
-      maxStorageBufferRange : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1237
-      maxPushConstantsSize : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1238
-      maxMemoryAllocationCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1239
-      maxSamplerAllocationCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1240
-      bufferImageGranularity : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1241
-      sparseAddressSpaceSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1242
-      maxBoundDescriptorSets : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1243
-      maxPerStageDescriptorSamplers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1244
-      maxPerStageDescriptorUniformBuffers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1245
-      maxPerStageDescriptorStorageBuffers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1246
-      maxPerStageDescriptorSampledImages : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1247
-      maxPerStageDescriptorStorageImages : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1248
-      maxPerStageDescriptorInputAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1249
-      maxPerStageResources : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1250
-      maxDescriptorSetSamplers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1251
-      maxDescriptorSetUniformBuffers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1252
-      maxDescriptorSetUniformBuffersDynamic : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1253
-      maxDescriptorSetStorageBuffers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1254
-      maxDescriptorSetStorageBuffersDynamic : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1255
-      maxDescriptorSetSampledImages : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1256
-      maxDescriptorSetStorageImages : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1257
-      maxDescriptorSetInputAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1258
-      maxVertexInputAttributes : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1259
-      maxVertexInputBindings : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1260
-      maxVertexInputAttributeOffset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1261
-      maxVertexInputBindingStride : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1262
-      maxVertexOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1263
-      maxTessellationGenerationLevel : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1264
-      maxTessellationPatchSize : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1265
-      maxTessellationControlPerVertexInputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1266
-      maxTessellationControlPerVertexOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1267
-      maxTessellationControlPerPatchOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1268
-      maxTessellationControlTotalOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1269
-      maxTessellationEvaluationInputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1270
-      maxTessellationEvaluationOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1271
-      maxGeometryShaderInvocations : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1272
-      maxGeometryInputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1273
-      maxGeometryOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1274
-      maxGeometryOutputVertices : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1275
-      maxGeometryTotalOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1276
-      maxFragmentInputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1277
-      maxFragmentOutputAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1278
-      maxFragmentDualSrcAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1279
-      maxFragmentCombinedOutputResources : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1280
-      maxComputeSharedMemorySize : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1281
-      maxComputeWorkGroupCount : aliased VkPhysicalDeviceLimits_maxComputeWorkGroupCount_array;  -- src/vulkan/vulkan.h:1282
-      maxComputeWorkGroupInvocations : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1283
-      maxComputeWorkGroupSize : aliased VkPhysicalDeviceLimits_maxComputeWorkGroupSize_array;  -- src/vulkan/vulkan.h:1284
-      subPixelPrecisionBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1285
-      subTexelPrecisionBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1286
-      mipmapPrecisionBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1287
-      maxDrawIndexedIndexValue : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1288
-      maxDrawIndirectCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1289
-      maxSamplerLodBias : aliased float;  -- src/vulkan/vulkan.h:1290
-      maxSamplerAnisotropy : aliased float;  -- src/vulkan/vulkan.h:1291
-      maxViewports : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1292
-      maxViewportDimensions : aliased VkPhysicalDeviceLimits_maxViewportDimensions_array;  -- src/vulkan/vulkan.h:1293
-      viewportBoundsRange : aliased VkPhysicalDeviceLimits_viewportBoundsRange_array;  -- src/vulkan/vulkan.h:1294
-      viewportSubPixelBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1295
-      minMemoryMapAlignment : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1296
-      minTexelBufferOffsetAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1297
-      minUniformBufferOffsetAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1298
-      minStorageBufferOffsetAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1299
-      minTexelOffset : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1300
-      maxTexelOffset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1301
-      minTexelGatherOffset : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1302
-      maxTexelGatherOffset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1303
-      minInterpolationOffset : aliased float;  -- src/vulkan/vulkan.h:1304
-      maxInterpolationOffset : aliased float;  -- src/vulkan/vulkan.h:1305
-      subPixelInterpolationOffsetBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1306
-      maxFramebufferWidth : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1307
-      maxFramebufferHeight : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1308
-      maxFramebufferLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1309
-      framebufferColorSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1310
-      framebufferDepthSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1311
-      framebufferStencilSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1312
-      framebufferNoAttachmentsSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1313
-      maxColorAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1314
-      sampledImageColorSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1315
-      sampledImageIntegerSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1316
-      sampledImageDepthSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1317
-      sampledImageStencilSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1318
-      storageImageSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1319
-      maxSampleMaskWords : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1320
-      timestampComputeAndGraphics : aliased VkBool32;  -- src/vulkan/vulkan.h:1321
-      timestampPeriod : aliased float;  -- src/vulkan/vulkan.h:1322
-      maxClipDistances : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1323
-      maxCullDistances : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1324
-      maxCombinedClipAndCullDistances : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1325
-      discreteQueuePriorities : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1326
-      pointSizeRange : aliased VkPhysicalDeviceLimits_pointSizeRange_array;  -- src/vulkan/vulkan.h:1327
-      lineWidthRange : aliased VkPhysicalDeviceLimits_lineWidthRange_array;  -- src/vulkan/vulkan.h:1328
-      pointSizeGranularity : aliased float;  -- src/vulkan/vulkan.h:1329
-      lineWidthGranularity : aliased float;  -- src/vulkan/vulkan.h:1330
-      strictLines : aliased VkBool32;  -- src/vulkan/vulkan.h:1331
-      standardSampleLocations : aliased VkBool32;  -- src/vulkan/vulkan.h:1332
-      optimalBufferCopyOffsetAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1333
-      optimalBufferCopyRowPitchAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1334
-      nonCoherentAtomSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1335
+      maxImageDimension1D : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1269
+      maxImageDimension2D : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1270
+      maxImageDimension3D : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1271
+      maxImageDimensionCube : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1272
+      maxImageArrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1273
+      maxTexelBufferElements : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1274
+      maxUniformBufferRange : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1275
+      maxStorageBufferRange : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1276
+      maxPushConstantsSize : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1277
+      maxMemoryAllocationCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1278
+      maxSamplerAllocationCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1279
+      bufferImageGranularity : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1280
+      sparseAddressSpaceSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1281
+      maxBoundDescriptorSets : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1282
+      maxPerStageDescriptorSamplers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1283
+      maxPerStageDescriptorUniformBuffers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1284
+      maxPerStageDescriptorStorageBuffers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1285
+      maxPerStageDescriptorSampledImages : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1286
+      maxPerStageDescriptorStorageImages : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1287
+      maxPerStageDescriptorInputAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1288
+      maxPerStageResources : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1289
+      maxDescriptorSetSamplers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1290
+      maxDescriptorSetUniformBuffers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1291
+      maxDescriptorSetUniformBuffersDynamic : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1292
+      maxDescriptorSetStorageBuffers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1293
+      maxDescriptorSetStorageBuffersDynamic : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1294
+      maxDescriptorSetSampledImages : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1295
+      maxDescriptorSetStorageImages : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1296
+      maxDescriptorSetInputAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1297
+      maxVertexInputAttributes : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1298
+      maxVertexInputBindings : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1299
+      maxVertexInputAttributeOffset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1300
+      maxVertexInputBindingStride : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1301
+      maxVertexOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1302
+      maxTessellationGenerationLevel : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1303
+      maxTessellationPatchSize : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1304
+      maxTessellationControlPerVertexInputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1305
+      maxTessellationControlPerVertexOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1306
+      maxTessellationControlPerPatchOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1307
+      maxTessellationControlTotalOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1308
+      maxTessellationEvaluationInputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1309
+      maxTessellationEvaluationOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1310
+      maxGeometryShaderInvocations : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1311
+      maxGeometryInputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1312
+      maxGeometryOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1313
+      maxGeometryOutputVertices : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1314
+      maxGeometryTotalOutputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1315
+      maxFragmentInputComponents : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1316
+      maxFragmentOutputAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1317
+      maxFragmentDualSrcAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1318
+      maxFragmentCombinedOutputResources : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1319
+      maxComputeSharedMemorySize : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1320
+      maxComputeWorkGroupCount : aliased anon1252_anon1254_array;  -- src/vulkan/vulkan.h:1321
+      maxComputeWorkGroupInvocations : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1322
+      maxComputeWorkGroupSize : aliased anon1252_anon1254_array;  -- src/vulkan/vulkan.h:1323
+      subPixelPrecisionBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1324
+      subTexelPrecisionBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1325
+      mipmapPrecisionBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1326
+      maxDrawIndexedIndexValue : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1327
+      maxDrawIndirectCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1328
+      maxSamplerLodBias : aliased float;  -- src/vulkan/vulkan.h:1329
+      maxSamplerAnisotropy : aliased float;  -- src/vulkan/vulkan.h:1330
+      maxViewports : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1331
+      maxViewportDimensions : aliased anon1252_anon1260_array;  -- src/vulkan/vulkan.h:1332
+      viewportBoundsRange : aliased anon1252_anon1263_array;  -- src/vulkan/vulkan.h:1333
+      viewportSubPixelBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1334
+      minMemoryMapAlignment : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1335
+      minTexelBufferOffsetAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1336
+      minUniformBufferOffsetAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1337
+      minStorageBufferOffsetAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1338
+      minTexelOffset : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1339
+      maxTexelOffset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1340
+      minTexelGatherOffset : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1341
+      maxTexelGatherOffset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1342
+      minInterpolationOffset : aliased float;  -- src/vulkan/vulkan.h:1343
+      maxInterpolationOffset : aliased float;  -- src/vulkan/vulkan.h:1344
+      subPixelInterpolationOffsetBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1345
+      maxFramebufferWidth : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1346
+      maxFramebufferHeight : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1347
+      maxFramebufferLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1348
+      framebufferColorSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1349
+      framebufferDepthSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1350
+      framebufferStencilSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1351
+      framebufferNoAttachmentsSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1352
+      maxColorAttachments : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1353
+      sampledImageColorSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1354
+      sampledImageIntegerSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1355
+      sampledImageDepthSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1356
+      sampledImageStencilSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1357
+      storageImageSampleCounts : aliased VkSampleCountFlags;  -- src/vulkan/vulkan.h:1358
+      maxSampleMaskWords : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1359
+      timestampComputeAndGraphics : aliased VkBool32;  -- src/vulkan/vulkan.h:1360
+      timestampPeriod : aliased float;  -- src/vulkan/vulkan.h:1361
+      maxClipDistances : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1362
+      maxCullDistances : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1363
+      maxCombinedClipAndCullDistances : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1364
+      discreteQueuePriorities : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1365
+      pointSizeRange : aliased anon1252_anon1263_array;  -- src/vulkan/vulkan.h:1366
+      lineWidthRange : aliased anon1252_anon1263_array;  -- src/vulkan/vulkan.h:1367
+      pointSizeGranularity : aliased float;  -- src/vulkan/vulkan.h:1368
+      lineWidthGranularity : aliased float;  -- src/vulkan/vulkan.h:1369
+      strictLines : aliased VkBool32;  -- src/vulkan/vulkan.h:1370
+      standardSampleLocations : aliased VkBool32;  -- src/vulkan/vulkan.h:1371
+      optimalBufferCopyOffsetAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1372
+      optimalBufferCopyRowPitchAlignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1373
+      nonCoherentAtomSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1374
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceLimits);  -- src/vulkan/vulkan.h:1229
+   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceLimits);  -- src/vulkan/vulkan.h:1268
 
    type VkPhysicalDeviceSparseProperties is record
-      residencyStandard2DBlockShape : aliased VkBool32;  -- src/vulkan/vulkan.h:1339
-      residencyStandard2DMultisampleBlockShape : aliased VkBool32;  -- src/vulkan/vulkan.h:1340
-      residencyStandard3DBlockShape : aliased VkBool32;  -- src/vulkan/vulkan.h:1341
-      residencyAlignedMipSize : aliased VkBool32;  -- src/vulkan/vulkan.h:1342
-      residencyNonResidentStrict : aliased VkBool32;  -- src/vulkan/vulkan.h:1343
+      residencyStandard2DBlockShape : aliased VkBool32;  -- src/vulkan/vulkan.h:1378
+      residencyStandard2DMultisampleBlockShape : aliased VkBool32;  -- src/vulkan/vulkan.h:1379
+      residencyStandard3DBlockShape : aliased VkBool32;  -- src/vulkan/vulkan.h:1380
+      residencyAlignedMipSize : aliased VkBool32;  -- src/vulkan/vulkan.h:1381
+      residencyNonResidentStrict : aliased VkBool32;  -- src/vulkan/vulkan.h:1382
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceSparseProperties);  -- src/vulkan/vulkan.h:1338
+   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceSparseProperties);  -- src/vulkan/vulkan.h:1377
 
-   subtype VkPhysicalDeviceProperties_deviceName_array is Interfaces.C.char_array (0 .. 255);
-   type VkPhysicalDeviceProperties_pipelineCacheUUID_array is array (0 .. 15) of aliased stdint_h.uint8_t;
+   subtype anon1271_anon1273_array is Interfaces.C.char_array (0 .. 255);
+   type anon1271_anon1275_array is array (0 .. 15) of aliased stdint_h.uint8_t;
    type VkPhysicalDeviceProperties is record
-      apiVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1347
-      driverVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1348
-      vendorID : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1349
-      deviceID : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1350
-      deviceType : aliased VkPhysicalDeviceType;  -- src/vulkan/vulkan.h:1351
-      deviceName : aliased VkPhysicalDeviceProperties_deviceName_array;  -- src/vulkan/vulkan.h:1352
-      pipelineCacheUUID : aliased VkPhysicalDeviceProperties_pipelineCacheUUID_array;  -- src/vulkan/vulkan.h:1353
-      limits : aliased VkPhysicalDeviceLimits;  -- src/vulkan/vulkan.h:1354
-      sparseProperties : aliased VkPhysicalDeviceSparseProperties;  -- src/vulkan/vulkan.h:1355
+      apiVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1386
+      driverVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1387
+      vendorID : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1388
+      deviceID : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1389
+      deviceType : aliased VkPhysicalDeviceType;  -- src/vulkan/vulkan.h:1390
+      deviceName : aliased anon1271_anon1273_array;  -- src/vulkan/vulkan.h:1391
+      pipelineCacheUUID : aliased anon1271_anon1275_array;  -- src/vulkan/vulkan.h:1392
+      limits : aliased VkPhysicalDeviceLimits;  -- src/vulkan/vulkan.h:1393
+      sparseProperties : aliased VkPhysicalDeviceSparseProperties;  -- src/vulkan/vulkan.h:1394
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceProperties);  -- src/vulkan/vulkan.h:1346
+   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceProperties);  -- src/vulkan/vulkan.h:1385
 
    type VkQueueFamilyProperties is record
-      queueFlags : aliased VkQueueFlags;  -- src/vulkan/vulkan.h:1359
-      queueCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1360
-      timestampValidBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1361
-      minImageTransferGranularity : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1362
+      queueFlags : aliased VkQueueFlags;  -- src/vulkan/vulkan.h:1398
+      queueCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1399
+      timestampValidBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1400
+      minImageTransferGranularity : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1401
    end record;
-   pragma Convention (C_Pass_By_Copy, VkQueueFamilyProperties);  -- src/vulkan/vulkan.h:1358
+   pragma Convention (C_Pass_By_Copy, VkQueueFamilyProperties);  -- src/vulkan/vulkan.h:1397
 
    type VkMemoryType is record
-      propertyFlags : aliased VkMemoryPropertyFlags;  -- src/vulkan/vulkan.h:1366
-      heapIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1367
+      propertyFlags : aliased VkMemoryPropertyFlags;  -- src/vulkan/vulkan.h:1405
+      heapIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1406
    end record;
-   pragma Convention (C_Pass_By_Copy, VkMemoryType);  -- src/vulkan/vulkan.h:1365
+   pragma Convention (C_Pass_By_Copy, VkMemoryType);  -- src/vulkan/vulkan.h:1404
 
    type VkMemoryHeap is record
-      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1371
-      flags : aliased VkMemoryHeapFlags;  -- src/vulkan/vulkan.h:1372
+      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1410
+      flags : aliased VkMemoryHeapFlags;  -- src/vulkan/vulkan.h:1411
    end record;
-   pragma Convention (C_Pass_By_Copy, VkMemoryHeap);  -- src/vulkan/vulkan.h:1370
+   pragma Convention (C_Pass_By_Copy, VkMemoryHeap);  -- src/vulkan/vulkan.h:1409
 
-   type VkPhysicalDeviceMemoryProperties_memoryTypes_array is array (0 .. 31) of aliased VkMemoryType;
-   type VkPhysicalDeviceMemoryProperties_memoryHeaps_array is array (0 .. 15) of aliased VkMemoryHeap;
+   type anon1286_anon1288_array is array (0 .. 31) of aliased VkMemoryType;
+   type anon1286_anon1293_array is array (0 .. 15) of aliased VkMemoryHeap;
    type VkPhysicalDeviceMemoryProperties is record
-      memoryTypeCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1376
-      memoryTypes : aliased VkPhysicalDeviceMemoryProperties_memoryTypes_array;  -- src/vulkan/vulkan.h:1377
-      memoryHeapCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1378
-      memoryHeaps : aliased VkPhysicalDeviceMemoryProperties_memoryHeaps_array;  -- src/vulkan/vulkan.h:1379
+      memoryTypeCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1415
+      memoryTypes : aliased anon1286_anon1288_array;  -- src/vulkan/vulkan.h:1416
+      memoryHeapCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1417
+      memoryHeaps : aliased anon1286_anon1293_array;  -- src/vulkan/vulkan.h:1418
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceMemoryProperties);  -- src/vulkan/vulkan.h:1375
+   pragma Convention (C_Pass_By_Copy, VkPhysicalDeviceMemoryProperties);  -- src/vulkan/vulkan.h:1414
 
    type VkDeviceQueueCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1383
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1384
-      flags : aliased VkDeviceQueueCreateFlags;  -- src/vulkan/vulkan.h:1385
-      queueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1386
-      queueCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1387
-      pQueuePriorities : access float;  -- src/vulkan/vulkan.h:1388
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1422
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1423
+      flags : aliased VkDeviceQueueCreateFlags;  -- src/vulkan/vulkan.h:1424
+      queueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1425
+      queueCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1426
+      pQueuePriorities : access float;  -- src/vulkan/vulkan.h:1427
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDeviceQueueCreateInfo);  -- src/vulkan/vulkan.h:1382
+   pragma Convention (C_Pass_By_Copy, VkDeviceQueueCreateInfo);  -- src/vulkan/vulkan.h:1421
 
    type VkDeviceCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1392
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1393
-      flags : aliased VkDeviceCreateFlags;  -- src/vulkan/vulkan.h:1394
-      queueCreateInfoCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1395
-      pQueueCreateInfos : System.Address;  -- src/vulkan/vulkan.h:1396
-      enabledLayerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1397
-      ppEnabledLayerNames : System.Address;  -- src/vulkan/vulkan.h:1398
-      enabledExtensionCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1399
-      ppEnabledExtensionNames : System.Address;  -- src/vulkan/vulkan.h:1400
-      pEnabledFeatures : System.Address;  -- src/vulkan/vulkan.h:1401
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1431
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1432
+      flags : aliased VkDeviceCreateFlags;  -- src/vulkan/vulkan.h:1433
+      queueCreateInfoCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1434
+      pQueueCreateInfos : System.Address;  -- src/vulkan/vulkan.h:1435
+      enabledLayerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1436
+      ppEnabledLayerNames : System.Address;  -- src/vulkan/vulkan.h:1437
+      enabledExtensionCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1438
+      ppEnabledExtensionNames : System.Address;  -- src/vulkan/vulkan.h:1439
+      pEnabledFeatures : System.Address;  -- src/vulkan/vulkan.h:1440
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDeviceCreateInfo);  -- src/vulkan/vulkan.h:1391
+   pragma Convention (C_Pass_By_Copy, VkDeviceCreateInfo);  -- src/vulkan/vulkan.h:1430
 
-   subtype VkExtensionProperties_extensionName_array is Interfaces.C.char_array (0 .. 255);
+   subtype anon1310_anon1273_array is Interfaces.C.char_array (0 .. 255);
    type VkExtensionProperties is record
-      extensionName : aliased VkExtensionProperties_extensionName_array;  -- src/vulkan/vulkan.h:1405
-      specVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1406
+      extensionName : aliased anon1310_anon1273_array;  -- src/vulkan/vulkan.h:1444
+      specVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1445
    end record;
-   pragma Convention (C_Pass_By_Copy, VkExtensionProperties);  -- src/vulkan/vulkan.h:1404
+   pragma Convention (C_Pass_By_Copy, VkExtensionProperties);  -- src/vulkan/vulkan.h:1443
 
-   subtype VkLayerProperties_layerName_array is Interfaces.C.char_array (0 .. 255);
-   subtype VkLayerProperties_description_array is Interfaces.C.char_array (0 .. 255);
+   subtype anon1314_anon1273_array is Interfaces.C.char_array (0 .. 255);
+   subtype anon1314_anon1273_array is Interfaces.C.char_array (0 .. 255);
    type VkLayerProperties is record
-      layerName : aliased VkLayerProperties_layerName_array;  -- src/vulkan/vulkan.h:1410
-      specVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1411
-      implementationVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1412
-      description : aliased VkLayerProperties_description_array;  -- src/vulkan/vulkan.h:1413
+      layerName : aliased anon1314_anon1273_array;  -- src/vulkan/vulkan.h:1449
+      specVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1450
+      implementationVersion : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1451
+      description : aliased anon1314_anon1273_array;  -- src/vulkan/vulkan.h:1452
    end record;
-   pragma Convention (C_Pass_By_Copy, VkLayerProperties);  -- src/vulkan/vulkan.h:1409
+   pragma Convention (C_Pass_By_Copy, VkLayerProperties);  -- src/vulkan/vulkan.h:1448
 
    type VkSubmitInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1417
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1418
-      waitSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1419
-      pWaitSemaphores : System.Address;  -- src/vulkan/vulkan.h:1420
-      pWaitDstStageMask : access VkPipelineStageFlags;  -- src/vulkan/vulkan.h:1421
-      commandBufferCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1422
-      pCommandBuffers : System.Address;  -- src/vulkan/vulkan.h:1423
-      signalSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1424
-      pSignalSemaphores : System.Address;  -- src/vulkan/vulkan.h:1425
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1456
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1457
+      waitSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1458
+      pWaitSemaphores : System.Address;  -- src/vulkan/vulkan.h:1459
+      pWaitDstStageMask : access VkPipelineStageFlags;  -- src/vulkan/vulkan.h:1460
+      commandBufferCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1461
+      pCommandBuffers : System.Address;  -- src/vulkan/vulkan.h:1462
+      signalSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1463
+      pSignalSemaphores : System.Address;  -- src/vulkan/vulkan.h:1464
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSubmitInfo);  -- src/vulkan/vulkan.h:1416
+   pragma Convention (C_Pass_By_Copy, VkSubmitInfo);  -- src/vulkan/vulkan.h:1455
 
    type VkMemoryAllocateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1429
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1430
-      allocationSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1431
-      memoryTypeIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1432
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1468
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1469
+      allocationSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1470
+      memoryTypeIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1471
    end record;
-   pragma Convention (C_Pass_By_Copy, VkMemoryAllocateInfo);  -- src/vulkan/vulkan.h:1428
+   pragma Convention (C_Pass_By_Copy, VkMemoryAllocateInfo);  -- src/vulkan/vulkan.h:1467
 
    type VkMappedMemoryRange is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1436
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1437
-      memory : VkDeviceMemory;  -- src/vulkan/vulkan.h:1438
-      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1439
-      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1440
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1475
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1476
+      memory : VkDeviceMemory;  -- src/vulkan/vulkan.h:1477
+      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1478
+      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1479
    end record;
-   pragma Convention (C_Pass_By_Copy, VkMappedMemoryRange);  -- src/vulkan/vulkan.h:1435
+   pragma Convention (C_Pass_By_Copy, VkMappedMemoryRange);  -- src/vulkan/vulkan.h:1474
 
    type VkMemoryRequirements is record
-      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1444
-      alignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1445
-      memoryTypeBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1446
+      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1483
+      alignment : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1484
+      memoryTypeBits : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1485
    end record;
-   pragma Convention (C_Pass_By_Copy, VkMemoryRequirements);  -- src/vulkan/vulkan.h:1443
+   pragma Convention (C_Pass_By_Copy, VkMemoryRequirements);  -- src/vulkan/vulkan.h:1482
 
    type VkSparseImageFormatProperties is record
-      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:1450
-      imageGranularity : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1451
-      flags : aliased VkSparseImageFormatFlags;  -- src/vulkan/vulkan.h:1452
+      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:1489
+      imageGranularity : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1490
+      flags : aliased VkSparseImageFormatFlags;  -- src/vulkan/vulkan.h:1491
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSparseImageFormatProperties);  -- src/vulkan/vulkan.h:1449
+   pragma Convention (C_Pass_By_Copy, VkSparseImageFormatProperties);  -- src/vulkan/vulkan.h:1488
 
    type VkSparseImageMemoryRequirements is record
-      formatProperties : aliased VkSparseImageFormatProperties;  -- src/vulkan/vulkan.h:1456
-      imageMipTailFirstLod : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1457
-      imageMipTailSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1458
-      imageMipTailOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1459
-      imageMipTailStride : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1460
+      formatProperties : aliased VkSparseImageFormatProperties;  -- src/vulkan/vulkan.h:1495
+      imageMipTailFirstLod : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1496
+      imageMipTailSize : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1497
+      imageMipTailOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1498
+      imageMipTailStride : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1499
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSparseImageMemoryRequirements);  -- src/vulkan/vulkan.h:1455
+   pragma Convention (C_Pass_By_Copy, VkSparseImageMemoryRequirements);  -- src/vulkan/vulkan.h:1494
 
    type VkSparseMemoryBind is record
-      resourceOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1464
-      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1465
-      memory : VkDeviceMemory;  -- src/vulkan/vulkan.h:1466
-      memoryOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1467
-      flags : aliased VkSparseMemoryBindFlags;  -- src/vulkan/vulkan.h:1468
+      resourceOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1503
+      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1504
+      memory : VkDeviceMemory;  -- src/vulkan/vulkan.h:1505
+      memoryOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1506
+      flags : aliased VkSparseMemoryBindFlags;  -- src/vulkan/vulkan.h:1507
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSparseMemoryBind);  -- src/vulkan/vulkan.h:1463
+   pragma Convention (C_Pass_By_Copy, VkSparseMemoryBind);  -- src/vulkan/vulkan.h:1502
 
    type VkSparseBufferMemoryBindInfo is record
-      buffer : VkBuffer;  -- src/vulkan/vulkan.h:1472
-      bindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1473
-      pBinds : System.Address;  -- src/vulkan/vulkan.h:1474
+      buffer : VkBuffer;  -- src/vulkan/vulkan.h:1511
+      bindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1512
+      pBinds : System.Address;  -- src/vulkan/vulkan.h:1513
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSparseBufferMemoryBindInfo);  -- src/vulkan/vulkan.h:1471
+   pragma Convention (C_Pass_By_Copy, VkSparseBufferMemoryBindInfo);  -- src/vulkan/vulkan.h:1510
 
    type VkSparseImageOpaqueMemoryBindInfo is record
-      image : VkImage;  -- src/vulkan/vulkan.h:1478
-      bindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1479
-      pBinds : System.Address;  -- src/vulkan/vulkan.h:1480
+      image : VkImage;  -- src/vulkan/vulkan.h:1517
+      bindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1518
+      pBinds : System.Address;  -- src/vulkan/vulkan.h:1519
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSparseImageOpaqueMemoryBindInfo);  -- src/vulkan/vulkan.h:1477
+   pragma Convention (C_Pass_By_Copy, VkSparseImageOpaqueMemoryBindInfo);  -- src/vulkan/vulkan.h:1516
 
    type VkImageSubresource is record
-      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:1484
-      mipLevel : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1485
-      arrayLayer : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1486
+      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:1523
+      mipLevel : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1524
+      arrayLayer : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1525
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageSubresource);  -- src/vulkan/vulkan.h:1483
+   pragma Convention (C_Pass_By_Copy, VkImageSubresource);  -- src/vulkan/vulkan.h:1522
 
    type VkOffset3D is record
-      x : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1490
-      y : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1491
-      z : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1492
+      x : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1529
+      y : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1530
+      z : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1531
    end record;
-   pragma Convention (C_Pass_By_Copy, VkOffset3D);  -- src/vulkan/vulkan.h:1489
+   pragma Convention (C_Pass_By_Copy, VkOffset3D);  -- src/vulkan/vulkan.h:1528
 
    type VkSparseImageMemoryBind is record
-      subresource : aliased VkImageSubresource;  -- src/vulkan/vulkan.h:1496
-      offset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:1497
-      extent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1498
-      memory : VkDeviceMemory;  -- src/vulkan/vulkan.h:1499
-      memoryOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1500
-      flags : aliased VkSparseMemoryBindFlags;  -- src/vulkan/vulkan.h:1501
+      subresource : aliased VkImageSubresource;  -- src/vulkan/vulkan.h:1535
+      offset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:1536
+      extent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1537
+      memory : VkDeviceMemory;  -- src/vulkan/vulkan.h:1538
+      memoryOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1539
+      flags : aliased VkSparseMemoryBindFlags;  -- src/vulkan/vulkan.h:1540
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSparseImageMemoryBind);  -- src/vulkan/vulkan.h:1495
+   pragma Convention (C_Pass_By_Copy, VkSparseImageMemoryBind);  -- src/vulkan/vulkan.h:1534
 
    type VkSparseImageMemoryBindInfo is record
-      image : VkImage;  -- src/vulkan/vulkan.h:1505
-      bindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1506
-      pBinds : System.Address;  -- src/vulkan/vulkan.h:1507
+      image : VkImage;  -- src/vulkan/vulkan.h:1544
+      bindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1545
+      pBinds : System.Address;  -- src/vulkan/vulkan.h:1546
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSparseImageMemoryBindInfo);  -- src/vulkan/vulkan.h:1504
+   pragma Convention (C_Pass_By_Copy, VkSparseImageMemoryBindInfo);  -- src/vulkan/vulkan.h:1543
 
    type VkBindSparseInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1511
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1512
-      waitSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1513
-      pWaitSemaphores : System.Address;  -- src/vulkan/vulkan.h:1514
-      bufferBindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1515
-      pBufferBinds : System.Address;  -- src/vulkan/vulkan.h:1516
-      imageOpaqueBindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1517
-      pImageOpaqueBinds : System.Address;  -- src/vulkan/vulkan.h:1518
-      imageBindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1519
-      pImageBinds : System.Address;  -- src/vulkan/vulkan.h:1520
-      signalSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1521
-      pSignalSemaphores : System.Address;  -- src/vulkan/vulkan.h:1522
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1550
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1551
+      waitSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1552
+      pWaitSemaphores : System.Address;  -- src/vulkan/vulkan.h:1553
+      bufferBindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1554
+      pBufferBinds : System.Address;  -- src/vulkan/vulkan.h:1555
+      imageOpaqueBindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1556
+      pImageOpaqueBinds : System.Address;  -- src/vulkan/vulkan.h:1557
+      imageBindCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1558
+      pImageBinds : System.Address;  -- src/vulkan/vulkan.h:1559
+      signalSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1560
+      pSignalSemaphores : System.Address;  -- src/vulkan/vulkan.h:1561
    end record;
-   pragma Convention (C_Pass_By_Copy, VkBindSparseInfo);  -- src/vulkan/vulkan.h:1510
+   pragma Convention (C_Pass_By_Copy, VkBindSparseInfo);  -- src/vulkan/vulkan.h:1549
 
    type VkFenceCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1526
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1527
-      flags : aliased VkFenceCreateFlags;  -- src/vulkan/vulkan.h:1528
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1565
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1566
+      flags : aliased VkFenceCreateFlags;  -- src/vulkan/vulkan.h:1567
    end record;
-   pragma Convention (C_Pass_By_Copy, VkFenceCreateInfo);  -- src/vulkan/vulkan.h:1525
+   pragma Convention (C_Pass_By_Copy, VkFenceCreateInfo);  -- src/vulkan/vulkan.h:1564
 
    type VkSemaphoreCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1532
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1533
-      flags : aliased VkSemaphoreCreateFlags;  -- src/vulkan/vulkan.h:1534
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1571
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1572
+      flags : aliased VkSemaphoreCreateFlags;  -- src/vulkan/vulkan.h:1573
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSemaphoreCreateInfo);  -- src/vulkan/vulkan.h:1531
+   pragma Convention (C_Pass_By_Copy, VkSemaphoreCreateInfo);  -- src/vulkan/vulkan.h:1570
 
    type VkEventCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1538
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1539
-      flags : aliased VkEventCreateFlags;  -- src/vulkan/vulkan.h:1540
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1577
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1578
+      flags : aliased VkEventCreateFlags;  -- src/vulkan/vulkan.h:1579
    end record;
-   pragma Convention (C_Pass_By_Copy, VkEventCreateInfo);  -- src/vulkan/vulkan.h:1537
+   pragma Convention (C_Pass_By_Copy, VkEventCreateInfo);  -- src/vulkan/vulkan.h:1576
 
    type VkQueryPoolCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1544
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1545
-      flags : aliased VkQueryPoolCreateFlags;  -- src/vulkan/vulkan.h:1546
-      queryType : aliased VkQueryType;  -- src/vulkan/vulkan.h:1547
-      queryCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1548
-      pipelineStatistics : aliased VkQueryPipelineStatisticFlags;  -- src/vulkan/vulkan.h:1549
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1583
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1584
+      flags : aliased VkQueryPoolCreateFlags;  -- src/vulkan/vulkan.h:1585
+      queryType : aliased VkQueryType;  -- src/vulkan/vulkan.h:1586
+      queryCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1587
+      pipelineStatistics : aliased VkQueryPipelineStatisticFlags;  -- src/vulkan/vulkan.h:1588
    end record;
-   pragma Convention (C_Pass_By_Copy, VkQueryPoolCreateInfo);  -- src/vulkan/vulkan.h:1543
+   pragma Convention (C_Pass_By_Copy, VkQueryPoolCreateInfo);  -- src/vulkan/vulkan.h:1582
 
    type VkBufferCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1553
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1554
-      flags : aliased VkBufferCreateFlags;  -- src/vulkan/vulkan.h:1555
-      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1556
-      usage : aliased VkBufferUsageFlags;  -- src/vulkan/vulkan.h:1557
-      sharingMode : aliased VkSharingMode;  -- src/vulkan/vulkan.h:1558
-      queueFamilyIndexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1559
-      pQueueFamilyIndices : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1560
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1592
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1593
+      flags : aliased VkBufferCreateFlags;  -- src/vulkan/vulkan.h:1594
+      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1595
+      usage : aliased VkBufferUsageFlags;  -- src/vulkan/vulkan.h:1596
+      sharingMode : aliased VkSharingMode;  -- src/vulkan/vulkan.h:1597
+      queueFamilyIndexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1598
+      pQueueFamilyIndices : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1599
    end record;
-   pragma Convention (C_Pass_By_Copy, VkBufferCreateInfo);  -- src/vulkan/vulkan.h:1552
+   pragma Convention (C_Pass_By_Copy, VkBufferCreateInfo);  -- src/vulkan/vulkan.h:1591
 
    type VkBufferViewCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1564
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1565
-      flags : aliased VkBufferViewCreateFlags;  -- src/vulkan/vulkan.h:1566
-      buffer : VkBuffer;  -- src/vulkan/vulkan.h:1567
-      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1568
-      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1569
-      c_range : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1570
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1603
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1604
+      flags : aliased VkBufferViewCreateFlags;  -- src/vulkan/vulkan.h:1605
+      buffer : VkBuffer;  -- src/vulkan/vulkan.h:1606
+      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1607
+      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1608
+      c_range : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1609
    end record;
-   pragma Convention (C_Pass_By_Copy, VkBufferViewCreateInfo);  -- src/vulkan/vulkan.h:1563
+   pragma Convention (C_Pass_By_Copy, VkBufferViewCreateInfo);  -- src/vulkan/vulkan.h:1602
 
    type VkImageCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1574
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1575
-      flags : aliased VkImageCreateFlags;  -- src/vulkan/vulkan.h:1576
-      imageType : aliased VkImageType;  -- src/vulkan/vulkan.h:1577
-      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1578
-      extent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1579
-      mipLevels : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1580
-      arrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1581
-      samples : aliased VkSampleCountFlagBits;  -- src/vulkan/vulkan.h:1582
-      tiling : aliased VkImageTiling;  -- src/vulkan/vulkan.h:1583
-      usage : aliased VkImageUsageFlags;  -- src/vulkan/vulkan.h:1584
-      sharingMode : aliased VkSharingMode;  -- src/vulkan/vulkan.h:1585
-      queueFamilyIndexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1586
-      pQueueFamilyIndices : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1587
-      initialLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:1588
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1613
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1614
+      flags : aliased VkImageCreateFlags;  -- src/vulkan/vulkan.h:1615
+      imageType : aliased VkImageType;  -- src/vulkan/vulkan.h:1616
+      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1617
+      extent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:1618
+      mipLevels : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1619
+      arrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1620
+      samples : aliased VkSampleCountFlagBits;  -- src/vulkan/vulkan.h:1621
+      tiling : aliased VkImageTiling;  -- src/vulkan/vulkan.h:1622
+      usage : aliased VkImageUsageFlags;  -- src/vulkan/vulkan.h:1623
+      sharingMode : aliased VkSharingMode;  -- src/vulkan/vulkan.h:1624
+      queueFamilyIndexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1625
+      pQueueFamilyIndices : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1626
+      initialLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:1627
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageCreateInfo);  -- src/vulkan/vulkan.h:1573
+   pragma Convention (C_Pass_By_Copy, VkImageCreateInfo);  -- src/vulkan/vulkan.h:1612
 
    type VkSubresourceLayout is record
-      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1592
-      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1593
-      rowPitch : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1594
-      arrayPitch : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1595
-      depthPitch : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1596
+      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1631
+      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1632
+      rowPitch : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1633
+      arrayPitch : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1634
+      depthPitch : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1635
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSubresourceLayout);  -- src/vulkan/vulkan.h:1591
+   pragma Convention (C_Pass_By_Copy, VkSubresourceLayout);  -- src/vulkan/vulkan.h:1630
 
    type VkComponentMapping is record
-      r : aliased VkComponentSwizzle;  -- src/vulkan/vulkan.h:1600
-      g : aliased VkComponentSwizzle;  -- src/vulkan/vulkan.h:1601
-      b : aliased VkComponentSwizzle;  -- src/vulkan/vulkan.h:1602
-      a : aliased VkComponentSwizzle;  -- src/vulkan/vulkan.h:1603
+      r : aliased VkComponentSwizzle;  -- src/vulkan/vulkan.h:1639
+      g : aliased VkComponentSwizzle;  -- src/vulkan/vulkan.h:1640
+      b : aliased VkComponentSwizzle;  -- src/vulkan/vulkan.h:1641
+      a : aliased VkComponentSwizzle;  -- src/vulkan/vulkan.h:1642
    end record;
-   pragma Convention (C_Pass_By_Copy, VkComponentMapping);  -- src/vulkan/vulkan.h:1599
+   pragma Convention (C_Pass_By_Copy, VkComponentMapping);  -- src/vulkan/vulkan.h:1638
 
    type VkImageSubresourceRange is record
-      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:1607
-      baseMipLevel : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1608
-      levelCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1609
-      baseArrayLayer : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1610
-      layerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1611
+      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:1646
+      baseMipLevel : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1647
+      levelCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1648
+      baseArrayLayer : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1649
+      layerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1650
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageSubresourceRange);  -- src/vulkan/vulkan.h:1606
+   pragma Convention (C_Pass_By_Copy, VkImageSubresourceRange);  -- src/vulkan/vulkan.h:1645
 
    type VkImageViewCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1615
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1616
-      flags : aliased VkImageViewCreateFlags;  -- src/vulkan/vulkan.h:1617
-      image : VkImage;  -- src/vulkan/vulkan.h:1618
-      viewType : aliased VkImageViewType;  -- src/vulkan/vulkan.h:1619
-      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1620
-      components : aliased VkComponentMapping;  -- src/vulkan/vulkan.h:1621
-      subresourceRange : aliased VkImageSubresourceRange;  -- src/vulkan/vulkan.h:1622
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1654
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1655
+      flags : aliased VkImageViewCreateFlags;  -- src/vulkan/vulkan.h:1656
+      image : VkImage;  -- src/vulkan/vulkan.h:1657
+      viewType : aliased VkImageViewType;  -- src/vulkan/vulkan.h:1658
+      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1659
+      components : aliased VkComponentMapping;  -- src/vulkan/vulkan.h:1660
+      subresourceRange : aliased VkImageSubresourceRange;  -- src/vulkan/vulkan.h:1661
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageViewCreateInfo);  -- src/vulkan/vulkan.h:1614
+   pragma Convention (C_Pass_By_Copy, VkImageViewCreateInfo);  -- src/vulkan/vulkan.h:1653
 
    type VkShaderModuleCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1626
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1627
-      flags : aliased VkShaderModuleCreateFlags;  -- src/vulkan/vulkan.h:1628
-      codeSize : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1629
-      pCode : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1630
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1665
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1666
+      flags : aliased VkShaderModuleCreateFlags;  -- src/vulkan/vulkan.h:1667
+      codeSize : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1668
+      pCode : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1669
    end record;
-   pragma Convention (C_Pass_By_Copy, VkShaderModuleCreateInfo);  -- src/vulkan/vulkan.h:1625
+   pragma Convention (C_Pass_By_Copy, VkShaderModuleCreateInfo);  -- src/vulkan/vulkan.h:1664
 
    type VkPipelineCacheCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1634
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1635
-      flags : aliased VkPipelineCacheCreateFlags;  -- src/vulkan/vulkan.h:1636
-      initialDataSize : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1637
-      pInitialData : System.Address;  -- src/vulkan/vulkan.h:1638
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1673
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1674
+      flags : aliased VkPipelineCacheCreateFlags;  -- src/vulkan/vulkan.h:1675
+      initialDataSize : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1676
+      pInitialData : System.Address;  -- src/vulkan/vulkan.h:1677
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineCacheCreateInfo);  -- src/vulkan/vulkan.h:1633
+   pragma Convention (C_Pass_By_Copy, VkPipelineCacheCreateInfo);  -- src/vulkan/vulkan.h:1672
 
    type VkSpecializationMapEntry is record
-      constantID : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1642
-      offset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1643
-      size : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1644
+      constantID : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1681
+      offset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1682
+      size : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1683
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSpecializationMapEntry);  -- src/vulkan/vulkan.h:1641
+   pragma Convention (C_Pass_By_Copy, VkSpecializationMapEntry);  -- src/vulkan/vulkan.h:1680
 
    type VkSpecializationInfo is record
-      mapEntryCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1648
-      pMapEntries : System.Address;  -- src/vulkan/vulkan.h:1649
-      dataSize : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1650
-      pData : System.Address;  -- src/vulkan/vulkan.h:1651
+      mapEntryCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1687
+      pMapEntries : System.Address;  -- src/vulkan/vulkan.h:1688
+      dataSize : aliased stddef_h.size_t;  -- src/vulkan/vulkan.h:1689
+      pData : System.Address;  -- src/vulkan/vulkan.h:1690
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSpecializationInfo);  -- src/vulkan/vulkan.h:1647
+   pragma Convention (C_Pass_By_Copy, VkSpecializationInfo);  -- src/vulkan/vulkan.h:1686
 
    type VkPipelineShaderStageCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1655
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1656
-      flags : aliased VkPipelineShaderStageCreateFlags;  -- src/vulkan/vulkan.h:1657
-      stage : aliased VkShaderStageFlagBits;  -- src/vulkan/vulkan.h:1658
-      module : VkShaderModule;  -- src/vulkan/vulkan.h:1659
-      pName : Interfaces.C.Strings.chars_ptr;  -- src/vulkan/vulkan.h:1660
-      pSpecializationInfo : System.Address;  -- src/vulkan/vulkan.h:1661
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1694
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1695
+      flags : aliased VkPipelineShaderStageCreateFlags;  -- src/vulkan/vulkan.h:1696
+      stage : aliased VkShaderStageFlagBits;  -- src/vulkan/vulkan.h:1697
+      module : VkShaderModule;  -- src/vulkan/vulkan.h:1698
+      pName : Interfaces.C.Strings.chars_ptr;  -- src/vulkan/vulkan.h:1699
+      pSpecializationInfo : System.Address;  -- src/vulkan/vulkan.h:1700
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineShaderStageCreateInfo);  -- src/vulkan/vulkan.h:1654
+   pragma Convention (C_Pass_By_Copy, VkPipelineShaderStageCreateInfo);  -- src/vulkan/vulkan.h:1693
 
    type VkVertexInputBindingDescription is record
-      binding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1665
-      stride : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1666
-      inputRate : aliased VkVertexInputRate;  -- src/vulkan/vulkan.h:1667
+      binding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1704
+      stride : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1705
+      inputRate : aliased VkVertexInputRate;  -- src/vulkan/vulkan.h:1706
    end record;
-   pragma Convention (C_Pass_By_Copy, VkVertexInputBindingDescription);  -- src/vulkan/vulkan.h:1664
+   pragma Convention (C_Pass_By_Copy, VkVertexInputBindingDescription);  -- src/vulkan/vulkan.h:1703
 
    type VkVertexInputAttributeDescription is record
-      location : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1671
-      binding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1672
-      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1673
-      offset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1674
+      location : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1710
+      binding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1711
+      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1712
+      offset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1713
    end record;
-   pragma Convention (C_Pass_By_Copy, VkVertexInputAttributeDescription);  -- src/vulkan/vulkan.h:1670
+   pragma Convention (C_Pass_By_Copy, VkVertexInputAttributeDescription);  -- src/vulkan/vulkan.h:1709
 
    type VkPipelineVertexInputStateCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1678
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1679
-      flags : aliased VkPipelineVertexInputStateCreateFlags;  -- src/vulkan/vulkan.h:1680
-      vertexBindingDescriptionCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1681
-      pVertexBindingDescriptions : System.Address;  -- src/vulkan/vulkan.h:1682
-      vertexAttributeDescriptionCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1683
-      pVertexAttributeDescriptions : System.Address;  -- src/vulkan/vulkan.h:1684
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1717
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1718
+      flags : aliased VkPipelineVertexInputStateCreateFlags;  -- src/vulkan/vulkan.h:1719
+      vertexBindingDescriptionCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1720
+      pVertexBindingDescriptions : System.Address;  -- src/vulkan/vulkan.h:1721
+      vertexAttributeDescriptionCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1722
+      pVertexAttributeDescriptions : System.Address;  -- src/vulkan/vulkan.h:1723
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineVertexInputStateCreateInfo);  -- src/vulkan/vulkan.h:1677
+   pragma Convention (C_Pass_By_Copy, VkPipelineVertexInputStateCreateInfo);  -- src/vulkan/vulkan.h:1716
 
    type VkPipelineInputAssemblyStateCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1688
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1689
-      flags : aliased VkPipelineInputAssemblyStateCreateFlags;  -- src/vulkan/vulkan.h:1690
-      topology : aliased VkPrimitiveTopology;  -- src/vulkan/vulkan.h:1691
-      primitiveRestartEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1692
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineInputAssemblyStateCreateInfo);  -- src/vulkan/vulkan.h:1687
-
-   type VkPipelineTessellationStateCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1696
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1697
-      flags : aliased VkPipelineTessellationStateCreateFlags;  -- src/vulkan/vulkan.h:1698
-      patchControlPoints : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1699
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineTessellationStateCreateInfo);  -- src/vulkan/vulkan.h:1695
-
-   type VkViewport is record
-      x : aliased float;  -- src/vulkan/vulkan.h:1703
-      y : aliased float;  -- src/vulkan/vulkan.h:1704
-      width : aliased float;  -- src/vulkan/vulkan.h:1705
-      height : aliased float;  -- src/vulkan/vulkan.h:1706
-      minDepth : aliased float;  -- src/vulkan/vulkan.h:1707
-      maxDepth : aliased float;  -- src/vulkan/vulkan.h:1708
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkViewport);  -- src/vulkan/vulkan.h:1702
-
-   type VkOffset2D is record
-      x : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1712
-      y : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1713
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkOffset2D);  -- src/vulkan/vulkan.h:1711
-
-   type VkExtent2D is record
-      width : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1717
-      height : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1718
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkExtent2D);  -- src/vulkan/vulkan.h:1716
-
-   type VkRect2D is record
-      offset : aliased VkOffset2D;  -- src/vulkan/vulkan.h:1722
-      extent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:1723
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkRect2D);  -- src/vulkan/vulkan.h:1721
-
-   type VkPipelineViewportStateCreateInfo is record
       sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1727
       pNext : System.Address;  -- src/vulkan/vulkan.h:1728
-      flags : aliased VkPipelineViewportStateCreateFlags;  -- src/vulkan/vulkan.h:1729
-      viewportCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1730
-      pViewports : System.Address;  -- src/vulkan/vulkan.h:1731
-      scissorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1732
-      pScissors : System.Address;  -- src/vulkan/vulkan.h:1733
+      flags : aliased VkPipelineInputAssemblyStateCreateFlags;  -- src/vulkan/vulkan.h:1729
+      topology : aliased VkPrimitiveTopology;  -- src/vulkan/vulkan.h:1730
+      primitiveRestartEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1731
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineViewportStateCreateInfo);  -- src/vulkan/vulkan.h:1726
+   pragma Convention (C_Pass_By_Copy, VkPipelineInputAssemblyStateCreateInfo);  -- src/vulkan/vulkan.h:1726
+
+   type VkPipelineTessellationStateCreateInfo is record
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1735
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1736
+      flags : aliased VkPipelineTessellationStateCreateFlags;  -- src/vulkan/vulkan.h:1737
+      patchControlPoints : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1738
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkPipelineTessellationStateCreateInfo);  -- src/vulkan/vulkan.h:1734
+
+   type VkViewport is record
+      x : aliased float;  -- src/vulkan/vulkan.h:1742
+      y : aliased float;  -- src/vulkan/vulkan.h:1743
+      width : aliased float;  -- src/vulkan/vulkan.h:1744
+      height : aliased float;  -- src/vulkan/vulkan.h:1745
+      minDepth : aliased float;  -- src/vulkan/vulkan.h:1746
+      maxDepth : aliased float;  -- src/vulkan/vulkan.h:1747
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkViewport);  -- src/vulkan/vulkan.h:1741
+
+   type VkOffset2D is record
+      x : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1751
+      y : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1752
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkOffset2D);  -- src/vulkan/vulkan.h:1750
+
+   type VkExtent2D is record
+      width : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1756
+      height : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1757
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkExtent2D);  -- src/vulkan/vulkan.h:1755
+
+   type VkRect2D is record
+      offset : aliased VkOffset2D;  -- src/vulkan/vulkan.h:1761
+      extent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:1762
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkRect2D);  -- src/vulkan/vulkan.h:1760
+
+   type VkPipelineViewportStateCreateInfo is record
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1766
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1767
+      flags : aliased VkPipelineViewportStateCreateFlags;  -- src/vulkan/vulkan.h:1768
+      viewportCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1769
+      pViewports : System.Address;  -- src/vulkan/vulkan.h:1770
+      scissorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1771
+      pScissors : System.Address;  -- src/vulkan/vulkan.h:1772
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkPipelineViewportStateCreateInfo);  -- src/vulkan/vulkan.h:1765
 
    type VkPipelineRasterizationStateCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1737
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1738
-      flags : aliased VkPipelineRasterizationStateCreateFlags;  -- src/vulkan/vulkan.h:1739
-      depthClampEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1740
-      rasterizerDiscardEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1741
-      polygonMode : aliased VkPolygonMode;  -- src/vulkan/vulkan.h:1742
-      cullMode : aliased VkCullModeFlags;  -- src/vulkan/vulkan.h:1743
-      frontFace : aliased VkFrontFace;  -- src/vulkan/vulkan.h:1744
-      depthBiasEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1745
-      depthBiasConstantFactor : aliased float;  -- src/vulkan/vulkan.h:1746
-      depthBiasClamp : aliased float;  -- src/vulkan/vulkan.h:1747
-      depthBiasSlopeFactor : aliased float;  -- src/vulkan/vulkan.h:1748
-      lineWidth : aliased float;  -- src/vulkan/vulkan.h:1749
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1776
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1777
+      flags : aliased VkPipelineRasterizationStateCreateFlags;  -- src/vulkan/vulkan.h:1778
+      depthClampEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1779
+      rasterizerDiscardEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1780
+      polygonMode : aliased VkPolygonMode;  -- src/vulkan/vulkan.h:1781
+      cullMode : aliased VkCullModeFlags;  -- src/vulkan/vulkan.h:1782
+      frontFace : aliased VkFrontFace;  -- src/vulkan/vulkan.h:1783
+      depthBiasEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1784
+      depthBiasConstantFactor : aliased float;  -- src/vulkan/vulkan.h:1785
+      depthBiasClamp : aliased float;  -- src/vulkan/vulkan.h:1786
+      depthBiasSlopeFactor : aliased float;  -- src/vulkan/vulkan.h:1787
+      lineWidth : aliased float;  -- src/vulkan/vulkan.h:1788
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineRasterizationStateCreateInfo);  -- src/vulkan/vulkan.h:1736
+   pragma Convention (C_Pass_By_Copy, VkPipelineRasterizationStateCreateInfo);  -- src/vulkan/vulkan.h:1775
 
    type VkPipelineMultisampleStateCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1753
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1754
-      flags : aliased VkPipelineMultisampleStateCreateFlags;  -- src/vulkan/vulkan.h:1755
-      rasterizationSamples : aliased VkSampleCountFlagBits;  -- src/vulkan/vulkan.h:1756
-      sampleShadingEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1757
-      minSampleShading : aliased float;  -- src/vulkan/vulkan.h:1758
-      pSampleMask : access VkSampleMask;  -- src/vulkan/vulkan.h:1759
-      alphaToCoverageEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1760
-      alphaToOneEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1761
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1792
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1793
+      flags : aliased VkPipelineMultisampleStateCreateFlags;  -- src/vulkan/vulkan.h:1794
+      rasterizationSamples : aliased VkSampleCountFlagBits;  -- src/vulkan/vulkan.h:1795
+      sampleShadingEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1796
+      minSampleShading : aliased float;  -- src/vulkan/vulkan.h:1797
+      pSampleMask : access VkSampleMask;  -- src/vulkan/vulkan.h:1798
+      alphaToCoverageEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1799
+      alphaToOneEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1800
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineMultisampleStateCreateInfo);  -- src/vulkan/vulkan.h:1752
+   pragma Convention (C_Pass_By_Copy, VkPipelineMultisampleStateCreateInfo);  -- src/vulkan/vulkan.h:1791
 
    type VkStencilOpState is record
-      failOp : aliased VkStencilOp;  -- src/vulkan/vulkan.h:1765
-      passOp : aliased VkStencilOp;  -- src/vulkan/vulkan.h:1766
-      depthFailOp : aliased VkStencilOp;  -- src/vulkan/vulkan.h:1767
-      compareOp : aliased VkCompareOp;  -- src/vulkan/vulkan.h:1768
-      compareMask : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1769
-      writeMask : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1770
-      reference : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1771
+      failOp : aliased VkStencilOp;  -- src/vulkan/vulkan.h:1804
+      passOp : aliased VkStencilOp;  -- src/vulkan/vulkan.h:1805
+      depthFailOp : aliased VkStencilOp;  -- src/vulkan/vulkan.h:1806
+      compareOp : aliased VkCompareOp;  -- src/vulkan/vulkan.h:1807
+      compareMask : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1808
+      writeMask : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1809
+      reference : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1810
    end record;
-   pragma Convention (C_Pass_By_Copy, VkStencilOpState);  -- src/vulkan/vulkan.h:1764
+   pragma Convention (C_Pass_By_Copy, VkStencilOpState);  -- src/vulkan/vulkan.h:1803
 
    type VkPipelineDepthStencilStateCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1775
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1776
-      flags : aliased VkPipelineDepthStencilStateCreateFlags;  -- src/vulkan/vulkan.h:1777
-      depthTestEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1778
-      depthWriteEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1779
-      depthCompareOp : aliased VkCompareOp;  -- src/vulkan/vulkan.h:1780
-      depthBoundsTestEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1781
-      stencilTestEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1782
-      front : aliased VkStencilOpState;  -- src/vulkan/vulkan.h:1783
-      back : aliased VkStencilOpState;  -- src/vulkan/vulkan.h:1784
-      minDepthBounds : aliased float;  -- src/vulkan/vulkan.h:1785
-      maxDepthBounds : aliased float;  -- src/vulkan/vulkan.h:1786
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1814
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1815
+      flags : aliased VkPipelineDepthStencilStateCreateFlags;  -- src/vulkan/vulkan.h:1816
+      depthTestEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1817
+      depthWriteEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1818
+      depthCompareOp : aliased VkCompareOp;  -- src/vulkan/vulkan.h:1819
+      depthBoundsTestEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1820
+      stencilTestEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1821
+      front : aliased VkStencilOpState;  -- src/vulkan/vulkan.h:1822
+      back : aliased VkStencilOpState;  -- src/vulkan/vulkan.h:1823
+      minDepthBounds : aliased float;  -- src/vulkan/vulkan.h:1824
+      maxDepthBounds : aliased float;  -- src/vulkan/vulkan.h:1825
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineDepthStencilStateCreateInfo);  -- src/vulkan/vulkan.h:1774
+   pragma Convention (C_Pass_By_Copy, VkPipelineDepthStencilStateCreateInfo);  -- src/vulkan/vulkan.h:1813
 
    type VkPipelineColorBlendAttachmentState is record
-      blendEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1790
-      srcColorBlendFactor : aliased VkBlendFactor;  -- src/vulkan/vulkan.h:1791
-      dstColorBlendFactor : aliased VkBlendFactor;  -- src/vulkan/vulkan.h:1792
-      colorBlendOp : aliased VkBlendOp;  -- src/vulkan/vulkan.h:1793
-      srcAlphaBlendFactor : aliased VkBlendFactor;  -- src/vulkan/vulkan.h:1794
-      dstAlphaBlendFactor : aliased VkBlendFactor;  -- src/vulkan/vulkan.h:1795
-      alphaBlendOp : aliased VkBlendOp;  -- src/vulkan/vulkan.h:1796
-      colorWriteMask : aliased VkColorComponentFlags;  -- src/vulkan/vulkan.h:1797
+      blendEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1829
+      srcColorBlendFactor : aliased VkBlendFactor;  -- src/vulkan/vulkan.h:1830
+      dstColorBlendFactor : aliased VkBlendFactor;  -- src/vulkan/vulkan.h:1831
+      colorBlendOp : aliased VkBlendOp;  -- src/vulkan/vulkan.h:1832
+      srcAlphaBlendFactor : aliased VkBlendFactor;  -- src/vulkan/vulkan.h:1833
+      dstAlphaBlendFactor : aliased VkBlendFactor;  -- src/vulkan/vulkan.h:1834
+      alphaBlendOp : aliased VkBlendOp;  -- src/vulkan/vulkan.h:1835
+      colorWriteMask : aliased VkColorComponentFlags;  -- src/vulkan/vulkan.h:1836
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineColorBlendAttachmentState);  -- src/vulkan/vulkan.h:1789
+   pragma Convention (C_Pass_By_Copy, VkPipelineColorBlendAttachmentState);  -- src/vulkan/vulkan.h:1828
 
-   type VkPipelineColorBlendStateCreateInfo_blendConstants_array is array (0 .. 3) of aliased float;
+   type anon1470_anon1476_array is array (0 .. 3) of aliased float;
    type VkPipelineColorBlendStateCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1801
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1802
-      flags : aliased VkPipelineColorBlendStateCreateFlags;  -- src/vulkan/vulkan.h:1803
-      logicOpEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1804
-      logicOp : aliased VkLogicOp;  -- src/vulkan/vulkan.h:1805
-      attachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1806
-      pAttachments : System.Address;  -- src/vulkan/vulkan.h:1807
-      blendConstants : aliased VkPipelineColorBlendStateCreateInfo_blendConstants_array;  -- src/vulkan/vulkan.h:1808
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1840
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1841
+      flags : aliased VkPipelineColorBlendStateCreateFlags;  -- src/vulkan/vulkan.h:1842
+      logicOpEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1843
+      logicOp : aliased VkLogicOp;  -- src/vulkan/vulkan.h:1844
+      attachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1845
+      pAttachments : System.Address;  -- src/vulkan/vulkan.h:1846
+      blendConstants : aliased anon1470_anon1476_array;  -- src/vulkan/vulkan.h:1847
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineColorBlendStateCreateInfo);  -- src/vulkan/vulkan.h:1800
+   pragma Convention (C_Pass_By_Copy, VkPipelineColorBlendStateCreateInfo);  -- src/vulkan/vulkan.h:1839
 
    type VkPipelineDynamicStateCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1812
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1813
-      flags : aliased VkPipelineDynamicStateCreateFlags;  -- src/vulkan/vulkan.h:1814
-      dynamicStateCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1815
-      pDynamicStates : System.Address;  -- src/vulkan/vulkan.h:1816
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1851
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1852
+      flags : aliased VkPipelineDynamicStateCreateFlags;  -- src/vulkan/vulkan.h:1853
+      dynamicStateCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1854
+      pDynamicStates : System.Address;  -- src/vulkan/vulkan.h:1855
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineDynamicStateCreateInfo);  -- src/vulkan/vulkan.h:1811
+   pragma Convention (C_Pass_By_Copy, VkPipelineDynamicStateCreateInfo);  -- src/vulkan/vulkan.h:1850
 
    type VkGraphicsPipelineCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1820
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1821
-      flags : aliased VkPipelineCreateFlags;  -- src/vulkan/vulkan.h:1822
-      stageCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1823
-      pStages : System.Address;  -- src/vulkan/vulkan.h:1824
-      pVertexInputState : System.Address;  -- src/vulkan/vulkan.h:1825
-      pInputAssemblyState : System.Address;  -- src/vulkan/vulkan.h:1826
-      pTessellationState : System.Address;  -- src/vulkan/vulkan.h:1827
-      pViewportState : System.Address;  -- src/vulkan/vulkan.h:1828
-      pRasterizationState : System.Address;  -- src/vulkan/vulkan.h:1829
-      pMultisampleState : System.Address;  -- src/vulkan/vulkan.h:1830
-      pDepthStencilState : System.Address;  -- src/vulkan/vulkan.h:1831
-      pColorBlendState : System.Address;  -- src/vulkan/vulkan.h:1832
-      pDynamicState : System.Address;  -- src/vulkan/vulkan.h:1833
-      layout : VkPipelineLayout;  -- src/vulkan/vulkan.h:1834
-      renderPass : VkRenderPass;  -- src/vulkan/vulkan.h:1835
-      subpass : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1836
-      basePipelineHandle : VkPipeline;  -- src/vulkan/vulkan.h:1837
-      basePipelineIndex : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1838
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1859
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1860
+      flags : aliased VkPipelineCreateFlags;  -- src/vulkan/vulkan.h:1861
+      stageCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1862
+      pStages : System.Address;  -- src/vulkan/vulkan.h:1863
+      pVertexInputState : System.Address;  -- src/vulkan/vulkan.h:1864
+      pInputAssemblyState : System.Address;  -- src/vulkan/vulkan.h:1865
+      pTessellationState : System.Address;  -- src/vulkan/vulkan.h:1866
+      pViewportState : System.Address;  -- src/vulkan/vulkan.h:1867
+      pRasterizationState : System.Address;  -- src/vulkan/vulkan.h:1868
+      pMultisampleState : System.Address;  -- src/vulkan/vulkan.h:1869
+      pDepthStencilState : System.Address;  -- src/vulkan/vulkan.h:1870
+      pColorBlendState : System.Address;  -- src/vulkan/vulkan.h:1871
+      pDynamicState : System.Address;  -- src/vulkan/vulkan.h:1872
+      layout : VkPipelineLayout;  -- src/vulkan/vulkan.h:1873
+      renderPass : VkRenderPass;  -- src/vulkan/vulkan.h:1874
+      subpass : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1875
+      basePipelineHandle : VkPipeline;  -- src/vulkan/vulkan.h:1876
+      basePipelineIndex : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1877
    end record;
-   pragma Convention (C_Pass_By_Copy, VkGraphicsPipelineCreateInfo);  -- src/vulkan/vulkan.h:1819
+   pragma Convention (C_Pass_By_Copy, VkGraphicsPipelineCreateInfo);  -- src/vulkan/vulkan.h:1858
 
    type VkComputePipelineCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1842
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1843
-      flags : aliased VkPipelineCreateFlags;  -- src/vulkan/vulkan.h:1844
-      stage : aliased VkPipelineShaderStageCreateInfo;  -- src/vulkan/vulkan.h:1845
-      layout : VkPipelineLayout;  -- src/vulkan/vulkan.h:1846
-      basePipelineHandle : VkPipeline;  -- src/vulkan/vulkan.h:1847
-      basePipelineIndex : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1848
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1881
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1882
+      flags : aliased VkPipelineCreateFlags;  -- src/vulkan/vulkan.h:1883
+      stage : aliased VkPipelineShaderStageCreateInfo;  -- src/vulkan/vulkan.h:1884
+      layout : VkPipelineLayout;  -- src/vulkan/vulkan.h:1885
+      basePipelineHandle : VkPipeline;  -- src/vulkan/vulkan.h:1886
+      basePipelineIndex : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:1887
    end record;
-   pragma Convention (C_Pass_By_Copy, VkComputePipelineCreateInfo);  -- src/vulkan/vulkan.h:1841
+   pragma Convention (C_Pass_By_Copy, VkComputePipelineCreateInfo);  -- src/vulkan/vulkan.h:1880
 
    type VkPushConstantRange is record
-      stageFlags : aliased VkShaderStageFlags;  -- src/vulkan/vulkan.h:1852
-      offset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1853
-      size : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1854
+      stageFlags : aliased VkShaderStageFlags;  -- src/vulkan/vulkan.h:1891
+      offset : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1892
+      size : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1893
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPushConstantRange);  -- src/vulkan/vulkan.h:1851
+   pragma Convention (C_Pass_By_Copy, VkPushConstantRange);  -- src/vulkan/vulkan.h:1890
 
    type VkPipelineLayoutCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1858
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1859
-      flags : aliased VkPipelineLayoutCreateFlags;  -- src/vulkan/vulkan.h:1860
-      setLayoutCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1861
-      pSetLayouts : System.Address;  -- src/vulkan/vulkan.h:1862
-      pushConstantRangeCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1863
-      pPushConstantRanges : System.Address;  -- src/vulkan/vulkan.h:1864
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkPipelineLayoutCreateInfo);  -- src/vulkan/vulkan.h:1857
-
-   type VkSamplerCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1868
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1869
-      flags : aliased VkSamplerCreateFlags;  -- src/vulkan/vulkan.h:1870
-      magFilter : aliased VkFilter;  -- src/vulkan/vulkan.h:1871
-      minFilter : aliased VkFilter;  -- src/vulkan/vulkan.h:1872
-      mipmapMode : aliased VkSamplerMipmapMode;  -- src/vulkan/vulkan.h:1873
-      addressModeU : aliased VkSamplerAddressMode;  -- src/vulkan/vulkan.h:1874
-      addressModeV : aliased VkSamplerAddressMode;  -- src/vulkan/vulkan.h:1875
-      addressModeW : aliased VkSamplerAddressMode;  -- src/vulkan/vulkan.h:1876
-      mipLodBias : aliased float;  -- src/vulkan/vulkan.h:1877
-      anisotropyEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1878
-      maxAnisotropy : aliased float;  -- src/vulkan/vulkan.h:1879
-      compareEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1880
-      compareOp : aliased VkCompareOp;  -- src/vulkan/vulkan.h:1881
-      minLod : aliased float;  -- src/vulkan/vulkan.h:1882
-      maxLod : aliased float;  -- src/vulkan/vulkan.h:1883
-      borderColor : aliased VkBorderColor;  -- src/vulkan/vulkan.h:1884
-      unnormalizedCoordinates : aliased VkBool32;  -- src/vulkan/vulkan.h:1885
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkSamplerCreateInfo);  -- src/vulkan/vulkan.h:1867
-
-   type VkDescriptorSetLayoutBinding is record
-      binding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1889
-      descriptorType : aliased VkDescriptorType;  -- src/vulkan/vulkan.h:1890
-      descriptorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1891
-      stageFlags : aliased VkShaderStageFlags;  -- src/vulkan/vulkan.h:1892
-      pImmutableSamplers : System.Address;  -- src/vulkan/vulkan.h:1893
-   end record;
-   pragma Convention (C_Pass_By_Copy, VkDescriptorSetLayoutBinding);  -- src/vulkan/vulkan.h:1888
-
-   type VkDescriptorSetLayoutCreateInfo is record
       sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1897
       pNext : System.Address;  -- src/vulkan/vulkan.h:1898
-      flags : aliased VkDescriptorSetLayoutCreateFlags;  -- src/vulkan/vulkan.h:1899
-      bindingCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1900
-      pBindings : System.Address;  -- src/vulkan/vulkan.h:1901
+      flags : aliased VkPipelineLayoutCreateFlags;  -- src/vulkan/vulkan.h:1899
+      setLayoutCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1900
+      pSetLayouts : System.Address;  -- src/vulkan/vulkan.h:1901
+      pushConstantRangeCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1902
+      pPushConstantRanges : System.Address;  -- src/vulkan/vulkan.h:1903
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDescriptorSetLayoutCreateInfo);  -- src/vulkan/vulkan.h:1896
+   pragma Convention (C_Pass_By_Copy, VkPipelineLayoutCreateInfo);  -- src/vulkan/vulkan.h:1896
+
+   type VkSamplerCreateInfo is record
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1907
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1908
+      flags : aliased VkSamplerCreateFlags;  -- src/vulkan/vulkan.h:1909
+      magFilter : aliased VkFilter;  -- src/vulkan/vulkan.h:1910
+      minFilter : aliased VkFilter;  -- src/vulkan/vulkan.h:1911
+      mipmapMode : aliased VkSamplerMipmapMode;  -- src/vulkan/vulkan.h:1912
+      addressModeU : aliased VkSamplerAddressMode;  -- src/vulkan/vulkan.h:1913
+      addressModeV : aliased VkSamplerAddressMode;  -- src/vulkan/vulkan.h:1914
+      addressModeW : aliased VkSamplerAddressMode;  -- src/vulkan/vulkan.h:1915
+      mipLodBias : aliased float;  -- src/vulkan/vulkan.h:1916
+      anisotropyEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1917
+      maxAnisotropy : aliased float;  -- src/vulkan/vulkan.h:1918
+      compareEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:1919
+      compareOp : aliased VkCompareOp;  -- src/vulkan/vulkan.h:1920
+      minLod : aliased float;  -- src/vulkan/vulkan.h:1921
+      maxLod : aliased float;  -- src/vulkan/vulkan.h:1922
+      borderColor : aliased VkBorderColor;  -- src/vulkan/vulkan.h:1923
+      unnormalizedCoordinates : aliased VkBool32;  -- src/vulkan/vulkan.h:1924
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkSamplerCreateInfo);  -- src/vulkan/vulkan.h:1906
+
+   type VkDescriptorSetLayoutBinding is record
+      binding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1928
+      descriptorType : aliased VkDescriptorType;  -- src/vulkan/vulkan.h:1929
+      descriptorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1930
+      stageFlags : aliased VkShaderStageFlags;  -- src/vulkan/vulkan.h:1931
+      pImmutableSamplers : System.Address;  -- src/vulkan/vulkan.h:1932
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkDescriptorSetLayoutBinding);  -- src/vulkan/vulkan.h:1927
+
+   type VkDescriptorSetLayoutCreateInfo is record
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1936
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1937
+      flags : aliased VkDescriptorSetLayoutCreateFlags;  -- src/vulkan/vulkan.h:1938
+      bindingCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1939
+      pBindings : System.Address;  -- src/vulkan/vulkan.h:1940
+   end record;
+   pragma Convention (C_Pass_By_Copy, VkDescriptorSetLayoutCreateInfo);  -- src/vulkan/vulkan.h:1935
 
    type VkDescriptorPoolSize is record
-      c_type : aliased VkDescriptorType;  -- src/vulkan/vulkan.h:1905
-      descriptorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1906
+      c_type : aliased VkDescriptorType;  -- src/vulkan/vulkan.h:1944
+      descriptorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1945
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDescriptorPoolSize);  -- src/vulkan/vulkan.h:1904
+   pragma Convention (C_Pass_By_Copy, VkDescriptorPoolSize);  -- src/vulkan/vulkan.h:1943
 
    type VkDescriptorPoolCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1910
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1911
-      flags : aliased VkDescriptorPoolCreateFlags;  -- src/vulkan/vulkan.h:1912
-      maxSets : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1913
-      poolSizeCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1914
-      pPoolSizes : System.Address;  -- src/vulkan/vulkan.h:1915
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1949
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1950
+      flags : aliased VkDescriptorPoolCreateFlags;  -- src/vulkan/vulkan.h:1951
+      maxSets : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1952
+      poolSizeCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1953
+      pPoolSizes : System.Address;  -- src/vulkan/vulkan.h:1954
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDescriptorPoolCreateInfo);  -- src/vulkan/vulkan.h:1909
+   pragma Convention (C_Pass_By_Copy, VkDescriptorPoolCreateInfo);  -- src/vulkan/vulkan.h:1948
 
    type VkDescriptorSetAllocateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1919
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1920
-      descriptorPool : VkDescriptorPool;  -- src/vulkan/vulkan.h:1921
-      descriptorSetCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1922
-      pSetLayouts : System.Address;  -- src/vulkan/vulkan.h:1923
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1958
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1959
+      descriptorPool : VkDescriptorPool;  -- src/vulkan/vulkan.h:1960
+      descriptorSetCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1961
+      pSetLayouts : System.Address;  -- src/vulkan/vulkan.h:1962
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDescriptorSetAllocateInfo);  -- src/vulkan/vulkan.h:1918
+   pragma Convention (C_Pass_By_Copy, VkDescriptorSetAllocateInfo);  -- src/vulkan/vulkan.h:1957
 
    type VkDescriptorImageInfo is record
-      sampler : VkSampler;  -- src/vulkan/vulkan.h:1927
-      imageView : VkImageView;  -- src/vulkan/vulkan.h:1928
-      imageLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:1929
+      sampler : VkSampler;  -- src/vulkan/vulkan.h:1966
+      imageView : VkImageView;  -- src/vulkan/vulkan.h:1967
+      imageLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:1968
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDescriptorImageInfo);  -- src/vulkan/vulkan.h:1926
+   pragma Convention (C_Pass_By_Copy, VkDescriptorImageInfo);  -- src/vulkan/vulkan.h:1965
 
    type VkDescriptorBufferInfo is record
-      buffer : VkBuffer;  -- src/vulkan/vulkan.h:1933
-      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1934
-      c_range : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1935
+      buffer : VkBuffer;  -- src/vulkan/vulkan.h:1972
+      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1973
+      c_range : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:1974
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDescriptorBufferInfo);  -- src/vulkan/vulkan.h:1932
+   pragma Convention (C_Pass_By_Copy, VkDescriptorBufferInfo);  -- src/vulkan/vulkan.h:1971
 
    type VkWriteDescriptorSet is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1939
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1940
-      dstSet : VkDescriptorSet;  -- src/vulkan/vulkan.h:1941
-      dstBinding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1942
-      dstArrayElement : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1943
-      descriptorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1944
-      descriptorType : aliased VkDescriptorType;  -- src/vulkan/vulkan.h:1945
-      pImageInfo : System.Address;  -- src/vulkan/vulkan.h:1946
-      pBufferInfo : System.Address;  -- src/vulkan/vulkan.h:1947
-      pTexelBufferView : System.Address;  -- src/vulkan/vulkan.h:1948
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1978
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1979
+      dstSet : VkDescriptorSet;  -- src/vulkan/vulkan.h:1980
+      dstBinding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1981
+      dstArrayElement : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1982
+      descriptorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1983
+      descriptorType : aliased VkDescriptorType;  -- src/vulkan/vulkan.h:1984
+      pImageInfo : System.Address;  -- src/vulkan/vulkan.h:1985
+      pBufferInfo : System.Address;  -- src/vulkan/vulkan.h:1986
+      pTexelBufferView : System.Address;  -- src/vulkan/vulkan.h:1987
    end record;
-   pragma Convention (C_Pass_By_Copy, VkWriteDescriptorSet);  -- src/vulkan/vulkan.h:1938
+   pragma Convention (C_Pass_By_Copy, VkWriteDescriptorSet);  -- src/vulkan/vulkan.h:1977
 
    type VkCopyDescriptorSet is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1952
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1953
-      srcSet : VkDescriptorSet;  -- src/vulkan/vulkan.h:1954
-      srcBinding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1955
-      srcArrayElement : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1956
-      dstSet : VkDescriptorSet;  -- src/vulkan/vulkan.h:1957
-      dstBinding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1958
-      dstArrayElement : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1959
-      descriptorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1960
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1991
+      pNext : System.Address;  -- src/vulkan/vulkan.h:1992
+      srcSet : VkDescriptorSet;  -- src/vulkan/vulkan.h:1993
+      srcBinding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1994
+      srcArrayElement : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1995
+      dstSet : VkDescriptorSet;  -- src/vulkan/vulkan.h:1996
+      dstBinding : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1997
+      dstArrayElement : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1998
+      descriptorCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1999
    end record;
-   pragma Convention (C_Pass_By_Copy, VkCopyDescriptorSet);  -- src/vulkan/vulkan.h:1951
+   pragma Convention (C_Pass_By_Copy, VkCopyDescriptorSet);  -- src/vulkan/vulkan.h:1990
 
    type VkFramebufferCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:1964
-      pNext : System.Address;  -- src/vulkan/vulkan.h:1965
-      flags : aliased VkFramebufferCreateFlags;  -- src/vulkan/vulkan.h:1966
-      renderPass : VkRenderPass;  -- src/vulkan/vulkan.h:1967
-      attachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1968
-      pAttachments : System.Address;  -- src/vulkan/vulkan.h:1969
-      width : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1970
-      height : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1971
-      layers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1972
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2003
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2004
+      flags : aliased VkFramebufferCreateFlags;  -- src/vulkan/vulkan.h:2005
+      renderPass : VkRenderPass;  -- src/vulkan/vulkan.h:2006
+      attachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2007
+      pAttachments : System.Address;  -- src/vulkan/vulkan.h:2008
+      width : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2009
+      height : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2010
+      layers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2011
    end record;
-   pragma Convention (C_Pass_By_Copy, VkFramebufferCreateInfo);  -- src/vulkan/vulkan.h:1963
+   pragma Convention (C_Pass_By_Copy, VkFramebufferCreateInfo);  -- src/vulkan/vulkan.h:2002
 
    type VkAttachmentDescription is record
-      flags : aliased VkAttachmentDescriptionFlags;  -- src/vulkan/vulkan.h:1976
-      format : aliased VkFormat;  -- src/vulkan/vulkan.h:1977
-      samples : aliased VkSampleCountFlagBits;  -- src/vulkan/vulkan.h:1978
-      loadOp : aliased VkAttachmentLoadOp;  -- src/vulkan/vulkan.h:1979
-      storeOp : aliased VkAttachmentStoreOp;  -- src/vulkan/vulkan.h:1980
-      stencilLoadOp : aliased VkAttachmentLoadOp;  -- src/vulkan/vulkan.h:1981
-      stencilStoreOp : aliased VkAttachmentStoreOp;  -- src/vulkan/vulkan.h:1982
-      initialLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:1983
-      finalLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:1984
+      flags : aliased VkAttachmentDescriptionFlags;  -- src/vulkan/vulkan.h:2015
+      format : aliased VkFormat;  -- src/vulkan/vulkan.h:2016
+      samples : aliased VkSampleCountFlagBits;  -- src/vulkan/vulkan.h:2017
+      loadOp : aliased VkAttachmentLoadOp;  -- src/vulkan/vulkan.h:2018
+      storeOp : aliased VkAttachmentStoreOp;  -- src/vulkan/vulkan.h:2019
+      stencilLoadOp : aliased VkAttachmentLoadOp;  -- src/vulkan/vulkan.h:2020
+      stencilStoreOp : aliased VkAttachmentStoreOp;  -- src/vulkan/vulkan.h:2021
+      initialLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:2022
+      finalLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:2023
    end record;
-   pragma Convention (C_Pass_By_Copy, VkAttachmentDescription);  -- src/vulkan/vulkan.h:1975
+   pragma Convention (C_Pass_By_Copy, VkAttachmentDescription);  -- src/vulkan/vulkan.h:2014
 
    type VkAttachmentReference is record
-      attachment : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1988
-      layout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:1989
+      attachment : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2027
+      layout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:2028
    end record;
-   pragma Convention (C_Pass_By_Copy, VkAttachmentReference);  -- src/vulkan/vulkan.h:1987
+   pragma Convention (C_Pass_By_Copy, VkAttachmentReference);  -- src/vulkan/vulkan.h:2026
 
    type VkSubpassDescription is record
-      flags : aliased VkSubpassDescriptionFlags;  -- src/vulkan/vulkan.h:1993
-      pipelineBindPoint : aliased VkPipelineBindPoint;  -- src/vulkan/vulkan.h:1994
-      inputAttachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1995
-      pInputAttachments : System.Address;  -- src/vulkan/vulkan.h:1996
-      colorAttachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:1997
-      pColorAttachments : System.Address;  -- src/vulkan/vulkan.h:1998
-      pResolveAttachments : System.Address;  -- src/vulkan/vulkan.h:1999
-      pDepthStencilAttachment : System.Address;  -- src/vulkan/vulkan.h:2000
-      preserveAttachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2001
-      pPreserveAttachments : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2002
+      flags : aliased VkSubpassDescriptionFlags;  -- src/vulkan/vulkan.h:2032
+      pipelineBindPoint : aliased VkPipelineBindPoint;  -- src/vulkan/vulkan.h:2033
+      inputAttachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2034
+      pInputAttachments : System.Address;  -- src/vulkan/vulkan.h:2035
+      colorAttachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2036
+      pColorAttachments : System.Address;  -- src/vulkan/vulkan.h:2037
+      pResolveAttachments : System.Address;  -- src/vulkan/vulkan.h:2038
+      pDepthStencilAttachment : System.Address;  -- src/vulkan/vulkan.h:2039
+      preserveAttachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2040
+      pPreserveAttachments : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2041
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSubpassDescription);  -- src/vulkan/vulkan.h:1992
+   pragma Convention (C_Pass_By_Copy, VkSubpassDescription);  -- src/vulkan/vulkan.h:2031
 
    type VkSubpassDependency is record
-      srcSubpass : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2006
-      dstSubpass : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2007
-      srcStageMask : aliased VkPipelineStageFlags;  -- src/vulkan/vulkan.h:2008
-      dstStageMask : aliased VkPipelineStageFlags;  -- src/vulkan/vulkan.h:2009
-      srcAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2010
-      dstAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2011
-      dependencyFlags : aliased VkDependencyFlags;  -- src/vulkan/vulkan.h:2012
+      srcSubpass : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2045
+      dstSubpass : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2046
+      srcStageMask : aliased VkPipelineStageFlags;  -- src/vulkan/vulkan.h:2047
+      dstStageMask : aliased VkPipelineStageFlags;  -- src/vulkan/vulkan.h:2048
+      srcAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2049
+      dstAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2050
+      dependencyFlags : aliased VkDependencyFlags;  -- src/vulkan/vulkan.h:2051
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSubpassDependency);  -- src/vulkan/vulkan.h:2005
+   pragma Convention (C_Pass_By_Copy, VkSubpassDependency);  -- src/vulkan/vulkan.h:2044
 
    type VkRenderPassCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2016
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2017
-      flags : aliased VkRenderPassCreateFlags;  -- src/vulkan/vulkan.h:2018
-      attachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2019
-      pAttachments : System.Address;  -- src/vulkan/vulkan.h:2020
-      subpassCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2021
-      pSubpasses : System.Address;  -- src/vulkan/vulkan.h:2022
-      dependencyCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2023
-      pDependencies : System.Address;  -- src/vulkan/vulkan.h:2024
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2055
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2056
+      flags : aliased VkRenderPassCreateFlags;  -- src/vulkan/vulkan.h:2057
+      attachmentCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2058
+      pAttachments : System.Address;  -- src/vulkan/vulkan.h:2059
+      subpassCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2060
+      pSubpasses : System.Address;  -- src/vulkan/vulkan.h:2061
+      dependencyCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2062
+      pDependencies : System.Address;  -- src/vulkan/vulkan.h:2063
    end record;
-   pragma Convention (C_Pass_By_Copy, VkRenderPassCreateInfo);  -- src/vulkan/vulkan.h:2015
+   pragma Convention (C_Pass_By_Copy, VkRenderPassCreateInfo);  -- src/vulkan/vulkan.h:2054
 
    type VkCommandPoolCreateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2028
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2029
-      flags : aliased VkCommandPoolCreateFlags;  -- src/vulkan/vulkan.h:2030
-      queueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2031
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2067
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2068
+      flags : aliased VkCommandPoolCreateFlags;  -- src/vulkan/vulkan.h:2069
+      queueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2070
    end record;
-   pragma Convention (C_Pass_By_Copy, VkCommandPoolCreateInfo);  -- src/vulkan/vulkan.h:2027
+   pragma Convention (C_Pass_By_Copy, VkCommandPoolCreateInfo);  -- src/vulkan/vulkan.h:2066
 
    type VkCommandBufferAllocateInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2035
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2036
-      commandPool : VkCommandPool;  -- src/vulkan/vulkan.h:2037
-      level : aliased VkCommandBufferLevel;  -- src/vulkan/vulkan.h:2038
-      commandBufferCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2039
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2074
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2075
+      commandPool : VkCommandPool;  -- src/vulkan/vulkan.h:2076
+      level : aliased VkCommandBufferLevel;  -- src/vulkan/vulkan.h:2077
+      commandBufferCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2078
    end record;
-   pragma Convention (C_Pass_By_Copy, VkCommandBufferAllocateInfo);  -- src/vulkan/vulkan.h:2034
+   pragma Convention (C_Pass_By_Copy, VkCommandBufferAllocateInfo);  -- src/vulkan/vulkan.h:2073
 
    type VkCommandBufferInheritanceInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2043
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2044
-      renderPass : VkRenderPass;  -- src/vulkan/vulkan.h:2045
-      subpass : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2046
-      framebuffer : VkFramebuffer;  -- src/vulkan/vulkan.h:2047
-      occlusionQueryEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:2048
-      queryFlags : aliased VkQueryControlFlags;  -- src/vulkan/vulkan.h:2049
-      pipelineStatistics : aliased VkQueryPipelineStatisticFlags;  -- src/vulkan/vulkan.h:2050
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2082
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2083
+      renderPass : VkRenderPass;  -- src/vulkan/vulkan.h:2084
+      subpass : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2085
+      framebuffer : VkFramebuffer;  -- src/vulkan/vulkan.h:2086
+      occlusionQueryEnable : aliased VkBool32;  -- src/vulkan/vulkan.h:2087
+      queryFlags : aliased VkQueryControlFlags;  -- src/vulkan/vulkan.h:2088
+      pipelineStatistics : aliased VkQueryPipelineStatisticFlags;  -- src/vulkan/vulkan.h:2089
    end record;
-   pragma Convention (C_Pass_By_Copy, VkCommandBufferInheritanceInfo);  -- src/vulkan/vulkan.h:2042
+   pragma Convention (C_Pass_By_Copy, VkCommandBufferInheritanceInfo);  -- src/vulkan/vulkan.h:2081
 
    type VkCommandBufferBeginInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2054
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2055
-      flags : aliased VkCommandBufferUsageFlags;  -- src/vulkan/vulkan.h:2056
-      pInheritanceInfo : System.Address;  -- src/vulkan/vulkan.h:2057
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2093
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2094
+      flags : aliased VkCommandBufferUsageFlags;  -- src/vulkan/vulkan.h:2095
+      pInheritanceInfo : System.Address;  -- src/vulkan/vulkan.h:2096
    end record;
-   pragma Convention (C_Pass_By_Copy, VkCommandBufferBeginInfo);  -- src/vulkan/vulkan.h:2053
+   pragma Convention (C_Pass_By_Copy, VkCommandBufferBeginInfo);  -- src/vulkan/vulkan.h:2092
 
    type VkBufferCopy is record
-      srcOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2061
-      dstOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2062
-      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2063
+      srcOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2100
+      dstOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2101
+      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2102
    end record;
-   pragma Convention (C_Pass_By_Copy, VkBufferCopy);  -- src/vulkan/vulkan.h:2060
+   pragma Convention (C_Pass_By_Copy, VkBufferCopy);  -- src/vulkan/vulkan.h:2099
 
    type VkImageSubresourceLayers is record
-      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:2067
-      mipLevel : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2068
-      baseArrayLayer : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2069
-      layerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2070
+      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:2106
+      mipLevel : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2107
+      baseArrayLayer : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2108
+      layerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2109
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageSubresourceLayers);  -- src/vulkan/vulkan.h:2066
+   pragma Convention (C_Pass_By_Copy, VkImageSubresourceLayers);  -- src/vulkan/vulkan.h:2105
 
    type VkImageCopy is record
-      srcSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2074
-      srcOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2075
-      dstSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2076
-      dstOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2077
-      extent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:2078
+      srcSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2113
+      srcOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2114
+      dstSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2115
+      dstOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2116
+      extent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:2117
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageCopy);  -- src/vulkan/vulkan.h:2073
+   pragma Convention (C_Pass_By_Copy, VkImageCopy);  -- src/vulkan/vulkan.h:2112
 
-   type VkImageBlit_srcOffsets_array is array (0 .. 1) of aliased VkOffset3D;
-   type VkImageBlit_dstOffsets_array is array (0 .. 1) of aliased VkOffset3D;
+   type anon1634_anon1636_array is array (0 .. 1) of aliased VkOffset3D;
+   type anon1634_anon1636_array is array (0 .. 1) of aliased VkOffset3D;
    type VkImageBlit is record
-      srcSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2082
-      srcOffsets : aliased VkImageBlit_srcOffsets_array;  -- src/vulkan/vulkan.h:2083
-      dstSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2084
-      dstOffsets : aliased VkImageBlit_dstOffsets_array;  -- src/vulkan/vulkan.h:2085
+      srcSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2121
+      srcOffsets : aliased anon1634_anon1636_array;  -- src/vulkan/vulkan.h:2122
+      dstSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2123
+      dstOffsets : aliased anon1634_anon1636_array;  -- src/vulkan/vulkan.h:2124
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageBlit);  -- src/vulkan/vulkan.h:2081
+   pragma Convention (C_Pass_By_Copy, VkImageBlit);  -- src/vulkan/vulkan.h:2120
 
    type VkBufferImageCopy is record
-      bufferOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2089
-      bufferRowLength : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2090
-      bufferImageHeight : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2091
-      imageSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2092
-      imageOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2093
-      imageExtent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:2094
+      bufferOffset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2128
+      bufferRowLength : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2129
+      bufferImageHeight : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2130
+      imageSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2131
+      imageOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2132
+      imageExtent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:2133
    end record;
-   pragma Convention (C_Pass_By_Copy, VkBufferImageCopy);  -- src/vulkan/vulkan.h:2088
+   pragma Convention (C_Pass_By_Copy, VkBufferImageCopy);  -- src/vulkan/vulkan.h:2127
 
-   type VkClearColorValue_float32_array is array (0 .. 3) of aliased float;
-   type VkClearColorValue_int32_array is array (0 .. 3) of aliased stdint_h.int32_t;
-   type VkClearColorValue_uint32_array is array (0 .. 3) of aliased stdint_h.uint32_t;
+   type anon1645_anon1476_array is array (0 .. 3) of aliased float;
+   type anon1645_anon1649_array is array (0 .. 3) of aliased stdint_h.int32_t;
+   type anon1645_anon1653_array is array (0 .. 3) of aliased stdint_h.uint32_t;
    type VkClearColorValue (discr : unsigned := 0) is record
       case discr is
          when 0 =>
-            float32 : aliased VkClearColorValue_float32_array;  -- src/vulkan/vulkan.h:2098
+            float32 : aliased anon1645_anon1476_array;  -- src/vulkan/vulkan.h:2137
          when 1 =>
-            int32 : aliased VkClearColorValue_int32_array;  -- src/vulkan/vulkan.h:2099
+            int32 : aliased anon1645_anon1649_array;  -- src/vulkan/vulkan.h:2138
          when others =>
-            uint32 : aliased VkClearColorValue_uint32_array;  -- src/vulkan/vulkan.h:2100
+            uint32 : aliased anon1645_anon1653_array;  -- src/vulkan/vulkan.h:2139
       end case;
    end record;
    pragma Convention (C_Pass_By_Copy, VkClearColorValue);
-   pragma Unchecked_Union (VkClearColorValue);  -- src/vulkan/vulkan.h:2097
+   pragma Unchecked_Union (VkClearColorValue);  -- src/vulkan/vulkan.h:2136
 
    type VkClearDepthStencilValue is record
-      depth : aliased float;  -- src/vulkan/vulkan.h:2104
-      stencil : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2105
+      depth : aliased float;  -- src/vulkan/vulkan.h:2143
+      stencil : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2144
    end record;
-   pragma Convention (C_Pass_By_Copy, VkClearDepthStencilValue);  -- src/vulkan/vulkan.h:2103
+   pragma Convention (C_Pass_By_Copy, VkClearDepthStencilValue);  -- src/vulkan/vulkan.h:2142
 
    type VkClearValue (discr : unsigned := 0) is record
       case discr is
          when 0 =>
-            color : VkClearColorValue;  -- src/vulkan/vulkan.h:2109
+            color : VkClearColorValue;  -- src/vulkan/vulkan.h:2148
          when others =>
-            depthStencil : aliased VkClearDepthStencilValue;  -- src/vulkan/vulkan.h:2110
+            depthStencil : aliased VkClearDepthStencilValue;  -- src/vulkan/vulkan.h:2149
       end case;
    end record;
    pragma Convention (C_Pass_By_Copy, VkClearValue);
-   pragma Unchecked_Union (VkClearValue);  -- src/vulkan/vulkan.h:2108
+   pragma Unchecked_Union (VkClearValue);  -- src/vulkan/vulkan.h:2147
 
    type VkClearAttachment is record
-      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:2114
-      colorAttachment : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2115
-      clearValue : VkClearValue;  -- src/vulkan/vulkan.h:2116
+      aspectMask : aliased VkImageAspectFlags;  -- src/vulkan/vulkan.h:2153
+      colorAttachment : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2154
+      clearValue : VkClearValue;  -- src/vulkan/vulkan.h:2155
    end record;
-   pragma Convention (C_Pass_By_Copy, VkClearAttachment);  -- src/vulkan/vulkan.h:2113
+   pragma Convention (C_Pass_By_Copy, VkClearAttachment);  -- src/vulkan/vulkan.h:2152
 
    type VkClearRect is record
-      rect : aliased VkRect2D;  -- src/vulkan/vulkan.h:2120
-      baseArrayLayer : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2121
-      layerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2122
+      rect : aliased VkRect2D;  -- src/vulkan/vulkan.h:2159
+      baseArrayLayer : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2160
+      layerCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2161
    end record;
-   pragma Convention (C_Pass_By_Copy, VkClearRect);  -- src/vulkan/vulkan.h:2119
+   pragma Convention (C_Pass_By_Copy, VkClearRect);  -- src/vulkan/vulkan.h:2158
 
    type VkImageResolve is record
-      srcSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2126
-      srcOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2127
-      dstSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2128
-      dstOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2129
-      extent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:2130
+      srcSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2165
+      srcOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2166
+      dstSubresource : aliased VkImageSubresourceLayers;  -- src/vulkan/vulkan.h:2167
+      dstOffset : aliased VkOffset3D;  -- src/vulkan/vulkan.h:2168
+      extent : aliased VkExtent3D;  -- src/vulkan/vulkan.h:2169
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageResolve);  -- src/vulkan/vulkan.h:2125
+   pragma Convention (C_Pass_By_Copy, VkImageResolve);  -- src/vulkan/vulkan.h:2164
 
    type VkMemoryBarrier is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2134
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2135
-      srcAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2136
-      dstAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2137
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2173
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2174
+      srcAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2175
+      dstAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2176
    end record;
-   pragma Convention (C_Pass_By_Copy, VkMemoryBarrier);  -- src/vulkan/vulkan.h:2133
+   pragma Convention (C_Pass_By_Copy, VkMemoryBarrier);  -- src/vulkan/vulkan.h:2172
 
    type VkBufferMemoryBarrier is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2141
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2142
-      srcAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2143
-      dstAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2144
-      srcQueueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2145
-      dstQueueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2146
-      buffer : VkBuffer;  -- src/vulkan/vulkan.h:2147
-      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2148
-      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2149
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2180
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2181
+      srcAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2182
+      dstAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2183
+      srcQueueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2184
+      dstQueueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2185
+      buffer : VkBuffer;  -- src/vulkan/vulkan.h:2186
+      offset : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2187
+      size : aliased VkDeviceSize;  -- src/vulkan/vulkan.h:2188
    end record;
-   pragma Convention (C_Pass_By_Copy, VkBufferMemoryBarrier);  -- src/vulkan/vulkan.h:2140
+   pragma Convention (C_Pass_By_Copy, VkBufferMemoryBarrier);  -- src/vulkan/vulkan.h:2179
 
    type VkImageMemoryBarrier is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2153
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2154
-      srcAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2155
-      dstAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2156
-      oldLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:2157
-      newLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:2158
-      srcQueueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2159
-      dstQueueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2160
-      image : VkImage;  -- src/vulkan/vulkan.h:2161
-      subresourceRange : aliased VkImageSubresourceRange;  -- src/vulkan/vulkan.h:2162
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2192
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2193
+      srcAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2194
+      dstAccessMask : aliased VkAccessFlags;  -- src/vulkan/vulkan.h:2195
+      oldLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:2196
+      newLayout : aliased VkImageLayout;  -- src/vulkan/vulkan.h:2197
+      srcQueueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2198
+      dstQueueFamilyIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2199
+      image : VkImage;  -- src/vulkan/vulkan.h:2200
+      subresourceRange : aliased VkImageSubresourceRange;  -- src/vulkan/vulkan.h:2201
    end record;
-   pragma Convention (C_Pass_By_Copy, VkImageMemoryBarrier);  -- src/vulkan/vulkan.h:2152
+   pragma Convention (C_Pass_By_Copy, VkImageMemoryBarrier);  -- src/vulkan/vulkan.h:2191
 
    type VkRenderPassBeginInfo is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2166
-      pNext : System.Address;  -- src/vulkan/vulkan.h:2167
-      renderPass : VkRenderPass;  -- src/vulkan/vulkan.h:2168
-      framebuffer : VkFramebuffer;  -- src/vulkan/vulkan.h:2169
-      renderArea : aliased VkRect2D;  -- src/vulkan/vulkan.h:2170
-      clearValueCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2171
-      pClearValues : System.Address;  -- src/vulkan/vulkan.h:2172
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:2205
+      pNext : System.Address;  -- src/vulkan/vulkan.h:2206
+      renderPass : VkRenderPass;  -- src/vulkan/vulkan.h:2207
+      framebuffer : VkFramebuffer;  -- src/vulkan/vulkan.h:2208
+      renderArea : aliased VkRect2D;  -- src/vulkan/vulkan.h:2209
+      clearValueCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2210
+      pClearValues : System.Address;  -- src/vulkan/vulkan.h:2211
    end record;
-   pragma Convention (C_Pass_By_Copy, VkRenderPassBeginInfo);  -- src/vulkan/vulkan.h:2165
+   pragma Convention (C_Pass_By_Copy, VkRenderPassBeginInfo);  -- src/vulkan/vulkan.h:2204
 
    type VkDispatchIndirectCommand is record
-      x : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2176
-      y : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2177
-      z : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2178
+      x : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2215
+      y : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2216
+      z : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2217
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDispatchIndirectCommand);  -- src/vulkan/vulkan.h:2175
+   pragma Convention (C_Pass_By_Copy, VkDispatchIndirectCommand);  -- src/vulkan/vulkan.h:2214
 
    type VkDrawIndexedIndirectCommand is record
-      indexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2182
-      instanceCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2183
-      firstIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2184
-      vertexOffset : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:2185
-      firstInstance : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2186
+      indexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2221
+      instanceCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2222
+      firstIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2223
+      vertexOffset : aliased stdint_h.int32_t;  -- src/vulkan/vulkan.h:2224
+      firstInstance : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2225
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDrawIndexedIndirectCommand);  -- src/vulkan/vulkan.h:2181
+   pragma Convention (C_Pass_By_Copy, VkDrawIndexedIndirectCommand);  -- src/vulkan/vulkan.h:2220
 
    type VkDrawIndirectCommand is record
-      vertexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2190
-      instanceCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2191
-      firstVertex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2192
-      firstInstance : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2193
+      vertexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2229
+      instanceCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2230
+      firstVertex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2231
+      firstInstance : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:2232
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDrawIndirectCommand);  -- src/vulkan/vulkan.h:2189
+   pragma Convention (C_Pass_By_Copy, VkDrawIndirectCommand);  -- src/vulkan/vulkan.h:2228
 
    type PFN_vkCreateInstance is access function
         (arg1 : System.Address;
          arg2 : System.Address;
          arg3 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateInstance);  -- src/vulkan/vulkan.h:2197
+   pragma Convention (C, PFN_vkCreateInstance);  -- src/vulkan/vulkan.h:2236
 
    type PFN_vkDestroyInstance is access procedure (arg1 : VkInstance; arg2 : System.Address);
-   pragma Convention (C, PFN_vkDestroyInstance);  -- src/vulkan/vulkan.h:2198
+   pragma Convention (C, PFN_vkDestroyInstance);  -- src/vulkan/vulkan.h:2237
 
    type PFN_vkEnumeratePhysicalDevices is access function
         (arg1 : VkInstance;
          arg2 : access stdint_h.uint32_t;
          arg3 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkEnumeratePhysicalDevices);  -- src/vulkan/vulkan.h:2199
+   pragma Convention (C, PFN_vkEnumeratePhysicalDevices);  -- src/vulkan/vulkan.h:2238
 
    type PFN_vkGetPhysicalDeviceFeatures is access procedure (arg1 : VkPhysicalDevice; arg2 : access VkPhysicalDeviceFeatures);
-   pragma Convention (C, PFN_vkGetPhysicalDeviceFeatures);  -- src/vulkan/vulkan.h:2200
+   pragma Convention (C, PFN_vkGetPhysicalDeviceFeatures);  -- src/vulkan/vulkan.h:2239
 
    type PFN_vkGetPhysicalDeviceFormatProperties is access procedure
         (arg1 : VkPhysicalDevice;
          arg2 : VkFormat;
          arg3 : access VkFormatProperties);
-   pragma Convention (C, PFN_vkGetPhysicalDeviceFormatProperties);  -- src/vulkan/vulkan.h:2201
+   pragma Convention (C, PFN_vkGetPhysicalDeviceFormatProperties);  -- src/vulkan/vulkan.h:2240
 
    type PFN_vkGetPhysicalDeviceImageFormatProperties is access function
         (arg1 : VkPhysicalDevice;
@@ -2474,90 +2486,90 @@ package Vulkan is
          arg5 : VkImageUsageFlags;
          arg6 : VkImageCreateFlags;
          arg7 : access VkImageFormatProperties) return VkResult;
-   pragma Convention (C, PFN_vkGetPhysicalDeviceImageFormatProperties);  -- src/vulkan/vulkan.h:2202
+   pragma Convention (C, PFN_vkGetPhysicalDeviceImageFormatProperties);  -- src/vulkan/vulkan.h:2241
 
    type PFN_vkGetPhysicalDeviceProperties is access procedure (arg1 : VkPhysicalDevice; arg2 : access VkPhysicalDeviceProperties);
-   pragma Convention (C, PFN_vkGetPhysicalDeviceProperties);  -- src/vulkan/vulkan.h:2203
+   pragma Convention (C, PFN_vkGetPhysicalDeviceProperties);  -- src/vulkan/vulkan.h:2242
 
    type PFN_vkGetPhysicalDeviceQueueFamilyProperties is access procedure
         (arg1 : VkPhysicalDevice;
          arg2 : access stdint_h.uint32_t;
          arg3 : access VkQueueFamilyProperties);
-   pragma Convention (C, PFN_vkGetPhysicalDeviceQueueFamilyProperties);  -- src/vulkan/vulkan.h:2204
+   pragma Convention (C, PFN_vkGetPhysicalDeviceQueueFamilyProperties);  -- src/vulkan/vulkan.h:2243
 
    type PFN_vkGetPhysicalDeviceMemoryProperties is access procedure (arg1 : VkPhysicalDevice; arg2 : access VkPhysicalDeviceMemoryProperties);
-   pragma Convention (C, PFN_vkGetPhysicalDeviceMemoryProperties);  -- src/vulkan/vulkan.h:2205
+   pragma Convention (C, PFN_vkGetPhysicalDeviceMemoryProperties);  -- src/vulkan/vulkan.h:2244
 
    type PFN_vkGetInstanceProcAddr is access function (arg1 : VkInstance; arg2 : Interfaces.C.Strings.chars_ptr) return PFN_vkVoidFunction;
-   pragma Convention (C, PFN_vkGetInstanceProcAddr);  -- src/vulkan/vulkan.h:2206
+   pragma Convention (C, PFN_vkGetInstanceProcAddr);  -- src/vulkan/vulkan.h:2245
 
    type PFN_vkGetDeviceProcAddr is access function (arg1 : VkDevice; arg2 : Interfaces.C.Strings.chars_ptr) return PFN_vkVoidFunction;
-   pragma Convention (C, PFN_vkGetDeviceProcAddr);  -- src/vulkan/vulkan.h:2207
+   pragma Convention (C, PFN_vkGetDeviceProcAddr);  -- src/vulkan/vulkan.h:2246
 
    type PFN_vkCreateDevice is access function
         (arg1 : VkPhysicalDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateDevice);  -- src/vulkan/vulkan.h:2208
+   pragma Convention (C, PFN_vkCreateDevice);  -- src/vulkan/vulkan.h:2247
 
    type PFN_vkDestroyDevice is access procedure (arg1 : VkDevice; arg2 : System.Address);
-   pragma Convention (C, PFN_vkDestroyDevice);  -- src/vulkan/vulkan.h:2209
+   pragma Convention (C, PFN_vkDestroyDevice);  -- src/vulkan/vulkan.h:2248
 
    type PFN_vkEnumerateInstanceExtensionProperties is access function
         (arg1 : Interfaces.C.Strings.chars_ptr;
          arg2 : access stdint_h.uint32_t;
          arg3 : access VkExtensionProperties) return VkResult;
-   pragma Convention (C, PFN_vkEnumerateInstanceExtensionProperties);  -- src/vulkan/vulkan.h:2210
+   pragma Convention (C, PFN_vkEnumerateInstanceExtensionProperties);  -- src/vulkan/vulkan.h:2249
 
    type PFN_vkEnumerateDeviceExtensionProperties is access function
         (arg1 : VkPhysicalDevice;
          arg2 : Interfaces.C.Strings.chars_ptr;
          arg3 : access stdint_h.uint32_t;
          arg4 : access VkExtensionProperties) return VkResult;
-   pragma Convention (C, PFN_vkEnumerateDeviceExtensionProperties);  -- src/vulkan/vulkan.h:2211
+   pragma Convention (C, PFN_vkEnumerateDeviceExtensionProperties);  -- src/vulkan/vulkan.h:2250
 
    type PFN_vkEnumerateInstanceLayerProperties is access function (arg1 : access stdint_h.uint32_t; arg2 : access VkLayerProperties) return VkResult;
-   pragma Convention (C, PFN_vkEnumerateInstanceLayerProperties);  -- src/vulkan/vulkan.h:2212
+   pragma Convention (C, PFN_vkEnumerateInstanceLayerProperties);  -- src/vulkan/vulkan.h:2251
 
    type PFN_vkEnumerateDeviceLayerProperties is access function
         (arg1 : VkPhysicalDevice;
          arg2 : access stdint_h.uint32_t;
          arg3 : access VkLayerProperties) return VkResult;
-   pragma Convention (C, PFN_vkEnumerateDeviceLayerProperties);  -- src/vulkan/vulkan.h:2213
+   pragma Convention (C, PFN_vkEnumerateDeviceLayerProperties);  -- src/vulkan/vulkan.h:2252
 
    type PFN_vkGetDeviceQueue is access procedure
         (arg1 : VkDevice;
          arg2 : stdint_h.uint32_t;
          arg3 : stdint_h.uint32_t;
          arg4 : System.Address);
-   pragma Convention (C, PFN_vkGetDeviceQueue);  -- src/vulkan/vulkan.h:2214
+   pragma Convention (C, PFN_vkGetDeviceQueue);  -- src/vulkan/vulkan.h:2253
 
    type PFN_vkQueueSubmit is access function
         (arg1 : VkQueue;
          arg2 : stdint_h.uint32_t;
          arg3 : System.Address;
          arg4 : VkFence) return VkResult;
-   pragma Convention (C, PFN_vkQueueSubmit);  -- src/vulkan/vulkan.h:2215
+   pragma Convention (C, PFN_vkQueueSubmit);  -- src/vulkan/vulkan.h:2254
 
    type PFN_vkQueueWaitIdle is access function (arg1 : VkQueue) return VkResult;
-   pragma Convention (C, PFN_vkQueueWaitIdle);  -- src/vulkan/vulkan.h:2216
+   pragma Convention (C, PFN_vkQueueWaitIdle);  -- src/vulkan/vulkan.h:2255
 
    type PFN_vkDeviceWaitIdle is access function (arg1 : VkDevice) return VkResult;
-   pragma Convention (C, PFN_vkDeviceWaitIdle);  -- src/vulkan/vulkan.h:2217
+   pragma Convention (C, PFN_vkDeviceWaitIdle);  -- src/vulkan/vulkan.h:2256
 
    type PFN_vkAllocateMemory is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkAllocateMemory);  -- src/vulkan/vulkan.h:2218
+   pragma Convention (C, PFN_vkAllocateMemory);  -- src/vulkan/vulkan.h:2257
 
    type PFN_vkFreeMemory is access procedure
         (arg1 : VkDevice;
          arg2 : VkDeviceMemory;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkFreeMemory);  -- src/vulkan/vulkan.h:2219
+   pragma Convention (C, PFN_vkFreeMemory);  -- src/vulkan/vulkan.h:2258
 
    type PFN_vkMapMemory is access function
         (arg1 : VkDevice;
@@ -2566,61 +2578,61 @@ package Vulkan is
          arg4 : VkDeviceSize;
          arg5 : VkMemoryMapFlags;
          arg6 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkMapMemory);  -- src/vulkan/vulkan.h:2220
+   pragma Convention (C, PFN_vkMapMemory);  -- src/vulkan/vulkan.h:2259
 
    type PFN_vkUnmapMemory is access procedure (arg1 : VkDevice; arg2 : VkDeviceMemory);
-   pragma Convention (C, PFN_vkUnmapMemory);  -- src/vulkan/vulkan.h:2221
+   pragma Convention (C, PFN_vkUnmapMemory);  -- src/vulkan/vulkan.h:2260
 
    type PFN_vkFlushMappedMemoryRanges is access function
         (arg1 : VkDevice;
          arg2 : stdint_h.uint32_t;
          arg3 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkFlushMappedMemoryRanges);  -- src/vulkan/vulkan.h:2222
+   pragma Convention (C, PFN_vkFlushMappedMemoryRanges);  -- src/vulkan/vulkan.h:2261
 
    type PFN_vkInvalidateMappedMemoryRanges is access function
         (arg1 : VkDevice;
          arg2 : stdint_h.uint32_t;
          arg3 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkInvalidateMappedMemoryRanges);  -- src/vulkan/vulkan.h:2223
+   pragma Convention (C, PFN_vkInvalidateMappedMemoryRanges);  -- src/vulkan/vulkan.h:2262
 
    type PFN_vkGetDeviceMemoryCommitment is access procedure
         (arg1 : VkDevice;
          arg2 : VkDeviceMemory;
          arg3 : access VkDeviceSize);
-   pragma Convention (C, PFN_vkGetDeviceMemoryCommitment);  -- src/vulkan/vulkan.h:2224
+   pragma Convention (C, PFN_vkGetDeviceMemoryCommitment);  -- src/vulkan/vulkan.h:2263
 
    type PFN_vkBindBufferMemory is access function
         (arg1 : VkDevice;
          arg2 : VkBuffer;
          arg3 : VkDeviceMemory;
          arg4 : VkDeviceSize) return VkResult;
-   pragma Convention (C, PFN_vkBindBufferMemory);  -- src/vulkan/vulkan.h:2225
+   pragma Convention (C, PFN_vkBindBufferMemory);  -- src/vulkan/vulkan.h:2264
 
    type PFN_vkBindImageMemory is access function
         (arg1 : VkDevice;
          arg2 : VkImage;
          arg3 : VkDeviceMemory;
          arg4 : VkDeviceSize) return VkResult;
-   pragma Convention (C, PFN_vkBindImageMemory);  -- src/vulkan/vulkan.h:2226
+   pragma Convention (C, PFN_vkBindImageMemory);  -- src/vulkan/vulkan.h:2265
 
    type PFN_vkGetBufferMemoryRequirements is access procedure
         (arg1 : VkDevice;
          arg2 : VkBuffer;
          arg3 : access VkMemoryRequirements);
-   pragma Convention (C, PFN_vkGetBufferMemoryRequirements);  -- src/vulkan/vulkan.h:2227
+   pragma Convention (C, PFN_vkGetBufferMemoryRequirements);  -- src/vulkan/vulkan.h:2266
 
    type PFN_vkGetImageMemoryRequirements is access procedure
         (arg1 : VkDevice;
          arg2 : VkImage;
          arg3 : access VkMemoryRequirements);
-   pragma Convention (C, PFN_vkGetImageMemoryRequirements);  -- src/vulkan/vulkan.h:2228
+   pragma Convention (C, PFN_vkGetImageMemoryRequirements);  -- src/vulkan/vulkan.h:2267
 
    type PFN_vkGetImageSparseMemoryRequirements is access procedure
         (arg1 : VkDevice;
          arg2 : VkImage;
          arg3 : access stdint_h.uint32_t;
          arg4 : access VkSparseImageMemoryRequirements);
-   pragma Convention (C, PFN_vkGetImageSparseMemoryRequirements);  -- src/vulkan/vulkan.h:2229
+   pragma Convention (C, PFN_vkGetImageSparseMemoryRequirements);  -- src/vulkan/vulkan.h:2268
 
    type PFN_vkGetPhysicalDeviceSparseImageFormatProperties is access procedure
         (arg1 : VkPhysicalDevice;
@@ -2631,36 +2643,36 @@ package Vulkan is
          arg6 : VkImageTiling;
          arg7 : access stdint_h.uint32_t;
          arg8 : access VkSparseImageFormatProperties);
-   pragma Convention (C, PFN_vkGetPhysicalDeviceSparseImageFormatProperties);  -- src/vulkan/vulkan.h:2230
+   pragma Convention (C, PFN_vkGetPhysicalDeviceSparseImageFormatProperties);  -- src/vulkan/vulkan.h:2269
 
    type PFN_vkQueueBindSparse is access function
         (arg1 : VkQueue;
          arg2 : stdint_h.uint32_t;
          arg3 : System.Address;
          arg4 : VkFence) return VkResult;
-   pragma Convention (C, PFN_vkQueueBindSparse);  -- src/vulkan/vulkan.h:2231
+   pragma Convention (C, PFN_vkQueueBindSparse);  -- src/vulkan/vulkan.h:2270
 
    type PFN_vkCreateFence is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateFence);  -- src/vulkan/vulkan.h:2232
+   pragma Convention (C, PFN_vkCreateFence);  -- src/vulkan/vulkan.h:2271
 
    type PFN_vkDestroyFence is access procedure
         (arg1 : VkDevice;
          arg2 : VkFence;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyFence);  -- src/vulkan/vulkan.h:2233
+   pragma Convention (C, PFN_vkDestroyFence);  -- src/vulkan/vulkan.h:2272
 
    type PFN_vkResetFences is access function
         (arg1 : VkDevice;
          arg2 : stdint_h.uint32_t;
          arg3 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkResetFences);  -- src/vulkan/vulkan.h:2234
+   pragma Convention (C, PFN_vkResetFences);  -- src/vulkan/vulkan.h:2273
 
    type PFN_vkGetFenceStatus is access function (arg1 : VkDevice; arg2 : VkFence) return VkResult;
-   pragma Convention (C, PFN_vkGetFenceStatus);  -- src/vulkan/vulkan.h:2235
+   pragma Convention (C, PFN_vkGetFenceStatus);  -- src/vulkan/vulkan.h:2274
 
    type PFN_vkWaitForFences is access function
         (arg1 : VkDevice;
@@ -2668,55 +2680,55 @@ package Vulkan is
          arg3 : System.Address;
          arg4 : VkBool32;
          arg5 : stdint_h.uint64_t) return VkResult;
-   pragma Convention (C, PFN_vkWaitForFences);  -- src/vulkan/vulkan.h:2236
+   pragma Convention (C, PFN_vkWaitForFences);  -- src/vulkan/vulkan.h:2275
 
    type PFN_vkCreateSemaphore is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateSemaphore);  -- src/vulkan/vulkan.h:2237
+   pragma Convention (C, PFN_vkCreateSemaphore);  -- src/vulkan/vulkan.h:2276
 
    type PFN_vkDestroySemaphore is access procedure
         (arg1 : VkDevice;
          arg2 : VkSemaphore;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroySemaphore);  -- src/vulkan/vulkan.h:2238
+   pragma Convention (C, PFN_vkDestroySemaphore);  -- src/vulkan/vulkan.h:2277
 
    type PFN_vkCreateEvent is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateEvent);  -- src/vulkan/vulkan.h:2239
+   pragma Convention (C, PFN_vkCreateEvent);  -- src/vulkan/vulkan.h:2278
 
    type PFN_vkDestroyEvent is access procedure
         (arg1 : VkDevice;
          arg2 : VkEvent;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyEvent);  -- src/vulkan/vulkan.h:2240
+   pragma Convention (C, PFN_vkDestroyEvent);  -- src/vulkan/vulkan.h:2279
 
    type PFN_vkGetEventStatus is access function (arg1 : VkDevice; arg2 : VkEvent) return VkResult;
-   pragma Convention (C, PFN_vkGetEventStatus);  -- src/vulkan/vulkan.h:2241
+   pragma Convention (C, PFN_vkGetEventStatus);  -- src/vulkan/vulkan.h:2280
 
    type PFN_vkSetEvent is access function (arg1 : VkDevice; arg2 : VkEvent) return VkResult;
-   pragma Convention (C, PFN_vkSetEvent);  -- src/vulkan/vulkan.h:2242
+   pragma Convention (C, PFN_vkSetEvent);  -- src/vulkan/vulkan.h:2281
 
    type PFN_vkResetEvent is access function (arg1 : VkDevice; arg2 : VkEvent) return VkResult;
-   pragma Convention (C, PFN_vkResetEvent);  -- src/vulkan/vulkan.h:2243
+   pragma Convention (C, PFN_vkResetEvent);  -- src/vulkan/vulkan.h:2282
 
    type PFN_vkCreateQueryPool is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateQueryPool);  -- src/vulkan/vulkan.h:2244
+   pragma Convention (C, PFN_vkCreateQueryPool);  -- src/vulkan/vulkan.h:2283
 
    type PFN_vkDestroyQueryPool is access procedure
         (arg1 : VkDevice;
          arg2 : VkQueryPool;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyQueryPool);  -- src/vulkan/vulkan.h:2245
+   pragma Convention (C, PFN_vkDestroyQueryPool);  -- src/vulkan/vulkan.h:2284
 
    type PFN_vkGetQueryPoolResults is access function
         (arg1 : VkDevice;
@@ -2727,106 +2739,106 @@ package Vulkan is
          arg6 : System.Address;
          arg7 : VkDeviceSize;
          arg8 : VkQueryResultFlags) return VkResult;
-   pragma Convention (C, PFN_vkGetQueryPoolResults);  -- src/vulkan/vulkan.h:2246
+   pragma Convention (C, PFN_vkGetQueryPoolResults);  -- src/vulkan/vulkan.h:2285
 
    type PFN_vkCreateBuffer is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateBuffer);  -- src/vulkan/vulkan.h:2247
+   pragma Convention (C, PFN_vkCreateBuffer);  -- src/vulkan/vulkan.h:2286
 
    type PFN_vkDestroyBuffer is access procedure
         (arg1 : VkDevice;
          arg2 : VkBuffer;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyBuffer);  -- src/vulkan/vulkan.h:2248
+   pragma Convention (C, PFN_vkDestroyBuffer);  -- src/vulkan/vulkan.h:2287
 
    type PFN_vkCreateBufferView is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateBufferView);  -- src/vulkan/vulkan.h:2249
+   pragma Convention (C, PFN_vkCreateBufferView);  -- src/vulkan/vulkan.h:2288
 
    type PFN_vkDestroyBufferView is access procedure
         (arg1 : VkDevice;
          arg2 : VkBufferView;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyBufferView);  -- src/vulkan/vulkan.h:2250
+   pragma Convention (C, PFN_vkDestroyBufferView);  -- src/vulkan/vulkan.h:2289
 
    type PFN_vkCreateImage is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateImage);  -- src/vulkan/vulkan.h:2251
+   pragma Convention (C, PFN_vkCreateImage);  -- src/vulkan/vulkan.h:2290
 
    type PFN_vkDestroyImage is access procedure
         (arg1 : VkDevice;
          arg2 : VkImage;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyImage);  -- src/vulkan/vulkan.h:2252
+   pragma Convention (C, PFN_vkDestroyImage);  -- src/vulkan/vulkan.h:2291
 
    type PFN_vkGetImageSubresourceLayout is access procedure
         (arg1 : VkDevice;
          arg2 : VkImage;
          arg3 : System.Address;
          arg4 : access VkSubresourceLayout);
-   pragma Convention (C, PFN_vkGetImageSubresourceLayout);  -- src/vulkan/vulkan.h:2253
+   pragma Convention (C, PFN_vkGetImageSubresourceLayout);  -- src/vulkan/vulkan.h:2292
 
    type PFN_vkCreateImageView is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateImageView);  -- src/vulkan/vulkan.h:2254
+   pragma Convention (C, PFN_vkCreateImageView);  -- src/vulkan/vulkan.h:2293
 
    type PFN_vkDestroyImageView is access procedure
         (arg1 : VkDevice;
          arg2 : VkImageView;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyImageView);  -- src/vulkan/vulkan.h:2255
+   pragma Convention (C, PFN_vkDestroyImageView);  -- src/vulkan/vulkan.h:2294
 
    type PFN_vkCreateShaderModule is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateShaderModule);  -- src/vulkan/vulkan.h:2256
+   pragma Convention (C, PFN_vkCreateShaderModule);  -- src/vulkan/vulkan.h:2295
 
    type PFN_vkDestroyShaderModule is access procedure
         (arg1 : VkDevice;
          arg2 : VkShaderModule;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyShaderModule);  -- src/vulkan/vulkan.h:2257
+   pragma Convention (C, PFN_vkDestroyShaderModule);  -- src/vulkan/vulkan.h:2296
 
    type PFN_vkCreatePipelineCache is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreatePipelineCache);  -- src/vulkan/vulkan.h:2258
+   pragma Convention (C, PFN_vkCreatePipelineCache);  -- src/vulkan/vulkan.h:2297
 
    type PFN_vkDestroyPipelineCache is access procedure
         (arg1 : VkDevice;
          arg2 : VkPipelineCache;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyPipelineCache);  -- src/vulkan/vulkan.h:2259
+   pragma Convention (C, PFN_vkDestroyPipelineCache);  -- src/vulkan/vulkan.h:2298
 
    type PFN_vkGetPipelineCacheData is access function
         (arg1 : VkDevice;
          arg2 : VkPipelineCache;
          arg3 : access stddef_h.size_t;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkGetPipelineCacheData);  -- src/vulkan/vulkan.h:2260
+   pragma Convention (C, PFN_vkGetPipelineCacheData);  -- src/vulkan/vulkan.h:2299
 
    type PFN_vkMergePipelineCaches is access function
         (arg1 : VkDevice;
          arg2 : VkPipelineCache;
          arg3 : stdint_h.uint32_t;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkMergePipelineCaches);  -- src/vulkan/vulkan.h:2261
+   pragma Convention (C, PFN_vkMergePipelineCaches);  -- src/vulkan/vulkan.h:2300
 
    type PFN_vkCreateGraphicsPipelines is access function
         (arg1 : VkDevice;
@@ -2835,7 +2847,7 @@ package Vulkan is
          arg4 : System.Address;
          arg5 : System.Address;
          arg6 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateGraphicsPipelines);  -- src/vulkan/vulkan.h:2262
+   pragma Convention (C, PFN_vkCreateGraphicsPipelines);  -- src/vulkan/vulkan.h:2301
 
    type PFN_vkCreateComputePipelines is access function
         (arg1 : VkDevice;
@@ -2844,84 +2856,84 @@ package Vulkan is
          arg4 : System.Address;
          arg5 : System.Address;
          arg6 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateComputePipelines);  -- src/vulkan/vulkan.h:2263
+   pragma Convention (C, PFN_vkCreateComputePipelines);  -- src/vulkan/vulkan.h:2302
 
    type PFN_vkDestroyPipeline is access procedure
         (arg1 : VkDevice;
          arg2 : VkPipeline;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyPipeline);  -- src/vulkan/vulkan.h:2264
+   pragma Convention (C, PFN_vkDestroyPipeline);  -- src/vulkan/vulkan.h:2303
 
    type PFN_vkCreatePipelineLayout is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreatePipelineLayout);  -- src/vulkan/vulkan.h:2265
+   pragma Convention (C, PFN_vkCreatePipelineLayout);  -- src/vulkan/vulkan.h:2304
 
    type PFN_vkDestroyPipelineLayout is access procedure
         (arg1 : VkDevice;
          arg2 : VkPipelineLayout;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyPipelineLayout);  -- src/vulkan/vulkan.h:2266
+   pragma Convention (C, PFN_vkDestroyPipelineLayout);  -- src/vulkan/vulkan.h:2305
 
    type PFN_vkCreateSampler is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateSampler);  -- src/vulkan/vulkan.h:2267
+   pragma Convention (C, PFN_vkCreateSampler);  -- src/vulkan/vulkan.h:2306
 
    type PFN_vkDestroySampler is access procedure
         (arg1 : VkDevice;
          arg2 : VkSampler;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroySampler);  -- src/vulkan/vulkan.h:2268
+   pragma Convention (C, PFN_vkDestroySampler);  -- src/vulkan/vulkan.h:2307
 
    type PFN_vkCreateDescriptorSetLayout is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateDescriptorSetLayout);  -- src/vulkan/vulkan.h:2269
+   pragma Convention (C, PFN_vkCreateDescriptorSetLayout);  -- src/vulkan/vulkan.h:2308
 
    type PFN_vkDestroyDescriptorSetLayout is access procedure
         (arg1 : VkDevice;
          arg2 : VkDescriptorSetLayout;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyDescriptorSetLayout);  -- src/vulkan/vulkan.h:2270
+   pragma Convention (C, PFN_vkDestroyDescriptorSetLayout);  -- src/vulkan/vulkan.h:2309
 
    type PFN_vkCreateDescriptorPool is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateDescriptorPool);  -- src/vulkan/vulkan.h:2271
+   pragma Convention (C, PFN_vkCreateDescriptorPool);  -- src/vulkan/vulkan.h:2310
 
    type PFN_vkDestroyDescriptorPool is access procedure
         (arg1 : VkDevice;
          arg2 : VkDescriptorPool;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyDescriptorPool);  -- src/vulkan/vulkan.h:2272
+   pragma Convention (C, PFN_vkDestroyDescriptorPool);  -- src/vulkan/vulkan.h:2311
 
    type PFN_vkResetDescriptorPool is access function
         (arg1 : VkDevice;
          arg2 : VkDescriptorPool;
          arg3 : VkDescriptorPoolResetFlags) return VkResult;
-   pragma Convention (C, PFN_vkResetDescriptorPool);  -- src/vulkan/vulkan.h:2273
+   pragma Convention (C, PFN_vkResetDescriptorPool);  -- src/vulkan/vulkan.h:2312
 
    type PFN_vkAllocateDescriptorSets is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkAllocateDescriptorSets);  -- src/vulkan/vulkan.h:2274
+   pragma Convention (C, PFN_vkAllocateDescriptorSets);  -- src/vulkan/vulkan.h:2313
 
    type PFN_vkFreeDescriptorSets is access function
         (arg1 : VkDevice;
          arg2 : VkDescriptorPool;
          arg3 : stdint_h.uint32_t;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkFreeDescriptorSets);  -- src/vulkan/vulkan.h:2275
+   pragma Convention (C, PFN_vkFreeDescriptorSets);  -- src/vulkan/vulkan.h:2314
 
    type PFN_vkUpdateDescriptorSets is access procedure
         (arg1 : VkDevice;
@@ -2929,137 +2941,137 @@ package Vulkan is
          arg3 : System.Address;
          arg4 : stdint_h.uint32_t;
          arg5 : System.Address);
-   pragma Convention (C, PFN_vkUpdateDescriptorSets);  -- src/vulkan/vulkan.h:2276
+   pragma Convention (C, PFN_vkUpdateDescriptorSets);  -- src/vulkan/vulkan.h:2315
 
    type PFN_vkCreateFramebuffer is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateFramebuffer);  -- src/vulkan/vulkan.h:2277
+   pragma Convention (C, PFN_vkCreateFramebuffer);  -- src/vulkan/vulkan.h:2316
 
    type PFN_vkDestroyFramebuffer is access procedure
         (arg1 : VkDevice;
          arg2 : VkFramebuffer;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyFramebuffer);  -- src/vulkan/vulkan.h:2278
+   pragma Convention (C, PFN_vkDestroyFramebuffer);  -- src/vulkan/vulkan.h:2317
 
    type PFN_vkCreateRenderPass is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateRenderPass);  -- src/vulkan/vulkan.h:2279
+   pragma Convention (C, PFN_vkCreateRenderPass);  -- src/vulkan/vulkan.h:2318
 
    type PFN_vkDestroyRenderPass is access procedure
         (arg1 : VkDevice;
          arg2 : VkRenderPass;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyRenderPass);  -- src/vulkan/vulkan.h:2280
+   pragma Convention (C, PFN_vkDestroyRenderPass);  -- src/vulkan/vulkan.h:2319
 
    type PFN_vkGetRenderAreaGranularity is access procedure
         (arg1 : VkDevice;
          arg2 : VkRenderPass;
          arg3 : access VkExtent2D);
-   pragma Convention (C, PFN_vkGetRenderAreaGranularity);  -- src/vulkan/vulkan.h:2281
+   pragma Convention (C, PFN_vkGetRenderAreaGranularity);  -- src/vulkan/vulkan.h:2320
 
    type PFN_vkCreateCommandPool is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateCommandPool);  -- src/vulkan/vulkan.h:2282
+   pragma Convention (C, PFN_vkCreateCommandPool);  -- src/vulkan/vulkan.h:2321
 
    type PFN_vkDestroyCommandPool is access procedure
         (arg1 : VkDevice;
          arg2 : VkCommandPool;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyCommandPool);  -- src/vulkan/vulkan.h:2283
+   pragma Convention (C, PFN_vkDestroyCommandPool);  -- src/vulkan/vulkan.h:2322
 
    type PFN_vkResetCommandPool is access function
         (arg1 : VkDevice;
          arg2 : VkCommandPool;
          arg3 : VkCommandPoolResetFlags) return VkResult;
-   pragma Convention (C, PFN_vkResetCommandPool);  -- src/vulkan/vulkan.h:2284
+   pragma Convention (C, PFN_vkResetCommandPool);  -- src/vulkan/vulkan.h:2323
 
    type PFN_vkAllocateCommandBuffers is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkAllocateCommandBuffers);  -- src/vulkan/vulkan.h:2285
+   pragma Convention (C, PFN_vkAllocateCommandBuffers);  -- src/vulkan/vulkan.h:2324
 
    type PFN_vkFreeCommandBuffers is access procedure
         (arg1 : VkDevice;
          arg2 : VkCommandPool;
          arg3 : stdint_h.uint32_t;
          arg4 : System.Address);
-   pragma Convention (C, PFN_vkFreeCommandBuffers);  -- src/vulkan/vulkan.h:2286
+   pragma Convention (C, PFN_vkFreeCommandBuffers);  -- src/vulkan/vulkan.h:2325
 
    type PFN_vkBeginCommandBuffer is access function (arg1 : VkCommandBuffer; arg2 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkBeginCommandBuffer);  -- src/vulkan/vulkan.h:2287
+   pragma Convention (C, PFN_vkBeginCommandBuffer);  -- src/vulkan/vulkan.h:2326
 
    type PFN_vkEndCommandBuffer is access function (arg1 : VkCommandBuffer) return VkResult;
-   pragma Convention (C, PFN_vkEndCommandBuffer);  -- src/vulkan/vulkan.h:2288
+   pragma Convention (C, PFN_vkEndCommandBuffer);  -- src/vulkan/vulkan.h:2327
 
    type PFN_vkResetCommandBuffer is access function (arg1 : VkCommandBuffer; arg2 : VkCommandBufferResetFlags) return VkResult;
-   pragma Convention (C, PFN_vkResetCommandBuffer);  -- src/vulkan/vulkan.h:2289
+   pragma Convention (C, PFN_vkResetCommandBuffer);  -- src/vulkan/vulkan.h:2328
 
    type PFN_vkCmdBindPipeline is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkPipelineBindPoint;
          arg3 : VkPipeline);
-   pragma Convention (C, PFN_vkCmdBindPipeline);  -- src/vulkan/vulkan.h:2290
+   pragma Convention (C, PFN_vkCmdBindPipeline);  -- src/vulkan/vulkan.h:2329
 
    type PFN_vkCmdSetViewport is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : stdint_h.uint32_t;
          arg3 : stdint_h.uint32_t;
          arg4 : System.Address);
-   pragma Convention (C, PFN_vkCmdSetViewport);  -- src/vulkan/vulkan.h:2291
+   pragma Convention (C, PFN_vkCmdSetViewport);  -- src/vulkan/vulkan.h:2330
 
    type PFN_vkCmdSetScissor is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : stdint_h.uint32_t;
          arg3 : stdint_h.uint32_t;
          arg4 : System.Address);
-   pragma Convention (C, PFN_vkCmdSetScissor);  -- src/vulkan/vulkan.h:2292
+   pragma Convention (C, PFN_vkCmdSetScissor);  -- src/vulkan/vulkan.h:2331
 
    type PFN_vkCmdSetLineWidth is access procedure (arg1 : VkCommandBuffer; arg2 : float);
-   pragma Convention (C, PFN_vkCmdSetLineWidth);  -- src/vulkan/vulkan.h:2293
+   pragma Convention (C, PFN_vkCmdSetLineWidth);  -- src/vulkan/vulkan.h:2332
 
    type PFN_vkCmdSetDepthBias is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : float;
          arg3 : float;
          arg4 : float);
-   pragma Convention (C, PFN_vkCmdSetDepthBias);  -- src/vulkan/vulkan.h:2294
+   pragma Convention (C, PFN_vkCmdSetDepthBias);  -- src/vulkan/vulkan.h:2333
 
    type PFN_vkCmdSetBlendConstants is access procedure (arg1 : VkCommandBuffer; arg2 : access float);
-   pragma Convention (C, PFN_vkCmdSetBlendConstants);  -- src/vulkan/vulkan.h:2295
+   pragma Convention (C, PFN_vkCmdSetBlendConstants);  -- src/vulkan/vulkan.h:2334
 
    type PFN_vkCmdSetDepthBounds is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : float;
          arg3 : float);
-   pragma Convention (C, PFN_vkCmdSetDepthBounds);  -- src/vulkan/vulkan.h:2296
+   pragma Convention (C, PFN_vkCmdSetDepthBounds);  -- src/vulkan/vulkan.h:2335
 
    type PFN_vkCmdSetStencilCompareMask is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkStencilFaceFlags;
          arg3 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdSetStencilCompareMask);  -- src/vulkan/vulkan.h:2297
+   pragma Convention (C, PFN_vkCmdSetStencilCompareMask);  -- src/vulkan/vulkan.h:2336
 
    type PFN_vkCmdSetStencilWriteMask is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkStencilFaceFlags;
          arg3 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdSetStencilWriteMask);  -- src/vulkan/vulkan.h:2298
+   pragma Convention (C, PFN_vkCmdSetStencilWriteMask);  -- src/vulkan/vulkan.h:2337
 
    type PFN_vkCmdSetStencilReference is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkStencilFaceFlags;
          arg3 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdSetStencilReference);  -- src/vulkan/vulkan.h:2299
+   pragma Convention (C, PFN_vkCmdSetStencilReference);  -- src/vulkan/vulkan.h:2338
 
    type PFN_vkCmdBindDescriptorSets is access procedure
         (arg1 : VkCommandBuffer;
@@ -3070,14 +3082,14 @@ package Vulkan is
          arg6 : System.Address;
          arg7 : stdint_h.uint32_t;
          arg8 : access stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdBindDescriptorSets);  -- src/vulkan/vulkan.h:2300
+   pragma Convention (C, PFN_vkCmdBindDescriptorSets);  -- src/vulkan/vulkan.h:2339
 
    type PFN_vkCmdBindIndexBuffer is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkBuffer;
          arg3 : VkDeviceSize;
          arg4 : VkIndexType);
-   pragma Convention (C, PFN_vkCmdBindIndexBuffer);  -- src/vulkan/vulkan.h:2301
+   pragma Convention (C, PFN_vkCmdBindIndexBuffer);  -- src/vulkan/vulkan.h:2340
 
    type PFN_vkCmdBindVertexBuffers is access procedure
         (arg1 : VkCommandBuffer;
@@ -3085,7 +3097,7 @@ package Vulkan is
          arg3 : stdint_h.uint32_t;
          arg4 : System.Address;
          arg5 : access VkDeviceSize);
-   pragma Convention (C, PFN_vkCmdBindVertexBuffers);  -- src/vulkan/vulkan.h:2302
+   pragma Convention (C, PFN_vkCmdBindVertexBuffers);  -- src/vulkan/vulkan.h:2341
 
    type PFN_vkCmdDraw is access procedure
         (arg1 : VkCommandBuffer;
@@ -3093,7 +3105,7 @@ package Vulkan is
          arg3 : stdint_h.uint32_t;
          arg4 : stdint_h.uint32_t;
          arg5 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdDraw);  -- src/vulkan/vulkan.h:2303
+   pragma Convention (C, PFN_vkCmdDraw);  -- src/vulkan/vulkan.h:2342
 
    type PFN_vkCmdDrawIndexed is access procedure
         (arg1 : VkCommandBuffer;
@@ -3102,7 +3114,7 @@ package Vulkan is
          arg4 : stdint_h.uint32_t;
          arg5 : stdint_h.int32_t;
          arg6 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdDrawIndexed);  -- src/vulkan/vulkan.h:2304
+   pragma Convention (C, PFN_vkCmdDrawIndexed);  -- src/vulkan/vulkan.h:2343
 
    type PFN_vkCmdDrawIndirect is access procedure
         (arg1 : VkCommandBuffer;
@@ -3110,7 +3122,7 @@ package Vulkan is
          arg3 : VkDeviceSize;
          arg4 : stdint_h.uint32_t;
          arg5 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdDrawIndirect);  -- src/vulkan/vulkan.h:2305
+   pragma Convention (C, PFN_vkCmdDrawIndirect);  -- src/vulkan/vulkan.h:2344
 
    type PFN_vkCmdDrawIndexedIndirect is access procedure
         (arg1 : VkCommandBuffer;
@@ -3118,20 +3130,20 @@ package Vulkan is
          arg3 : VkDeviceSize;
          arg4 : stdint_h.uint32_t;
          arg5 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdDrawIndexedIndirect);  -- src/vulkan/vulkan.h:2306
+   pragma Convention (C, PFN_vkCmdDrawIndexedIndirect);  -- src/vulkan/vulkan.h:2345
 
    type PFN_vkCmdDispatch is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : stdint_h.uint32_t;
          arg3 : stdint_h.uint32_t;
          arg4 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdDispatch);  -- src/vulkan/vulkan.h:2307
+   pragma Convention (C, PFN_vkCmdDispatch);  -- src/vulkan/vulkan.h:2346
 
    type PFN_vkCmdDispatchIndirect is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkBuffer;
          arg3 : VkDeviceSize);
-   pragma Convention (C, PFN_vkCmdDispatchIndirect);  -- src/vulkan/vulkan.h:2308
+   pragma Convention (C, PFN_vkCmdDispatchIndirect);  -- src/vulkan/vulkan.h:2347
 
    type PFN_vkCmdCopyBuffer is access procedure
         (arg1 : VkCommandBuffer;
@@ -3139,7 +3151,7 @@ package Vulkan is
          arg3 : VkBuffer;
          arg4 : stdint_h.uint32_t;
          arg5 : System.Address);
-   pragma Convention (C, PFN_vkCmdCopyBuffer);  -- src/vulkan/vulkan.h:2309
+   pragma Convention (C, PFN_vkCmdCopyBuffer);  -- src/vulkan/vulkan.h:2348
 
    type PFN_vkCmdCopyImage is access procedure
         (arg1 : VkCommandBuffer;
@@ -3149,7 +3161,7 @@ package Vulkan is
          arg5 : VkImageLayout;
          arg6 : stdint_h.uint32_t;
          arg7 : System.Address);
-   pragma Convention (C, PFN_vkCmdCopyImage);  -- src/vulkan/vulkan.h:2310
+   pragma Convention (C, PFN_vkCmdCopyImage);  -- src/vulkan/vulkan.h:2349
 
    type PFN_vkCmdBlitImage is access procedure
         (arg1 : VkCommandBuffer;
@@ -3160,7 +3172,7 @@ package Vulkan is
          arg6 : stdint_h.uint32_t;
          arg7 : System.Address;
          arg8 : VkFilter);
-   pragma Convention (C, PFN_vkCmdBlitImage);  -- src/vulkan/vulkan.h:2311
+   pragma Convention (C, PFN_vkCmdBlitImage);  -- src/vulkan/vulkan.h:2350
 
    type PFN_vkCmdCopyBufferToImage is access procedure
         (arg1 : VkCommandBuffer;
@@ -3169,7 +3181,7 @@ package Vulkan is
          arg4 : VkImageLayout;
          arg5 : stdint_h.uint32_t;
          arg6 : System.Address);
-   pragma Convention (C, PFN_vkCmdCopyBufferToImage);  -- src/vulkan/vulkan.h:2312
+   pragma Convention (C, PFN_vkCmdCopyBufferToImage);  -- src/vulkan/vulkan.h:2351
 
    type PFN_vkCmdCopyImageToBuffer is access procedure
         (arg1 : VkCommandBuffer;
@@ -3178,7 +3190,7 @@ package Vulkan is
          arg4 : VkBuffer;
          arg5 : stdint_h.uint32_t;
          arg6 : System.Address);
-   pragma Convention (C, PFN_vkCmdCopyImageToBuffer);  -- src/vulkan/vulkan.h:2313
+   pragma Convention (C, PFN_vkCmdCopyImageToBuffer);  -- src/vulkan/vulkan.h:2352
 
    type PFN_vkCmdUpdateBuffer is access procedure
         (arg1 : VkCommandBuffer;
@@ -3186,7 +3198,7 @@ package Vulkan is
          arg3 : VkDeviceSize;
          arg4 : VkDeviceSize;
          arg5 : access stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdUpdateBuffer);  -- src/vulkan/vulkan.h:2314
+   pragma Convention (C, PFN_vkCmdUpdateBuffer);  -- src/vulkan/vulkan.h:2353
 
    type PFN_vkCmdFillBuffer is access procedure
         (arg1 : VkCommandBuffer;
@@ -3194,7 +3206,7 @@ package Vulkan is
          arg3 : VkDeviceSize;
          arg4 : VkDeviceSize;
          arg5 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdFillBuffer);  -- src/vulkan/vulkan.h:2315
+   pragma Convention (C, PFN_vkCmdFillBuffer);  -- src/vulkan/vulkan.h:2354
 
    type PFN_vkCmdClearColorImage is access procedure
         (arg1 : VkCommandBuffer;
@@ -3203,7 +3215,7 @@ package Vulkan is
          arg4 : System.Address;
          arg5 : stdint_h.uint32_t;
          arg6 : System.Address);
-   pragma Convention (C, PFN_vkCmdClearColorImage);  -- src/vulkan/vulkan.h:2316
+   pragma Convention (C, PFN_vkCmdClearColorImage);  -- src/vulkan/vulkan.h:2355
 
    type PFN_vkCmdClearDepthStencilImage is access procedure
         (arg1 : VkCommandBuffer;
@@ -3212,7 +3224,7 @@ package Vulkan is
          arg4 : System.Address;
          arg5 : stdint_h.uint32_t;
          arg6 : System.Address);
-   pragma Convention (C, PFN_vkCmdClearDepthStencilImage);  -- src/vulkan/vulkan.h:2317
+   pragma Convention (C, PFN_vkCmdClearDepthStencilImage);  -- src/vulkan/vulkan.h:2356
 
    type PFN_vkCmdClearAttachments is access procedure
         (arg1 : VkCommandBuffer;
@@ -3220,7 +3232,7 @@ package Vulkan is
          arg3 : System.Address;
          arg4 : stdint_h.uint32_t;
          arg5 : System.Address);
-   pragma Convention (C, PFN_vkCmdClearAttachments);  -- src/vulkan/vulkan.h:2318
+   pragma Convention (C, PFN_vkCmdClearAttachments);  -- src/vulkan/vulkan.h:2357
 
    type PFN_vkCmdResolveImage is access procedure
         (arg1 : VkCommandBuffer;
@@ -3230,19 +3242,19 @@ package Vulkan is
          arg5 : VkImageLayout;
          arg6 : stdint_h.uint32_t;
          arg7 : System.Address);
-   pragma Convention (C, PFN_vkCmdResolveImage);  -- src/vulkan/vulkan.h:2319
+   pragma Convention (C, PFN_vkCmdResolveImage);  -- src/vulkan/vulkan.h:2358
 
    type PFN_vkCmdSetEvent is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkEvent;
          arg3 : VkPipelineStageFlags);
-   pragma Convention (C, PFN_vkCmdSetEvent);  -- src/vulkan/vulkan.h:2320
+   pragma Convention (C, PFN_vkCmdSetEvent);  -- src/vulkan/vulkan.h:2359
 
    type PFN_vkCmdResetEvent is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkEvent;
          arg3 : VkPipelineStageFlags);
-   pragma Convention (C, PFN_vkCmdResetEvent);  -- src/vulkan/vulkan.h:2321
+   pragma Convention (C, PFN_vkCmdResetEvent);  -- src/vulkan/vulkan.h:2360
 
    type PFN_vkCmdWaitEvents is access procedure
         (arg1 : VkCommandBuffer;
@@ -3256,7 +3268,7 @@ package Vulkan is
          arg9 : System.Address;
          arg10 : stdint_h.uint32_t;
          arg11 : System.Address);
-   pragma Convention (C, PFN_vkCmdWaitEvents);  -- src/vulkan/vulkan.h:2322
+   pragma Convention (C, PFN_vkCmdWaitEvents);  -- src/vulkan/vulkan.h:2361
 
    type PFN_vkCmdPipelineBarrier is access procedure
         (arg1 : VkCommandBuffer;
@@ -3269,34 +3281,34 @@ package Vulkan is
          arg8 : System.Address;
          arg9 : stdint_h.uint32_t;
          arg10 : System.Address);
-   pragma Convention (C, PFN_vkCmdPipelineBarrier);  -- src/vulkan/vulkan.h:2323
+   pragma Convention (C, PFN_vkCmdPipelineBarrier);  -- src/vulkan/vulkan.h:2362
 
    type PFN_vkCmdBeginQuery is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkQueryPool;
          arg3 : stdint_h.uint32_t;
          arg4 : VkQueryControlFlags);
-   pragma Convention (C, PFN_vkCmdBeginQuery);  -- src/vulkan/vulkan.h:2324
+   pragma Convention (C, PFN_vkCmdBeginQuery);  -- src/vulkan/vulkan.h:2363
 
    type PFN_vkCmdEndQuery is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkQueryPool;
          arg3 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdEndQuery);  -- src/vulkan/vulkan.h:2325
+   pragma Convention (C, PFN_vkCmdEndQuery);  -- src/vulkan/vulkan.h:2364
 
    type PFN_vkCmdResetQueryPool is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkQueryPool;
          arg3 : stdint_h.uint32_t;
          arg4 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdResetQueryPool);  -- src/vulkan/vulkan.h:2326
+   pragma Convention (C, PFN_vkCmdResetQueryPool);  -- src/vulkan/vulkan.h:2365
 
    type PFN_vkCmdWriteTimestamp is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : VkPipelineStageFlagBits;
          arg3 : VkQueryPool;
          arg4 : stdint_h.uint32_t);
-   pragma Convention (C, PFN_vkCmdWriteTimestamp);  -- src/vulkan/vulkan.h:2327
+   pragma Convention (C, PFN_vkCmdWriteTimestamp);  -- src/vulkan/vulkan.h:2366
 
    type PFN_vkCmdCopyQueryPoolResults is access procedure
         (arg1 : VkCommandBuffer;
@@ -3307,7 +3319,7 @@ package Vulkan is
          arg6 : VkDeviceSize;
          arg7 : VkDeviceSize;
          arg8 : VkQueryResultFlags);
-   pragma Convention (C, PFN_vkCmdCopyQueryPoolResults);  -- src/vulkan/vulkan.h:2328
+   pragma Convention (C, PFN_vkCmdCopyQueryPoolResults);  -- src/vulkan/vulkan.h:2367
 
    type PFN_vkCmdPushConstants is access procedure
         (arg1 : VkCommandBuffer;
@@ -3316,940 +3328,940 @@ package Vulkan is
          arg4 : stdint_h.uint32_t;
          arg5 : stdint_h.uint32_t;
          arg6 : System.Address);
-   pragma Convention (C, PFN_vkCmdPushConstants);  -- src/vulkan/vulkan.h:2329
+   pragma Convention (C, PFN_vkCmdPushConstants);  -- src/vulkan/vulkan.h:2368
 
    type PFN_vkCmdBeginRenderPass is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : System.Address;
          arg3 : VkSubpassContents);
-   pragma Convention (C, PFN_vkCmdBeginRenderPass);  -- src/vulkan/vulkan.h:2330
+   pragma Convention (C, PFN_vkCmdBeginRenderPass);  -- src/vulkan/vulkan.h:2369
 
    type PFN_vkCmdNextSubpass is access procedure (arg1 : VkCommandBuffer; arg2 : VkSubpassContents);
-   pragma Convention (C, PFN_vkCmdNextSubpass);  -- src/vulkan/vulkan.h:2331
+   pragma Convention (C, PFN_vkCmdNextSubpass);  -- src/vulkan/vulkan.h:2370
 
    type PFN_vkCmdEndRenderPass is access procedure (arg1 : VkCommandBuffer);
-   pragma Convention (C, PFN_vkCmdEndRenderPass);  -- src/vulkan/vulkan.h:2332
+   pragma Convention (C, PFN_vkCmdEndRenderPass);  -- src/vulkan/vulkan.h:2371
 
    type PFN_vkCmdExecuteCommands is access procedure
         (arg1 : VkCommandBuffer;
          arg2 : stdint_h.uint32_t;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkCmdExecuteCommands);  -- src/vulkan/vulkan.h:2333
+   pragma Convention (C, PFN_vkCmdExecuteCommands);  -- src/vulkan/vulkan.h:2372
 
    function vkCreateInstance
-     (pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pInstance : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2336
+     (arg1 : System.Address;
+      arg2 : System.Address;
+      arg3 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2375
    pragma Import (C, vkCreateInstance, "vkCreateInstance");
 
-   procedure vkDestroyInstance (instance : VkInstance; pAllocator : System.Address);  -- src/vulkan/vulkan.h:2341
+   procedure vkDestroyInstance (arg1 : VkInstance; arg2 : System.Address);  -- src/vulkan/vulkan.h:2380
    pragma Import (C, vkDestroyInstance, "vkDestroyInstance");
 
    function vkEnumeratePhysicalDevices
-     (instance : VkInstance;
-      pPhysicalDeviceCount : access stdint_h.uint32_t;
-      pPhysicalDevices : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2345
+     (arg1 : VkInstance;
+      arg2 : access stdint_h.uint32_t;
+      arg3 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2384
    pragma Import (C, vkEnumeratePhysicalDevices, "vkEnumeratePhysicalDevices");
 
-   procedure vkGetPhysicalDeviceFeatures (physicalDevice : VkPhysicalDevice; pFeatures : access VkPhysicalDeviceFeatures);  -- src/vulkan/vulkan.h:2350
+   procedure vkGetPhysicalDeviceFeatures (arg1 : VkPhysicalDevice; arg2 : access VkPhysicalDeviceFeatures);  -- src/vulkan/vulkan.h:2389
    pragma Import (C, vkGetPhysicalDeviceFeatures, "vkGetPhysicalDeviceFeatures");
 
    procedure vkGetPhysicalDeviceFormatProperties
-     (physicalDevice : VkPhysicalDevice;
-      format : VkFormat;
-      pFormatProperties : access VkFormatProperties);  -- src/vulkan/vulkan.h:2354
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkFormat;
+      arg3 : access VkFormatProperties);  -- src/vulkan/vulkan.h:2393
    pragma Import (C, vkGetPhysicalDeviceFormatProperties, "vkGetPhysicalDeviceFormatProperties");
 
    function vkGetPhysicalDeviceImageFormatProperties
-     (physicalDevice : VkPhysicalDevice;
-      format : VkFormat;
-      c_type : VkImageType;
-      tiling : VkImageTiling;
-      usage : VkImageUsageFlags;
-      flags : VkImageCreateFlags;
-      pImageFormatProperties : access VkImageFormatProperties) return VkResult;  -- src/vulkan/vulkan.h:2359
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkFormat;
+      arg3 : VkImageType;
+      arg4 : VkImageTiling;
+      arg5 : VkImageUsageFlags;
+      arg6 : VkImageCreateFlags;
+      arg7 : access VkImageFormatProperties) return VkResult;  -- src/vulkan/vulkan.h:2398
    pragma Import (C, vkGetPhysicalDeviceImageFormatProperties, "vkGetPhysicalDeviceImageFormatProperties");
 
-   procedure vkGetPhysicalDeviceProperties (physicalDevice : VkPhysicalDevice; pProperties : access VkPhysicalDeviceProperties);  -- src/vulkan/vulkan.h:2368
+   procedure vkGetPhysicalDeviceProperties (arg1 : VkPhysicalDevice; arg2 : access VkPhysicalDeviceProperties);  -- src/vulkan/vulkan.h:2407
    pragma Import (C, vkGetPhysicalDeviceProperties, "vkGetPhysicalDeviceProperties");
 
    procedure vkGetPhysicalDeviceQueueFamilyProperties
-     (physicalDevice : VkPhysicalDevice;
-      pQueueFamilyPropertyCount : access stdint_h.uint32_t;
-      pQueueFamilyProperties : access VkQueueFamilyProperties);  -- src/vulkan/vulkan.h:2372
+     (arg1 : VkPhysicalDevice;
+      arg2 : access stdint_h.uint32_t;
+      arg3 : access VkQueueFamilyProperties);  -- src/vulkan/vulkan.h:2411
    pragma Import (C, vkGetPhysicalDeviceQueueFamilyProperties, "vkGetPhysicalDeviceQueueFamilyProperties");
 
-   procedure vkGetPhysicalDeviceMemoryProperties (physicalDevice : VkPhysicalDevice; pMemoryProperties : access VkPhysicalDeviceMemoryProperties);  -- src/vulkan/vulkan.h:2377
+   procedure vkGetPhysicalDeviceMemoryProperties (arg1 : VkPhysicalDevice; arg2 : access VkPhysicalDeviceMemoryProperties);  -- src/vulkan/vulkan.h:2416
    pragma Import (C, vkGetPhysicalDeviceMemoryProperties, "vkGetPhysicalDeviceMemoryProperties");
 
-   function vkGetInstanceProcAddr (instance : VkInstance; pName : Interfaces.C.Strings.chars_ptr) return PFN_vkVoidFunction;  -- src/vulkan/vulkan.h:2381
+   function vkGetInstanceProcAddr (arg1 : VkInstance; arg2 : Interfaces.C.Strings.chars_ptr) return PFN_vkVoidFunction;  -- src/vulkan/vulkan.h:2420
    pragma Import (C, vkGetInstanceProcAddr, "vkGetInstanceProcAddr");
 
-   function vkGetDeviceProcAddr (device : VkDevice; pName : Interfaces.C.Strings.chars_ptr) return PFN_vkVoidFunction;  -- src/vulkan/vulkan.h:2385
+   function vkGetDeviceProcAddr (arg1 : VkDevice; arg2 : Interfaces.C.Strings.chars_ptr) return PFN_vkVoidFunction;  -- src/vulkan/vulkan.h:2424
    pragma Import (C, vkGetDeviceProcAddr, "vkGetDeviceProcAddr");
 
    function vkCreateDevice
-     (physicalDevice : VkPhysicalDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pDevice : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2389
+     (arg1 : VkPhysicalDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2428
    pragma Import (C, vkCreateDevice, "vkCreateDevice");
 
-   procedure vkDestroyDevice (device : VkDevice; pAllocator : System.Address);  -- src/vulkan/vulkan.h:2395
+   procedure vkDestroyDevice (arg1 : VkDevice; arg2 : System.Address);  -- src/vulkan/vulkan.h:2434
    pragma Import (C, vkDestroyDevice, "vkDestroyDevice");
 
    function vkEnumerateInstanceExtensionProperties
-     (pLayerName : Interfaces.C.Strings.chars_ptr;
-      pPropertyCount : access stdint_h.uint32_t;
-      pProperties : access VkExtensionProperties) return VkResult;  -- src/vulkan/vulkan.h:2399
+     (arg1 : Interfaces.C.Strings.chars_ptr;
+      arg2 : access stdint_h.uint32_t;
+      arg3 : access VkExtensionProperties) return VkResult;  -- src/vulkan/vulkan.h:2438
    pragma Import (C, vkEnumerateInstanceExtensionProperties, "vkEnumerateInstanceExtensionProperties");
 
    function vkEnumerateDeviceExtensionProperties
-     (physicalDevice : VkPhysicalDevice;
-      pLayerName : Interfaces.C.Strings.chars_ptr;
-      pPropertyCount : access stdint_h.uint32_t;
-      pProperties : access VkExtensionProperties) return VkResult;  -- src/vulkan/vulkan.h:2404
+     (arg1 : VkPhysicalDevice;
+      arg2 : Interfaces.C.Strings.chars_ptr;
+      arg3 : access stdint_h.uint32_t;
+      arg4 : access VkExtensionProperties) return VkResult;  -- src/vulkan/vulkan.h:2443
    pragma Import (C, vkEnumerateDeviceExtensionProperties, "vkEnumerateDeviceExtensionProperties");
 
-   function vkEnumerateInstanceLayerProperties (pPropertyCount : access stdint_h.uint32_t; pProperties : access VkLayerProperties) return VkResult;  -- src/vulkan/vulkan.h:2410
+   function vkEnumerateInstanceLayerProperties (arg1 : access stdint_h.uint32_t; arg2 : access VkLayerProperties) return VkResult;  -- src/vulkan/vulkan.h:2449
    pragma Import (C, vkEnumerateInstanceLayerProperties, "vkEnumerateInstanceLayerProperties");
 
    function vkEnumerateDeviceLayerProperties
-     (physicalDevice : VkPhysicalDevice;
-      pPropertyCount : access stdint_h.uint32_t;
-      pProperties : access VkLayerProperties) return VkResult;  -- src/vulkan/vulkan.h:2414
+     (arg1 : VkPhysicalDevice;
+      arg2 : access stdint_h.uint32_t;
+      arg3 : access VkLayerProperties) return VkResult;  -- src/vulkan/vulkan.h:2453
    pragma Import (C, vkEnumerateDeviceLayerProperties, "vkEnumerateDeviceLayerProperties");
 
    procedure vkGetDeviceQueue
-     (device : VkDevice;
-      queueFamilyIndex : stdint_h.uint32_t;
-      queueIndex : stdint_h.uint32_t;
-      pQueue : System.Address);  -- src/vulkan/vulkan.h:2419
+     (arg1 : VkDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address);  -- src/vulkan/vulkan.h:2458
    pragma Import (C, vkGetDeviceQueue, "vkGetDeviceQueue");
 
    function vkQueueSubmit
-     (queue : VkQueue;
-      submitCount : stdint_h.uint32_t;
-      pSubmits : System.Address;
-      fence : VkFence) return VkResult;  -- src/vulkan/vulkan.h:2425
+     (arg1 : VkQueue;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address;
+      arg4 : VkFence) return VkResult;  -- src/vulkan/vulkan.h:2464
    pragma Import (C, vkQueueSubmit, "vkQueueSubmit");
 
-   function vkQueueWaitIdle (queue : VkQueue) return VkResult;  -- src/vulkan/vulkan.h:2431
+   function vkQueueWaitIdle (arg1 : VkQueue) return VkResult;  -- src/vulkan/vulkan.h:2470
    pragma Import (C, vkQueueWaitIdle, "vkQueueWaitIdle");
 
-   function vkDeviceWaitIdle (device : VkDevice) return VkResult;  -- src/vulkan/vulkan.h:2434
+   function vkDeviceWaitIdle (arg1 : VkDevice) return VkResult;  -- src/vulkan/vulkan.h:2473
    pragma Import (C, vkDeviceWaitIdle, "vkDeviceWaitIdle");
 
    function vkAllocateMemory
-     (device : VkDevice;
-      pAllocateInfo : System.Address;
-      pAllocator : System.Address;
-      pMemory : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2437
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2476
    pragma Import (C, vkAllocateMemory, "vkAllocateMemory");
 
    procedure vkFreeMemory
-     (device : VkDevice;
-      memory : VkDeviceMemory;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2443
+     (arg1 : VkDevice;
+      arg2 : VkDeviceMemory;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2482
    pragma Import (C, vkFreeMemory, "vkFreeMemory");
 
    function vkMapMemory
-     (device : VkDevice;
-      memory : VkDeviceMemory;
-      offset : VkDeviceSize;
-      size : VkDeviceSize;
-      flags : VkMemoryMapFlags;
-      ppData : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2448
+     (arg1 : VkDevice;
+      arg2 : VkDeviceMemory;
+      arg3 : VkDeviceSize;
+      arg4 : VkDeviceSize;
+      arg5 : VkMemoryMapFlags;
+      arg6 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2487
    pragma Import (C, vkMapMemory, "vkMapMemory");
 
-   procedure vkUnmapMemory (device : VkDevice; memory : VkDeviceMemory);  -- src/vulkan/vulkan.h:2456
+   procedure vkUnmapMemory (arg1 : VkDevice; arg2 : VkDeviceMemory);  -- src/vulkan/vulkan.h:2495
    pragma Import (C, vkUnmapMemory, "vkUnmapMemory");
 
    function vkFlushMappedMemoryRanges
-     (device : VkDevice;
-      memoryRangeCount : stdint_h.uint32_t;
-      pMemoryRanges : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2460
+     (arg1 : VkDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2499
    pragma Import (C, vkFlushMappedMemoryRanges, "vkFlushMappedMemoryRanges");
 
    function vkInvalidateMappedMemoryRanges
-     (device : VkDevice;
-      memoryRangeCount : stdint_h.uint32_t;
-      pMemoryRanges : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2465
+     (arg1 : VkDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2504
    pragma Import (C, vkInvalidateMappedMemoryRanges, "vkInvalidateMappedMemoryRanges");
 
    procedure vkGetDeviceMemoryCommitment
-     (device : VkDevice;
-      memory : VkDeviceMemory;
-      pCommittedMemoryInBytes : access VkDeviceSize);  -- src/vulkan/vulkan.h:2470
+     (arg1 : VkDevice;
+      arg2 : VkDeviceMemory;
+      arg3 : access VkDeviceSize);  -- src/vulkan/vulkan.h:2509
    pragma Import (C, vkGetDeviceMemoryCommitment, "vkGetDeviceMemoryCommitment");
 
    function vkBindBufferMemory
-     (device : VkDevice;
-      buffer : VkBuffer;
-      memory : VkDeviceMemory;
-      memoryOffset : VkDeviceSize) return VkResult;  -- src/vulkan/vulkan.h:2475
+     (arg1 : VkDevice;
+      arg2 : VkBuffer;
+      arg3 : VkDeviceMemory;
+      arg4 : VkDeviceSize) return VkResult;  -- src/vulkan/vulkan.h:2514
    pragma Import (C, vkBindBufferMemory, "vkBindBufferMemory");
 
    function vkBindImageMemory
-     (device : VkDevice;
-      image : VkImage;
-      memory : VkDeviceMemory;
-      memoryOffset : VkDeviceSize) return VkResult;  -- src/vulkan/vulkan.h:2481
+     (arg1 : VkDevice;
+      arg2 : VkImage;
+      arg3 : VkDeviceMemory;
+      arg4 : VkDeviceSize) return VkResult;  -- src/vulkan/vulkan.h:2520
    pragma Import (C, vkBindImageMemory, "vkBindImageMemory");
 
    procedure vkGetBufferMemoryRequirements
-     (device : VkDevice;
-      buffer : VkBuffer;
-      pMemoryRequirements : access VkMemoryRequirements);  -- src/vulkan/vulkan.h:2487
+     (arg1 : VkDevice;
+      arg2 : VkBuffer;
+      arg3 : access VkMemoryRequirements);  -- src/vulkan/vulkan.h:2526
    pragma Import (C, vkGetBufferMemoryRequirements, "vkGetBufferMemoryRequirements");
 
    procedure vkGetImageMemoryRequirements
-     (device : VkDevice;
-      image : VkImage;
-      pMemoryRequirements : access VkMemoryRequirements);  -- src/vulkan/vulkan.h:2492
+     (arg1 : VkDevice;
+      arg2 : VkImage;
+      arg3 : access VkMemoryRequirements);  -- src/vulkan/vulkan.h:2531
    pragma Import (C, vkGetImageMemoryRequirements, "vkGetImageMemoryRequirements");
 
    procedure vkGetImageSparseMemoryRequirements
-     (device : VkDevice;
-      image : VkImage;
-      pSparseMemoryRequirementCount : access stdint_h.uint32_t;
-      pSparseMemoryRequirements : access VkSparseImageMemoryRequirements);  -- src/vulkan/vulkan.h:2497
+     (arg1 : VkDevice;
+      arg2 : VkImage;
+      arg3 : access stdint_h.uint32_t;
+      arg4 : access VkSparseImageMemoryRequirements);  -- src/vulkan/vulkan.h:2536
    pragma Import (C, vkGetImageSparseMemoryRequirements, "vkGetImageSparseMemoryRequirements");
 
    procedure vkGetPhysicalDeviceSparseImageFormatProperties
-     (physicalDevice : VkPhysicalDevice;
-      format : VkFormat;
-      c_type : VkImageType;
-      samples : VkSampleCountFlagBits;
-      usage : VkImageUsageFlags;
-      tiling : VkImageTiling;
-      pPropertyCount : access stdint_h.uint32_t;
-      pProperties : access VkSparseImageFormatProperties);  -- src/vulkan/vulkan.h:2503
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkFormat;
+      arg3 : VkImageType;
+      arg4 : VkSampleCountFlagBits;
+      arg5 : VkImageUsageFlags;
+      arg6 : VkImageTiling;
+      arg7 : access stdint_h.uint32_t;
+      arg8 : access VkSparseImageFormatProperties);  -- src/vulkan/vulkan.h:2542
    pragma Import (C, vkGetPhysicalDeviceSparseImageFormatProperties, "vkGetPhysicalDeviceSparseImageFormatProperties");
 
    function vkQueueBindSparse
-     (queue : VkQueue;
-      bindInfoCount : stdint_h.uint32_t;
-      pBindInfo : System.Address;
-      fence : VkFence) return VkResult;  -- src/vulkan/vulkan.h:2513
+     (arg1 : VkQueue;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address;
+      arg4 : VkFence) return VkResult;  -- src/vulkan/vulkan.h:2552
    pragma Import (C, vkQueueBindSparse, "vkQueueBindSparse");
 
    function vkCreateFence
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pFence : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2519
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2558
    pragma Import (C, vkCreateFence, "vkCreateFence");
 
    procedure vkDestroyFence
-     (device : VkDevice;
-      fence : VkFence;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2525
+     (arg1 : VkDevice;
+      arg2 : VkFence;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2564
    pragma Import (C, vkDestroyFence, "vkDestroyFence");
 
    function vkResetFences
-     (device : VkDevice;
-      fenceCount : stdint_h.uint32_t;
-      pFences : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2530
+     (arg1 : VkDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2569
    pragma Import (C, vkResetFences, "vkResetFences");
 
-   function vkGetFenceStatus (device : VkDevice; fence : VkFence) return VkResult;  -- src/vulkan/vulkan.h:2535
+   function vkGetFenceStatus (arg1 : VkDevice; arg2 : VkFence) return VkResult;  -- src/vulkan/vulkan.h:2574
    pragma Import (C, vkGetFenceStatus, "vkGetFenceStatus");
 
    function vkWaitForFences
-     (device : VkDevice;
-      fenceCount : stdint_h.uint32_t;
-      pFences : System.Address;
-      waitAll : VkBool32;
-      timeout : stdint_h.uint64_t) return VkResult;  -- src/vulkan/vulkan.h:2539
+     (arg1 : VkDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address;
+      arg4 : VkBool32;
+      arg5 : stdint_h.uint64_t) return VkResult;  -- src/vulkan/vulkan.h:2578
    pragma Import (C, vkWaitForFences, "vkWaitForFences");
 
    function vkCreateSemaphore
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pSemaphore : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2546
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2585
    pragma Import (C, vkCreateSemaphore, "vkCreateSemaphore");
 
    procedure vkDestroySemaphore
-     (device : VkDevice;
-      semaphore : VkSemaphore;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2552
+     (arg1 : VkDevice;
+      arg2 : VkSemaphore;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2591
    pragma Import (C, vkDestroySemaphore, "vkDestroySemaphore");
 
    function vkCreateEvent
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pEvent : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2557
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2596
    pragma Import (C, vkCreateEvent, "vkCreateEvent");
 
    procedure vkDestroyEvent
-     (device : VkDevice;
-      event : VkEvent;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2563
+     (arg1 : VkDevice;
+      arg2 : VkEvent;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2602
    pragma Import (C, vkDestroyEvent, "vkDestroyEvent");
 
-   function vkGetEventStatus (device : VkDevice; event : VkEvent) return VkResult;  -- src/vulkan/vulkan.h:2568
+   function vkGetEventStatus (arg1 : VkDevice; arg2 : VkEvent) return VkResult;  -- src/vulkan/vulkan.h:2607
    pragma Import (C, vkGetEventStatus, "vkGetEventStatus");
 
-   function vkSetEvent (device : VkDevice; event : VkEvent) return VkResult;  -- src/vulkan/vulkan.h:2572
+   function vkSetEvent (arg1 : VkDevice; arg2 : VkEvent) return VkResult;  -- src/vulkan/vulkan.h:2611
    pragma Import (C, vkSetEvent, "vkSetEvent");
 
-   function vkResetEvent (device : VkDevice; event : VkEvent) return VkResult;  -- src/vulkan/vulkan.h:2576
+   function vkResetEvent (arg1 : VkDevice; arg2 : VkEvent) return VkResult;  -- src/vulkan/vulkan.h:2615
    pragma Import (C, vkResetEvent, "vkResetEvent");
 
    function vkCreateQueryPool
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pQueryPool : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2580
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2619
    pragma Import (C, vkCreateQueryPool, "vkCreateQueryPool");
 
    procedure vkDestroyQueryPool
-     (device : VkDevice;
-      queryPool : VkQueryPool;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2586
+     (arg1 : VkDevice;
+      arg2 : VkQueryPool;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2625
    pragma Import (C, vkDestroyQueryPool, "vkDestroyQueryPool");
 
    function vkGetQueryPoolResults
-     (device : VkDevice;
-      queryPool : VkQueryPool;
-      firstQuery : stdint_h.uint32_t;
-      queryCount : stdint_h.uint32_t;
-      dataSize : stddef_h.size_t;
-      pData : System.Address;
-      stride : VkDeviceSize;
-      flags : VkQueryResultFlags) return VkResult;  -- src/vulkan/vulkan.h:2591
+     (arg1 : VkDevice;
+      arg2 : VkQueryPool;
+      arg3 : stdint_h.uint32_t;
+      arg4 : stdint_h.uint32_t;
+      arg5 : stddef_h.size_t;
+      arg6 : System.Address;
+      arg7 : VkDeviceSize;
+      arg8 : VkQueryResultFlags) return VkResult;  -- src/vulkan/vulkan.h:2630
    pragma Import (C, vkGetQueryPoolResults, "vkGetQueryPoolResults");
 
    function vkCreateBuffer
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pBuffer : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2601
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2640
    pragma Import (C, vkCreateBuffer, "vkCreateBuffer");
 
    procedure vkDestroyBuffer
-     (device : VkDevice;
-      buffer : VkBuffer;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2607
+     (arg1 : VkDevice;
+      arg2 : VkBuffer;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2646
    pragma Import (C, vkDestroyBuffer, "vkDestroyBuffer");
 
    function vkCreateBufferView
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pView : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2612
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2651
    pragma Import (C, vkCreateBufferView, "vkCreateBufferView");
 
    procedure vkDestroyBufferView
-     (device : VkDevice;
-      bufferView : VkBufferView;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2618
+     (arg1 : VkDevice;
+      arg2 : VkBufferView;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2657
    pragma Import (C, vkDestroyBufferView, "vkDestroyBufferView");
 
    function vkCreateImage
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pImage : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2623
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2662
    pragma Import (C, vkCreateImage, "vkCreateImage");
 
    procedure vkDestroyImage
-     (device : VkDevice;
-      image : VkImage;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2629
+     (arg1 : VkDevice;
+      arg2 : VkImage;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2668
    pragma Import (C, vkDestroyImage, "vkDestroyImage");
 
    procedure vkGetImageSubresourceLayout
-     (device : VkDevice;
-      image : VkImage;
-      pSubresource : System.Address;
-      pLayout : access VkSubresourceLayout);  -- src/vulkan/vulkan.h:2634
+     (arg1 : VkDevice;
+      arg2 : VkImage;
+      arg3 : System.Address;
+      arg4 : access VkSubresourceLayout);  -- src/vulkan/vulkan.h:2673
    pragma Import (C, vkGetImageSubresourceLayout, "vkGetImageSubresourceLayout");
 
    function vkCreateImageView
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pView : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2640
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2679
    pragma Import (C, vkCreateImageView, "vkCreateImageView");
 
    procedure vkDestroyImageView
-     (device : VkDevice;
-      imageView : VkImageView;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2646
+     (arg1 : VkDevice;
+      arg2 : VkImageView;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2685
    pragma Import (C, vkDestroyImageView, "vkDestroyImageView");
 
    function vkCreateShaderModule
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pShaderModule : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2651
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2690
    pragma Import (C, vkCreateShaderModule, "vkCreateShaderModule");
 
    procedure vkDestroyShaderModule
-     (device : VkDevice;
-      shaderModule : VkShaderModule;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2657
+     (arg1 : VkDevice;
+      arg2 : VkShaderModule;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2696
    pragma Import (C, vkDestroyShaderModule, "vkDestroyShaderModule");
 
    function vkCreatePipelineCache
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pPipelineCache : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2662
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2701
    pragma Import (C, vkCreatePipelineCache, "vkCreatePipelineCache");
 
    procedure vkDestroyPipelineCache
-     (device : VkDevice;
-      pipelineCache : VkPipelineCache;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2668
+     (arg1 : VkDevice;
+      arg2 : VkPipelineCache;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2707
    pragma Import (C, vkDestroyPipelineCache, "vkDestroyPipelineCache");
 
    function vkGetPipelineCacheData
-     (device : VkDevice;
-      pipelineCache : VkPipelineCache;
-      pDataSize : access stddef_h.size_t;
-      pData : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2673
+     (arg1 : VkDevice;
+      arg2 : VkPipelineCache;
+      arg3 : access stddef_h.size_t;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2712
    pragma Import (C, vkGetPipelineCacheData, "vkGetPipelineCacheData");
 
    function vkMergePipelineCaches
-     (device : VkDevice;
-      dstCache : VkPipelineCache;
-      srcCacheCount : stdint_h.uint32_t;
-      pSrcCaches : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2679
+     (arg1 : VkDevice;
+      arg2 : VkPipelineCache;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2718
    pragma Import (C, vkMergePipelineCaches, "vkMergePipelineCaches");
 
    function vkCreateGraphicsPipelines
-     (device : VkDevice;
-      pipelineCache : VkPipelineCache;
-      createInfoCount : stdint_h.uint32_t;
-      pCreateInfos : System.Address;
-      pAllocator : System.Address;
-      pPipelines : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2685
+     (arg1 : VkDevice;
+      arg2 : VkPipelineCache;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address;
+      arg5 : System.Address;
+      arg6 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2724
    pragma Import (C, vkCreateGraphicsPipelines, "vkCreateGraphicsPipelines");
 
    function vkCreateComputePipelines
-     (device : VkDevice;
-      pipelineCache : VkPipelineCache;
-      createInfoCount : stdint_h.uint32_t;
-      pCreateInfos : System.Address;
-      pAllocator : System.Address;
-      pPipelines : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2693
+     (arg1 : VkDevice;
+      arg2 : VkPipelineCache;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address;
+      arg5 : System.Address;
+      arg6 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2732
    pragma Import (C, vkCreateComputePipelines, "vkCreateComputePipelines");
 
    procedure vkDestroyPipeline
-     (device : VkDevice;
-      pipeline : VkPipeline;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2701
+     (arg1 : VkDevice;
+      arg2 : VkPipeline;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2740
    pragma Import (C, vkDestroyPipeline, "vkDestroyPipeline");
 
    function vkCreatePipelineLayout
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pPipelineLayout : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2706
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2745
    pragma Import (C, vkCreatePipelineLayout, "vkCreatePipelineLayout");
 
    procedure vkDestroyPipelineLayout
-     (device : VkDevice;
-      pipelineLayout : VkPipelineLayout;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2712
+     (arg1 : VkDevice;
+      arg2 : VkPipelineLayout;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2751
    pragma Import (C, vkDestroyPipelineLayout, "vkDestroyPipelineLayout");
 
    function vkCreateSampler
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pSampler : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2717
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2756
    pragma Import (C, vkCreateSampler, "vkCreateSampler");
 
    procedure vkDestroySampler
-     (device : VkDevice;
-      sampler : VkSampler;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2723
+     (arg1 : VkDevice;
+      arg2 : VkSampler;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2762
    pragma Import (C, vkDestroySampler, "vkDestroySampler");
 
    function vkCreateDescriptorSetLayout
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pSetLayout : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2728
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2767
    pragma Import (C, vkCreateDescriptorSetLayout, "vkCreateDescriptorSetLayout");
 
    procedure vkDestroyDescriptorSetLayout
-     (device : VkDevice;
-      descriptorSetLayout : VkDescriptorSetLayout;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2734
+     (arg1 : VkDevice;
+      arg2 : VkDescriptorSetLayout;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2773
    pragma Import (C, vkDestroyDescriptorSetLayout, "vkDestroyDescriptorSetLayout");
 
    function vkCreateDescriptorPool
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pDescriptorPool : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2739
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2778
    pragma Import (C, vkCreateDescriptorPool, "vkCreateDescriptorPool");
 
    procedure vkDestroyDescriptorPool
-     (device : VkDevice;
-      descriptorPool : VkDescriptorPool;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2745
+     (arg1 : VkDevice;
+      arg2 : VkDescriptorPool;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2784
    pragma Import (C, vkDestroyDescriptorPool, "vkDestroyDescriptorPool");
 
    function vkResetDescriptorPool
-     (device : VkDevice;
-      descriptorPool : VkDescriptorPool;
-      flags : VkDescriptorPoolResetFlags) return VkResult;  -- src/vulkan/vulkan.h:2750
+     (arg1 : VkDevice;
+      arg2 : VkDescriptorPool;
+      arg3 : VkDescriptorPoolResetFlags) return VkResult;  -- src/vulkan/vulkan.h:2789
    pragma Import (C, vkResetDescriptorPool, "vkResetDescriptorPool");
 
    function vkAllocateDescriptorSets
-     (device : VkDevice;
-      pAllocateInfo : System.Address;
-      pDescriptorSets : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2755
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2794
    pragma Import (C, vkAllocateDescriptorSets, "vkAllocateDescriptorSets");
 
    function vkFreeDescriptorSets
-     (device : VkDevice;
-      descriptorPool : VkDescriptorPool;
-      descriptorSetCount : stdint_h.uint32_t;
-      pDescriptorSets : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2760
+     (arg1 : VkDevice;
+      arg2 : VkDescriptorPool;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2799
    pragma Import (C, vkFreeDescriptorSets, "vkFreeDescriptorSets");
 
    procedure vkUpdateDescriptorSets
-     (device : VkDevice;
-      descriptorWriteCount : stdint_h.uint32_t;
-      pDescriptorWrites : System.Address;
-      descriptorCopyCount : stdint_h.uint32_t;
-      pDescriptorCopies : System.Address);  -- src/vulkan/vulkan.h:2766
+     (arg1 : VkDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address;
+      arg4 : stdint_h.uint32_t;
+      arg5 : System.Address);  -- src/vulkan/vulkan.h:2805
    pragma Import (C, vkUpdateDescriptorSets, "vkUpdateDescriptorSets");
 
    function vkCreateFramebuffer
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pFramebuffer : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2773
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2812
    pragma Import (C, vkCreateFramebuffer, "vkCreateFramebuffer");
 
    procedure vkDestroyFramebuffer
-     (device : VkDevice;
-      framebuffer : VkFramebuffer;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2779
+     (arg1 : VkDevice;
+      arg2 : VkFramebuffer;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2818
    pragma Import (C, vkDestroyFramebuffer, "vkDestroyFramebuffer");
 
    function vkCreateRenderPass
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pRenderPass : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2784
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2823
    pragma Import (C, vkCreateRenderPass, "vkCreateRenderPass");
 
    procedure vkDestroyRenderPass
-     (device : VkDevice;
-      renderPass : VkRenderPass;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2790
+     (arg1 : VkDevice;
+      arg2 : VkRenderPass;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2829
    pragma Import (C, vkDestroyRenderPass, "vkDestroyRenderPass");
 
    procedure vkGetRenderAreaGranularity
-     (device : VkDevice;
-      renderPass : VkRenderPass;
-      pGranularity : access VkExtent2D);  -- src/vulkan/vulkan.h:2795
+     (arg1 : VkDevice;
+      arg2 : VkRenderPass;
+      arg3 : access VkExtent2D);  -- src/vulkan/vulkan.h:2834
    pragma Import (C, vkGetRenderAreaGranularity, "vkGetRenderAreaGranularity");
 
    function vkCreateCommandPool
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pCommandPool : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2800
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2839
    pragma Import (C, vkCreateCommandPool, "vkCreateCommandPool");
 
    procedure vkDestroyCommandPool
-     (device : VkDevice;
-      commandPool : VkCommandPool;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:2806
+     (arg1 : VkDevice;
+      arg2 : VkCommandPool;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:2845
    pragma Import (C, vkDestroyCommandPool, "vkDestroyCommandPool");
 
    function vkResetCommandPool
-     (device : VkDevice;
-      commandPool : VkCommandPool;
-      flags : VkCommandPoolResetFlags) return VkResult;  -- src/vulkan/vulkan.h:2811
+     (arg1 : VkDevice;
+      arg2 : VkCommandPool;
+      arg3 : VkCommandPoolResetFlags) return VkResult;  -- src/vulkan/vulkan.h:2850
    pragma Import (C, vkResetCommandPool, "vkResetCommandPool");
 
    function vkAllocateCommandBuffers
-     (device : VkDevice;
-      pAllocateInfo : System.Address;
-      pCommandBuffers : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2816
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2855
    pragma Import (C, vkAllocateCommandBuffers, "vkAllocateCommandBuffers");
 
    procedure vkFreeCommandBuffers
-     (device : VkDevice;
-      commandPool : VkCommandPool;
-      commandBufferCount : stdint_h.uint32_t;
-      pCommandBuffers : System.Address);  -- src/vulkan/vulkan.h:2821
+     (arg1 : VkDevice;
+      arg2 : VkCommandPool;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address);  -- src/vulkan/vulkan.h:2860
    pragma Import (C, vkFreeCommandBuffers, "vkFreeCommandBuffers");
 
-   function vkBeginCommandBuffer (commandBuffer : VkCommandBuffer; pBeginInfo : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2827
+   function vkBeginCommandBuffer (arg1 : VkCommandBuffer; arg2 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:2866
    pragma Import (C, vkBeginCommandBuffer, "vkBeginCommandBuffer");
 
-   function vkEndCommandBuffer (commandBuffer : VkCommandBuffer) return VkResult;  -- src/vulkan/vulkan.h:2831
+   function vkEndCommandBuffer (arg1 : VkCommandBuffer) return VkResult;  -- src/vulkan/vulkan.h:2870
    pragma Import (C, vkEndCommandBuffer, "vkEndCommandBuffer");
 
-   function vkResetCommandBuffer (commandBuffer : VkCommandBuffer; flags : VkCommandBufferResetFlags) return VkResult;  -- src/vulkan/vulkan.h:2834
+   function vkResetCommandBuffer (arg1 : VkCommandBuffer; arg2 : VkCommandBufferResetFlags) return VkResult;  -- src/vulkan/vulkan.h:2873
    pragma Import (C, vkResetCommandBuffer, "vkResetCommandBuffer");
 
    procedure vkCmdBindPipeline
-     (commandBuffer : VkCommandBuffer;
-      pipelineBindPoint : VkPipelineBindPoint;
-      pipeline : VkPipeline);  -- src/vulkan/vulkan.h:2838
+     (arg1 : VkCommandBuffer;
+      arg2 : VkPipelineBindPoint;
+      arg3 : VkPipeline);  -- src/vulkan/vulkan.h:2877
    pragma Import (C, vkCmdBindPipeline, "vkCmdBindPipeline");
 
    procedure vkCmdSetViewport
-     (commandBuffer : VkCommandBuffer;
-      firstViewport : stdint_h.uint32_t;
-      viewportCount : stdint_h.uint32_t;
-      pViewports : System.Address);  -- src/vulkan/vulkan.h:2843
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address);  -- src/vulkan/vulkan.h:2882
    pragma Import (C, vkCmdSetViewport, "vkCmdSetViewport");
 
    procedure vkCmdSetScissor
-     (commandBuffer : VkCommandBuffer;
-      firstScissor : stdint_h.uint32_t;
-      scissorCount : stdint_h.uint32_t;
-      pScissors : System.Address);  -- src/vulkan/vulkan.h:2849
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address);  -- src/vulkan/vulkan.h:2888
    pragma Import (C, vkCmdSetScissor, "vkCmdSetScissor");
 
-   procedure vkCmdSetLineWidth (commandBuffer : VkCommandBuffer; lineWidth : float);  -- src/vulkan/vulkan.h:2855
+   procedure vkCmdSetLineWidth (arg1 : VkCommandBuffer; arg2 : float);  -- src/vulkan/vulkan.h:2894
    pragma Import (C, vkCmdSetLineWidth, "vkCmdSetLineWidth");
 
    procedure vkCmdSetDepthBias
-     (commandBuffer : VkCommandBuffer;
-      depthBiasConstantFactor : float;
-      depthBiasClamp : float;
-      depthBiasSlopeFactor : float);  -- src/vulkan/vulkan.h:2859
+     (arg1 : VkCommandBuffer;
+      arg2 : float;
+      arg3 : float;
+      arg4 : float);  -- src/vulkan/vulkan.h:2898
    pragma Import (C, vkCmdSetDepthBias, "vkCmdSetDepthBias");
 
-   procedure vkCmdSetBlendConstants (commandBuffer : VkCommandBuffer; blendConstants : access float);  -- src/vulkan/vulkan.h:2865
+   procedure vkCmdSetBlendConstants (arg1 : VkCommandBuffer; arg2 : access float);  -- src/vulkan/vulkan.h:2904
    pragma Import (C, vkCmdSetBlendConstants, "vkCmdSetBlendConstants");
 
    procedure vkCmdSetDepthBounds
-     (commandBuffer : VkCommandBuffer;
-      minDepthBounds : float;
-      maxDepthBounds : float);  -- src/vulkan/vulkan.h:2869
+     (arg1 : VkCommandBuffer;
+      arg2 : float;
+      arg3 : float);  -- src/vulkan/vulkan.h:2908
    pragma Import (C, vkCmdSetDepthBounds, "vkCmdSetDepthBounds");
 
    procedure vkCmdSetStencilCompareMask
-     (commandBuffer : VkCommandBuffer;
-      faceMask : VkStencilFaceFlags;
-      compareMask : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2874
+     (arg1 : VkCommandBuffer;
+      arg2 : VkStencilFaceFlags;
+      arg3 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2913
    pragma Import (C, vkCmdSetStencilCompareMask, "vkCmdSetStencilCompareMask");
 
    procedure vkCmdSetStencilWriteMask
-     (commandBuffer : VkCommandBuffer;
-      faceMask : VkStencilFaceFlags;
-      writeMask : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2879
+     (arg1 : VkCommandBuffer;
+      arg2 : VkStencilFaceFlags;
+      arg3 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2918
    pragma Import (C, vkCmdSetStencilWriteMask, "vkCmdSetStencilWriteMask");
 
    procedure vkCmdSetStencilReference
-     (commandBuffer : VkCommandBuffer;
-      faceMask : VkStencilFaceFlags;
-      reference : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2884
+     (arg1 : VkCommandBuffer;
+      arg2 : VkStencilFaceFlags;
+      arg3 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2923
    pragma Import (C, vkCmdSetStencilReference, "vkCmdSetStencilReference");
 
    procedure vkCmdBindDescriptorSets
-     (commandBuffer : VkCommandBuffer;
-      pipelineBindPoint : VkPipelineBindPoint;
-      layout : VkPipelineLayout;
-      firstSet : stdint_h.uint32_t;
-      descriptorSetCount : stdint_h.uint32_t;
-      pDescriptorSets : System.Address;
-      dynamicOffsetCount : stdint_h.uint32_t;
-      pDynamicOffsets : access stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2889
+     (arg1 : VkCommandBuffer;
+      arg2 : VkPipelineBindPoint;
+      arg3 : VkPipelineLayout;
+      arg4 : stdint_h.uint32_t;
+      arg5 : stdint_h.uint32_t;
+      arg6 : System.Address;
+      arg7 : stdint_h.uint32_t;
+      arg8 : access stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2928
    pragma Import (C, vkCmdBindDescriptorSets, "vkCmdBindDescriptorSets");
 
    procedure vkCmdBindIndexBuffer
-     (commandBuffer : VkCommandBuffer;
-      buffer : VkBuffer;
-      offset : VkDeviceSize;
-      indexType : VkIndexType);  -- src/vulkan/vulkan.h:2899
+     (arg1 : VkCommandBuffer;
+      arg2 : VkBuffer;
+      arg3 : VkDeviceSize;
+      arg4 : VkIndexType);  -- src/vulkan/vulkan.h:2938
    pragma Import (C, vkCmdBindIndexBuffer, "vkCmdBindIndexBuffer");
 
    procedure vkCmdBindVertexBuffers
-     (commandBuffer : VkCommandBuffer;
-      firstBinding : stdint_h.uint32_t;
-      bindingCount : stdint_h.uint32_t;
-      pBuffers : System.Address;
-      pOffsets : access VkDeviceSize);  -- src/vulkan/vulkan.h:2905
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : stdint_h.uint32_t;
+      arg4 : System.Address;
+      arg5 : access VkDeviceSize);  -- src/vulkan/vulkan.h:2944
    pragma Import (C, vkCmdBindVertexBuffers, "vkCmdBindVertexBuffers");
 
    procedure vkCmdDraw
-     (commandBuffer : VkCommandBuffer;
-      vertexCount : stdint_h.uint32_t;
-      instanceCount : stdint_h.uint32_t;
-      firstVertex : stdint_h.uint32_t;
-      firstInstance : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2912
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : stdint_h.uint32_t;
+      arg4 : stdint_h.uint32_t;
+      arg5 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2951
    pragma Import (C, vkCmdDraw, "vkCmdDraw");
 
    procedure vkCmdDrawIndexed
-     (commandBuffer : VkCommandBuffer;
-      indexCount : stdint_h.uint32_t;
-      instanceCount : stdint_h.uint32_t;
-      firstIndex : stdint_h.uint32_t;
-      vertexOffset : stdint_h.int32_t;
-      firstInstance : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2919
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : stdint_h.uint32_t;
+      arg4 : stdint_h.uint32_t;
+      arg5 : stdint_h.int32_t;
+      arg6 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2958
    pragma Import (C, vkCmdDrawIndexed, "vkCmdDrawIndexed");
 
    procedure vkCmdDrawIndirect
-     (commandBuffer : VkCommandBuffer;
-      buffer : VkBuffer;
-      offset : VkDeviceSize;
-      drawCount : stdint_h.uint32_t;
-      stride : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2927
+     (arg1 : VkCommandBuffer;
+      arg2 : VkBuffer;
+      arg3 : VkDeviceSize;
+      arg4 : stdint_h.uint32_t;
+      arg5 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2966
    pragma Import (C, vkCmdDrawIndirect, "vkCmdDrawIndirect");
 
    procedure vkCmdDrawIndexedIndirect
-     (commandBuffer : VkCommandBuffer;
-      buffer : VkBuffer;
-      offset : VkDeviceSize;
-      drawCount : stdint_h.uint32_t;
-      stride : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2934
+     (arg1 : VkCommandBuffer;
+      arg2 : VkBuffer;
+      arg3 : VkDeviceSize;
+      arg4 : stdint_h.uint32_t;
+      arg5 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2973
    pragma Import (C, vkCmdDrawIndexedIndirect, "vkCmdDrawIndexedIndirect");
 
    procedure vkCmdDispatch
-     (commandBuffer : VkCommandBuffer;
-      x : stdint_h.uint32_t;
-      y : stdint_h.uint32_t;
-      z : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2941
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : stdint_h.uint32_t;
+      arg4 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2980
    pragma Import (C, vkCmdDispatch, "vkCmdDispatch");
 
    procedure vkCmdDispatchIndirect
-     (commandBuffer : VkCommandBuffer;
-      buffer : VkBuffer;
-      offset : VkDeviceSize);  -- src/vulkan/vulkan.h:2947
+     (arg1 : VkCommandBuffer;
+      arg2 : VkBuffer;
+      arg3 : VkDeviceSize);  -- src/vulkan/vulkan.h:2986
    pragma Import (C, vkCmdDispatchIndirect, "vkCmdDispatchIndirect");
 
    procedure vkCmdCopyBuffer
-     (commandBuffer : VkCommandBuffer;
-      srcBuffer : VkBuffer;
-      dstBuffer : VkBuffer;
-      regionCount : stdint_h.uint32_t;
-      pRegions : System.Address);  -- src/vulkan/vulkan.h:2952
+     (arg1 : VkCommandBuffer;
+      arg2 : VkBuffer;
+      arg3 : VkBuffer;
+      arg4 : stdint_h.uint32_t;
+      arg5 : System.Address);  -- src/vulkan/vulkan.h:2991
    pragma Import (C, vkCmdCopyBuffer, "vkCmdCopyBuffer");
 
    procedure vkCmdCopyImage
-     (commandBuffer : VkCommandBuffer;
-      srcImage : VkImage;
-      srcImageLayout : VkImageLayout;
-      dstImage : VkImage;
-      dstImageLayout : VkImageLayout;
-      regionCount : stdint_h.uint32_t;
-      pRegions : System.Address);  -- src/vulkan/vulkan.h:2959
+     (arg1 : VkCommandBuffer;
+      arg2 : VkImage;
+      arg3 : VkImageLayout;
+      arg4 : VkImage;
+      arg5 : VkImageLayout;
+      arg6 : stdint_h.uint32_t;
+      arg7 : System.Address);  -- src/vulkan/vulkan.h:2998
    pragma Import (C, vkCmdCopyImage, "vkCmdCopyImage");
 
    procedure vkCmdBlitImage
-     (commandBuffer : VkCommandBuffer;
-      srcImage : VkImage;
-      srcImageLayout : VkImageLayout;
-      dstImage : VkImage;
-      dstImageLayout : VkImageLayout;
-      regionCount : stdint_h.uint32_t;
-      pRegions : System.Address;
-      filter : VkFilter);  -- src/vulkan/vulkan.h:2968
+     (arg1 : VkCommandBuffer;
+      arg2 : VkImage;
+      arg3 : VkImageLayout;
+      arg4 : VkImage;
+      arg5 : VkImageLayout;
+      arg6 : stdint_h.uint32_t;
+      arg7 : System.Address;
+      arg8 : VkFilter);  -- src/vulkan/vulkan.h:3007
    pragma Import (C, vkCmdBlitImage, "vkCmdBlitImage");
 
    procedure vkCmdCopyBufferToImage
-     (commandBuffer : VkCommandBuffer;
-      srcBuffer : VkBuffer;
-      dstImage : VkImage;
-      dstImageLayout : VkImageLayout;
-      regionCount : stdint_h.uint32_t;
-      pRegions : System.Address);  -- src/vulkan/vulkan.h:2978
+     (arg1 : VkCommandBuffer;
+      arg2 : VkBuffer;
+      arg3 : VkImage;
+      arg4 : VkImageLayout;
+      arg5 : stdint_h.uint32_t;
+      arg6 : System.Address);  -- src/vulkan/vulkan.h:3017
    pragma Import (C, vkCmdCopyBufferToImage, "vkCmdCopyBufferToImage");
 
    procedure vkCmdCopyImageToBuffer
-     (commandBuffer : VkCommandBuffer;
-      srcImage : VkImage;
-      srcImageLayout : VkImageLayout;
-      dstBuffer : VkBuffer;
-      regionCount : stdint_h.uint32_t;
-      pRegions : System.Address);  -- src/vulkan/vulkan.h:2986
+     (arg1 : VkCommandBuffer;
+      arg2 : VkImage;
+      arg3 : VkImageLayout;
+      arg4 : VkBuffer;
+      arg5 : stdint_h.uint32_t;
+      arg6 : System.Address);  -- src/vulkan/vulkan.h:3025
    pragma Import (C, vkCmdCopyImageToBuffer, "vkCmdCopyImageToBuffer");
 
    procedure vkCmdUpdateBuffer
-     (commandBuffer : VkCommandBuffer;
-      dstBuffer : VkBuffer;
-      dstOffset : VkDeviceSize;
-      dataSize : VkDeviceSize;
-      pData : access stdint_h.uint32_t);  -- src/vulkan/vulkan.h:2994
+     (arg1 : VkCommandBuffer;
+      arg2 : VkBuffer;
+      arg3 : VkDeviceSize;
+      arg4 : VkDeviceSize;
+      arg5 : access stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3033
    pragma Import (C, vkCmdUpdateBuffer, "vkCmdUpdateBuffer");
 
    procedure vkCmdFillBuffer
-     (commandBuffer : VkCommandBuffer;
-      dstBuffer : VkBuffer;
-      dstOffset : VkDeviceSize;
-      size : VkDeviceSize;
-      data : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3001
+     (arg1 : VkCommandBuffer;
+      arg2 : VkBuffer;
+      arg3 : VkDeviceSize;
+      arg4 : VkDeviceSize;
+      arg5 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3040
    pragma Import (C, vkCmdFillBuffer, "vkCmdFillBuffer");
 
    procedure vkCmdClearColorImage
-     (commandBuffer : VkCommandBuffer;
-      image : VkImage;
-      imageLayout : VkImageLayout;
-      pColor : System.Address;
-      rangeCount : stdint_h.uint32_t;
-      pRanges : System.Address);  -- src/vulkan/vulkan.h:3008
+     (arg1 : VkCommandBuffer;
+      arg2 : VkImage;
+      arg3 : VkImageLayout;
+      arg4 : System.Address;
+      arg5 : stdint_h.uint32_t;
+      arg6 : System.Address);  -- src/vulkan/vulkan.h:3047
    pragma Import (C, vkCmdClearColorImage, "vkCmdClearColorImage");
 
    procedure vkCmdClearDepthStencilImage
-     (commandBuffer : VkCommandBuffer;
-      image : VkImage;
-      imageLayout : VkImageLayout;
-      pDepthStencil : System.Address;
-      rangeCount : stdint_h.uint32_t;
-      pRanges : System.Address);  -- src/vulkan/vulkan.h:3016
+     (arg1 : VkCommandBuffer;
+      arg2 : VkImage;
+      arg3 : VkImageLayout;
+      arg4 : System.Address;
+      arg5 : stdint_h.uint32_t;
+      arg6 : System.Address);  -- src/vulkan/vulkan.h:3055
    pragma Import (C, vkCmdClearDepthStencilImage, "vkCmdClearDepthStencilImage");
 
    procedure vkCmdClearAttachments
-     (commandBuffer : VkCommandBuffer;
-      attachmentCount : stdint_h.uint32_t;
-      pAttachments : System.Address;
-      rectCount : stdint_h.uint32_t;
-      pRects : System.Address);  -- src/vulkan/vulkan.h:3024
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address;
+      arg4 : stdint_h.uint32_t;
+      arg5 : System.Address);  -- src/vulkan/vulkan.h:3063
    pragma Import (C, vkCmdClearAttachments, "vkCmdClearAttachments");
 
    procedure vkCmdResolveImage
-     (commandBuffer : VkCommandBuffer;
-      srcImage : VkImage;
-      srcImageLayout : VkImageLayout;
-      dstImage : VkImage;
-      dstImageLayout : VkImageLayout;
-      regionCount : stdint_h.uint32_t;
-      pRegions : System.Address);  -- src/vulkan/vulkan.h:3031
+     (arg1 : VkCommandBuffer;
+      arg2 : VkImage;
+      arg3 : VkImageLayout;
+      arg4 : VkImage;
+      arg5 : VkImageLayout;
+      arg6 : stdint_h.uint32_t;
+      arg7 : System.Address);  -- src/vulkan/vulkan.h:3070
    pragma Import (C, vkCmdResolveImage, "vkCmdResolveImage");
 
    procedure vkCmdSetEvent
-     (commandBuffer : VkCommandBuffer;
-      event : VkEvent;
-      stageMask : VkPipelineStageFlags);  -- src/vulkan/vulkan.h:3040
+     (arg1 : VkCommandBuffer;
+      arg2 : VkEvent;
+      arg3 : VkPipelineStageFlags);  -- src/vulkan/vulkan.h:3079
    pragma Import (C, vkCmdSetEvent, "vkCmdSetEvent");
 
    procedure vkCmdResetEvent
-     (commandBuffer : VkCommandBuffer;
-      event : VkEvent;
-      stageMask : VkPipelineStageFlags);  -- src/vulkan/vulkan.h:3045
+     (arg1 : VkCommandBuffer;
+      arg2 : VkEvent;
+      arg3 : VkPipelineStageFlags);  -- src/vulkan/vulkan.h:3084
    pragma Import (C, vkCmdResetEvent, "vkCmdResetEvent");
 
    procedure vkCmdWaitEvents
-     (commandBuffer : VkCommandBuffer;
-      eventCount : stdint_h.uint32_t;
-      pEvents : System.Address;
-      srcStageMask : VkPipelineStageFlags;
-      dstStageMask : VkPipelineStageFlags;
-      memoryBarrierCount : stdint_h.uint32_t;
-      pMemoryBarriers : System.Address;
-      bufferMemoryBarrierCount : stdint_h.uint32_t;
-      pBufferMemoryBarriers : System.Address;
-      imageMemoryBarrierCount : stdint_h.uint32_t;
-      pImageMemoryBarriers : System.Address);  -- src/vulkan/vulkan.h:3050
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address;
+      arg4 : VkPipelineStageFlags;
+      arg5 : VkPipelineStageFlags;
+      arg6 : stdint_h.uint32_t;
+      arg7 : System.Address;
+      arg8 : stdint_h.uint32_t;
+      arg9 : System.Address;
+      arg10 : stdint_h.uint32_t;
+      arg11 : System.Address);  -- src/vulkan/vulkan.h:3089
    pragma Import (C, vkCmdWaitEvents, "vkCmdWaitEvents");
 
    procedure vkCmdPipelineBarrier
-     (commandBuffer : VkCommandBuffer;
-      srcStageMask : VkPipelineStageFlags;
-      dstStageMask : VkPipelineStageFlags;
-      dependencyFlags : VkDependencyFlags;
-      memoryBarrierCount : stdint_h.uint32_t;
-      pMemoryBarriers : System.Address;
-      bufferMemoryBarrierCount : stdint_h.uint32_t;
-      pBufferMemoryBarriers : System.Address;
-      imageMemoryBarrierCount : stdint_h.uint32_t;
-      pImageMemoryBarriers : System.Address);  -- src/vulkan/vulkan.h:3063
+     (arg1 : VkCommandBuffer;
+      arg2 : VkPipelineStageFlags;
+      arg3 : VkPipelineStageFlags;
+      arg4 : VkDependencyFlags;
+      arg5 : stdint_h.uint32_t;
+      arg6 : System.Address;
+      arg7 : stdint_h.uint32_t;
+      arg8 : System.Address;
+      arg9 : stdint_h.uint32_t;
+      arg10 : System.Address);  -- src/vulkan/vulkan.h:3102
    pragma Import (C, vkCmdPipelineBarrier, "vkCmdPipelineBarrier");
 
    procedure vkCmdBeginQuery
-     (commandBuffer : VkCommandBuffer;
-      queryPool : VkQueryPool;
-      query : stdint_h.uint32_t;
-      flags : VkQueryControlFlags);  -- src/vulkan/vulkan.h:3075
+     (arg1 : VkCommandBuffer;
+      arg2 : VkQueryPool;
+      arg3 : stdint_h.uint32_t;
+      arg4 : VkQueryControlFlags);  -- src/vulkan/vulkan.h:3114
    pragma Import (C, vkCmdBeginQuery, "vkCmdBeginQuery");
 
    procedure vkCmdEndQuery
-     (commandBuffer : VkCommandBuffer;
-      queryPool : VkQueryPool;
-      query : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3081
+     (arg1 : VkCommandBuffer;
+      arg2 : VkQueryPool;
+      arg3 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3120
    pragma Import (C, vkCmdEndQuery, "vkCmdEndQuery");
 
    procedure vkCmdResetQueryPool
-     (commandBuffer : VkCommandBuffer;
-      queryPool : VkQueryPool;
-      firstQuery : stdint_h.uint32_t;
-      queryCount : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3086
+     (arg1 : VkCommandBuffer;
+      arg2 : VkQueryPool;
+      arg3 : stdint_h.uint32_t;
+      arg4 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3125
    pragma Import (C, vkCmdResetQueryPool, "vkCmdResetQueryPool");
 
    procedure vkCmdWriteTimestamp
-     (commandBuffer : VkCommandBuffer;
-      pipelineStage : VkPipelineStageFlagBits;
-      queryPool : VkQueryPool;
-      query : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3092
+     (arg1 : VkCommandBuffer;
+      arg2 : VkPipelineStageFlagBits;
+      arg3 : VkQueryPool;
+      arg4 : stdint_h.uint32_t);  -- src/vulkan/vulkan.h:3131
    pragma Import (C, vkCmdWriteTimestamp, "vkCmdWriteTimestamp");
 
    procedure vkCmdCopyQueryPoolResults
-     (commandBuffer : VkCommandBuffer;
-      queryPool : VkQueryPool;
-      firstQuery : stdint_h.uint32_t;
-      queryCount : stdint_h.uint32_t;
-      dstBuffer : VkBuffer;
-      dstOffset : VkDeviceSize;
-      stride : VkDeviceSize;
-      flags : VkQueryResultFlags);  -- src/vulkan/vulkan.h:3098
+     (arg1 : VkCommandBuffer;
+      arg2 : VkQueryPool;
+      arg3 : stdint_h.uint32_t;
+      arg4 : stdint_h.uint32_t;
+      arg5 : VkBuffer;
+      arg6 : VkDeviceSize;
+      arg7 : VkDeviceSize;
+      arg8 : VkQueryResultFlags);  -- src/vulkan/vulkan.h:3137
    pragma Import (C, vkCmdCopyQueryPoolResults, "vkCmdCopyQueryPoolResults");
 
    procedure vkCmdPushConstants
-     (commandBuffer : VkCommandBuffer;
-      layout : VkPipelineLayout;
-      stageFlags : VkShaderStageFlags;
-      offset : stdint_h.uint32_t;
-      size : stdint_h.uint32_t;
-      pValues : System.Address);  -- src/vulkan/vulkan.h:3108
+     (arg1 : VkCommandBuffer;
+      arg2 : VkPipelineLayout;
+      arg3 : VkShaderStageFlags;
+      arg4 : stdint_h.uint32_t;
+      arg5 : stdint_h.uint32_t;
+      arg6 : System.Address);  -- src/vulkan/vulkan.h:3147
    pragma Import (C, vkCmdPushConstants, "vkCmdPushConstants");
 
    procedure vkCmdBeginRenderPass
-     (commandBuffer : VkCommandBuffer;
-      pRenderPassBegin : System.Address;
-      contents : VkSubpassContents);  -- src/vulkan/vulkan.h:3116
+     (arg1 : VkCommandBuffer;
+      arg2 : System.Address;
+      arg3 : VkSubpassContents);  -- src/vulkan/vulkan.h:3155
    pragma Import (C, vkCmdBeginRenderPass, "vkCmdBeginRenderPass");
 
-   procedure vkCmdNextSubpass (commandBuffer : VkCommandBuffer; contents : VkSubpassContents);  -- src/vulkan/vulkan.h:3121
+   procedure vkCmdNextSubpass (arg1 : VkCommandBuffer; arg2 : VkSubpassContents);  -- src/vulkan/vulkan.h:3160
    pragma Import (C, vkCmdNextSubpass, "vkCmdNextSubpass");
 
-   procedure vkCmdEndRenderPass (commandBuffer : VkCommandBuffer);  -- src/vulkan/vulkan.h:3125
+   procedure vkCmdEndRenderPass (arg1 : VkCommandBuffer);  -- src/vulkan/vulkan.h:3164
    pragma Import (C, vkCmdEndRenderPass, "vkCmdEndRenderPass");
 
    procedure vkCmdExecuteCommands
-     (commandBuffer : VkCommandBuffer;
-      commandBufferCount : stdint_h.uint32_t;
-      pCommandBuffers : System.Address);  -- src/vulkan/vulkan.h:3128
+     (arg1 : VkCommandBuffer;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:3167
    pragma Import (C, vkCmdExecuteCommands, "vkCmdExecuteCommands");
-
-   type VkSurfaceKHR is new System.Address;  -- src/vulkan/vulkan.h:3135
 
    --  skipped empty struct VkSurfaceKHR_T
 
+   type VkSurfaceKHR is new System.Address;  -- src/vulkan/vulkan.h:3174
+
    subtype VkColorSpaceKHR is unsigned;
    VK_COLORSPACE_SRGB_NONLINEAR_KHR : constant VkColorSpaceKHR := 0;
-   VK_COLORSPACE_BEGIN_RANGE : constant VkColorSpaceKHR := 0;
-   VK_COLORSPACE_END_RANGE : constant VkColorSpaceKHR := 0;
-   VK_COLORSPACE_RANGE_SIZE : constant VkColorSpaceKHR := 1;
-   VK_COLORSPACE_MAX_ENUM : constant VkColorSpaceKHR := 2147483647;  -- src/vulkan/vulkan.h:3141
+   VK_COLOR_SPACE_BEGIN_RANGE_KHR : constant VkColorSpaceKHR := 0;
+   VK_COLOR_SPACE_END_RANGE_KHR : constant VkColorSpaceKHR := 0;
+   VK_COLOR_SPACE_RANGE_SIZE_KHR : constant VkColorSpaceKHR := 1;
+   VK_COLOR_SPACE_MAX_ENUM_KHR : constant VkColorSpaceKHR := 2147483647;  -- src/vulkan/vulkan.h:3180
 
    subtype VkPresentModeKHR is unsigned;
    VK_PRESENT_MODE_IMMEDIATE_KHR : constant VkPresentModeKHR := 0;
    VK_PRESENT_MODE_MAILBOX_KHR : constant VkPresentModeKHR := 1;
    VK_PRESENT_MODE_FIFO_KHR : constant VkPresentModeKHR := 2;
    VK_PRESENT_MODE_FIFO_RELAXED_KHR : constant VkPresentModeKHR := 3;
-   VK_PRESENT_MODE_BEGIN_RANGE : constant VkPresentModeKHR := 0;
-   VK_PRESENT_MODE_END_RANGE : constant VkPresentModeKHR := 3;
-   VK_PRESENT_MODE_RANGE_SIZE : constant VkPresentModeKHR := 4;
-   VK_PRESENT_MODE_MAX_ENUM : constant VkPresentModeKHR := 2147483647;  -- src/vulkan/vulkan.h:3149
+   VK_PRESENT_MODE_BEGIN_RANGE_KHR : constant VkPresentModeKHR := 0;
+   VK_PRESENT_MODE_END_RANGE_KHR : constant VkPresentModeKHR := 3;
+   VK_PRESENT_MODE_RANGE_SIZE_KHR : constant VkPresentModeKHR := 4;
+   VK_PRESENT_MODE_MAX_ENUM_KHR : constant VkPresentModeKHR := 2147483647;  -- src/vulkan/vulkan.h:3188
 
    subtype VkSurfaceTransformFlagBitsKHR is unsigned;
    VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR : constant VkSurfaceTransformFlagBitsKHR := 1;
@@ -4260,163 +4272,165 @@ package Vulkan is
    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR : constant VkSurfaceTransformFlagBitsKHR := 32;
    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR : constant VkSurfaceTransformFlagBitsKHR := 64;
    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR : constant VkSurfaceTransformFlagBitsKHR := 128;
-   VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR : constant VkSurfaceTransformFlagBitsKHR := 256;  -- src/vulkan/vulkan.h:3161
+   VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR : constant VkSurfaceTransformFlagBitsKHR := 256;
+   VK_SURFACE_TRANSFORM_FLAG_BITS_MAX_ENUM_KHR : constant VkSurfaceTransformFlagBitsKHR := 2147483647;  -- src/vulkan/vulkan.h:3200
 
-   subtype VkSurfaceTransformFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3172
+   subtype VkSurfaceTransformFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3212
 
    subtype VkCompositeAlphaFlagBitsKHR is unsigned;
    VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR : constant VkCompositeAlphaFlagBitsKHR := 1;
    VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR : constant VkCompositeAlphaFlagBitsKHR := 2;
    VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR : constant VkCompositeAlphaFlagBitsKHR := 4;
-   VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR : constant VkCompositeAlphaFlagBitsKHR := 8;  -- src/vulkan/vulkan.h:3174
+   VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR : constant VkCompositeAlphaFlagBitsKHR := 8;
+   VK_COMPOSITE_ALPHA_FLAG_BITS_MAX_ENUM_KHR : constant VkCompositeAlphaFlagBitsKHR := 2147483647;  -- src/vulkan/vulkan.h:3214
 
-   subtype VkCompositeAlphaFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3180
+   subtype VkCompositeAlphaFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3221
 
    type VkSurfaceCapabilitiesKHR is record
-      minImageCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3183
-      maxImageCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3184
-      currentExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3185
-      minImageExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3186
-      maxImageExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3187
-      maxImageArrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3188
-      supportedTransforms : aliased VkSurfaceTransformFlagsKHR;  -- src/vulkan/vulkan.h:3189
-      currentTransform : aliased VkSurfaceTransformFlagBitsKHR;  -- src/vulkan/vulkan.h:3190
-      supportedCompositeAlpha : aliased VkCompositeAlphaFlagsKHR;  -- src/vulkan/vulkan.h:3191
-      supportedUsageFlags : aliased VkImageUsageFlags;  -- src/vulkan/vulkan.h:3192
+      minImageCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3224
+      maxImageCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3225
+      currentExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3226
+      minImageExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3227
+      maxImageExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3228
+      maxImageArrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3229
+      supportedTransforms : aliased VkSurfaceTransformFlagsKHR;  -- src/vulkan/vulkan.h:3230
+      currentTransform : aliased VkSurfaceTransformFlagBitsKHR;  -- src/vulkan/vulkan.h:3231
+      supportedCompositeAlpha : aliased VkCompositeAlphaFlagsKHR;  -- src/vulkan/vulkan.h:3232
+      supportedUsageFlags : aliased VkImageUsageFlags;  -- src/vulkan/vulkan.h:3233
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSurfaceCapabilitiesKHR);  -- src/vulkan/vulkan.h:3182
+   pragma Convention (C_Pass_By_Copy, VkSurfaceCapabilitiesKHR);  -- src/vulkan/vulkan.h:3223
 
    type VkSurfaceFormatKHR is record
-      format : aliased VkFormat;  -- src/vulkan/vulkan.h:3196
-      colorSpace : aliased VkColorSpaceKHR;  -- src/vulkan/vulkan.h:3197
+      format : aliased VkFormat;  -- src/vulkan/vulkan.h:3237
+      colorSpace : aliased VkColorSpaceKHR;  -- src/vulkan/vulkan.h:3238
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSurfaceFormatKHR);  -- src/vulkan/vulkan.h:3195
+   pragma Convention (C_Pass_By_Copy, VkSurfaceFormatKHR);  -- src/vulkan/vulkan.h:3236
 
    type PFN_vkDestroySurfaceKHR is access procedure
         (arg1 : VkInstance;
          arg2 : VkSurfaceKHR;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroySurfaceKHR);  -- src/vulkan/vulkan.h:3201
+   pragma Convention (C, PFN_vkDestroySurfaceKHR);  -- src/vulkan/vulkan.h:3242
 
    type PFN_vkGetPhysicalDeviceSurfaceSupportKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : stdint_h.uint32_t;
          arg3 : VkSurfaceKHR;
          arg4 : access VkBool32) return VkResult;
-   pragma Convention (C, PFN_vkGetPhysicalDeviceSurfaceSupportKHR);  -- src/vulkan/vulkan.h:3202
+   pragma Convention (C, PFN_vkGetPhysicalDeviceSurfaceSupportKHR);  -- src/vulkan/vulkan.h:3243
 
    type PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : VkSurfaceKHR;
          arg3 : access VkSurfaceCapabilitiesKHR) return VkResult;
-   pragma Convention (C, PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR);  -- src/vulkan/vulkan.h:3203
+   pragma Convention (C, PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR);  -- src/vulkan/vulkan.h:3244
 
    type PFN_vkGetPhysicalDeviceSurfaceFormatsKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : VkSurfaceKHR;
          arg3 : access stdint_h.uint32_t;
          arg4 : access VkSurfaceFormatKHR) return VkResult;
-   pragma Convention (C, PFN_vkGetPhysicalDeviceSurfaceFormatsKHR);  -- src/vulkan/vulkan.h:3204
+   pragma Convention (C, PFN_vkGetPhysicalDeviceSurfaceFormatsKHR);  -- src/vulkan/vulkan.h:3245
 
    type PFN_vkGetPhysicalDeviceSurfacePresentModesKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : VkSurfaceKHR;
          arg3 : access stdint_h.uint32_t;
          arg4 : access VkPresentModeKHR) return VkResult;
-   pragma Convention (C, PFN_vkGetPhysicalDeviceSurfacePresentModesKHR);  -- src/vulkan/vulkan.h:3205
+   pragma Convention (C, PFN_vkGetPhysicalDeviceSurfacePresentModesKHR);  -- src/vulkan/vulkan.h:3246
 
    procedure vkDestroySurfaceKHR
-     (instance : VkInstance;
-      surface : VkSurfaceKHR;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:3208
+     (arg1 : VkInstance;
+      arg2 : VkSurfaceKHR;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:3249
    pragma Import (C, vkDestroySurfaceKHR, "vkDestroySurfaceKHR");
 
    function vkGetPhysicalDeviceSurfaceSupportKHR
-     (physicalDevice : VkPhysicalDevice;
-      queueFamilyIndex : stdint_h.uint32_t;
-      surface : VkSurfaceKHR;
-      pSupported : access VkBool32) return VkResult;  -- src/vulkan/vulkan.h:3213
+     (arg1 : VkPhysicalDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : VkSurfaceKHR;
+      arg4 : access VkBool32) return VkResult;  -- src/vulkan/vulkan.h:3254
    pragma Import (C, vkGetPhysicalDeviceSurfaceSupportKHR, "vkGetPhysicalDeviceSurfaceSupportKHR");
 
    function vkGetPhysicalDeviceSurfaceCapabilitiesKHR
-     (physicalDevice : VkPhysicalDevice;
-      surface : VkSurfaceKHR;
-      pSurfaceCapabilities : access VkSurfaceCapabilitiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3219
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkSurfaceKHR;
+      arg3 : access VkSurfaceCapabilitiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3260
    pragma Import (C, vkGetPhysicalDeviceSurfaceCapabilitiesKHR, "vkGetPhysicalDeviceSurfaceCapabilitiesKHR");
 
    function vkGetPhysicalDeviceSurfaceFormatsKHR
-     (physicalDevice : VkPhysicalDevice;
-      surface : VkSurfaceKHR;
-      pSurfaceFormatCount : access stdint_h.uint32_t;
-      pSurfaceFormats : access VkSurfaceFormatKHR) return VkResult;  -- src/vulkan/vulkan.h:3224
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkSurfaceKHR;
+      arg3 : access stdint_h.uint32_t;
+      arg4 : access VkSurfaceFormatKHR) return VkResult;  -- src/vulkan/vulkan.h:3265
    pragma Import (C, vkGetPhysicalDeviceSurfaceFormatsKHR, "vkGetPhysicalDeviceSurfaceFormatsKHR");
 
    function vkGetPhysicalDeviceSurfacePresentModesKHR
-     (physicalDevice : VkPhysicalDevice;
-      surface : VkSurfaceKHR;
-      pPresentModeCount : access stdint_h.uint32_t;
-      pPresentModes : access VkPresentModeKHR) return VkResult;  -- src/vulkan/vulkan.h:3230
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkSurfaceKHR;
+      arg3 : access stdint_h.uint32_t;
+      arg4 : access VkPresentModeKHR) return VkResult;  -- src/vulkan/vulkan.h:3271
    pragma Import (C, vkGetPhysicalDeviceSurfacePresentModesKHR, "vkGetPhysicalDeviceSurfacePresentModesKHR");
-
-   type VkSwapchainKHR is new System.Address;  -- src/vulkan/vulkan.h:3238
 
    --  skipped empty struct VkSwapchainKHR_T
 
-   subtype VkSwapchainCreateFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3243
+   type VkSwapchainKHR is new System.Address;  -- src/vulkan/vulkan.h:3279
+
+   subtype VkSwapchainCreateFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3284
 
    type VkSwapchainCreateInfoKHR is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3246
-      pNext : System.Address;  -- src/vulkan/vulkan.h:3247
-      flags : aliased VkSwapchainCreateFlagsKHR;  -- src/vulkan/vulkan.h:3248
-      surface : VkSurfaceKHR;  -- src/vulkan/vulkan.h:3249
-      minImageCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3250
-      imageFormat : aliased VkFormat;  -- src/vulkan/vulkan.h:3251
-      imageColorSpace : aliased VkColorSpaceKHR;  -- src/vulkan/vulkan.h:3252
-      imageExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3253
-      imageArrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3254
-      imageUsage : aliased VkImageUsageFlags;  -- src/vulkan/vulkan.h:3255
-      imageSharingMode : aliased VkSharingMode;  -- src/vulkan/vulkan.h:3256
-      queueFamilyIndexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3257
-      pQueueFamilyIndices : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3258
-      preTransform : aliased VkSurfaceTransformFlagBitsKHR;  -- src/vulkan/vulkan.h:3259
-      compositeAlpha : aliased VkCompositeAlphaFlagBitsKHR;  -- src/vulkan/vulkan.h:3260
-      presentMode : aliased VkPresentModeKHR;  -- src/vulkan/vulkan.h:3261
-      clipped : aliased VkBool32;  -- src/vulkan/vulkan.h:3262
-      oldSwapchain : VkSwapchainKHR;  -- src/vulkan/vulkan.h:3263
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3287
+      pNext : System.Address;  -- src/vulkan/vulkan.h:3288
+      flags : aliased VkSwapchainCreateFlagsKHR;  -- src/vulkan/vulkan.h:3289
+      surface : VkSurfaceKHR;  -- src/vulkan/vulkan.h:3290
+      minImageCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3291
+      imageFormat : aliased VkFormat;  -- src/vulkan/vulkan.h:3292
+      imageColorSpace : aliased VkColorSpaceKHR;  -- src/vulkan/vulkan.h:3293
+      imageExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3294
+      imageArrayLayers : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3295
+      imageUsage : aliased VkImageUsageFlags;  -- src/vulkan/vulkan.h:3296
+      imageSharingMode : aliased VkSharingMode;  -- src/vulkan/vulkan.h:3297
+      queueFamilyIndexCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3298
+      pQueueFamilyIndices : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3299
+      preTransform : aliased VkSurfaceTransformFlagBitsKHR;  -- src/vulkan/vulkan.h:3300
+      compositeAlpha : aliased VkCompositeAlphaFlagBitsKHR;  -- src/vulkan/vulkan.h:3301
+      presentMode : aliased VkPresentModeKHR;  -- src/vulkan/vulkan.h:3302
+      clipped : aliased VkBool32;  -- src/vulkan/vulkan.h:3303
+      oldSwapchain : VkSwapchainKHR;  -- src/vulkan/vulkan.h:3304
    end record;
-   pragma Convention (C_Pass_By_Copy, VkSwapchainCreateInfoKHR);  -- src/vulkan/vulkan.h:3245
+   pragma Convention (C_Pass_By_Copy, VkSwapchainCreateInfoKHR);  -- src/vulkan/vulkan.h:3286
 
    type VkPresentInfoKHR is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3267
-      pNext : System.Address;  -- src/vulkan/vulkan.h:3268
-      waitSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3269
-      pWaitSemaphores : System.Address;  -- src/vulkan/vulkan.h:3270
-      swapchainCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3271
-      pSwapchains : System.Address;  -- src/vulkan/vulkan.h:3272
-      pImageIndices : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3273
-      pResults : access VkResult;  -- src/vulkan/vulkan.h:3274
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3308
+      pNext : System.Address;  -- src/vulkan/vulkan.h:3309
+      waitSemaphoreCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3310
+      pWaitSemaphores : System.Address;  -- src/vulkan/vulkan.h:3311
+      swapchainCount : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3312
+      pSwapchains : System.Address;  -- src/vulkan/vulkan.h:3313
+      pImageIndices : access stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3314
+      pResults : access VkResult;  -- src/vulkan/vulkan.h:3315
    end record;
-   pragma Convention (C_Pass_By_Copy, VkPresentInfoKHR);  -- src/vulkan/vulkan.h:3266
+   pragma Convention (C_Pass_By_Copy, VkPresentInfoKHR);  -- src/vulkan/vulkan.h:3307
 
    type PFN_vkCreateSwapchainKHR is access function
         (arg1 : VkDevice;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateSwapchainKHR);  -- src/vulkan/vulkan.h:3278
+   pragma Convention (C, PFN_vkCreateSwapchainKHR);  -- src/vulkan/vulkan.h:3319
 
    type PFN_vkDestroySwapchainKHR is access procedure
         (arg1 : VkDevice;
          arg2 : VkSwapchainKHR;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroySwapchainKHR);  -- src/vulkan/vulkan.h:3279
+   pragma Convention (C, PFN_vkDestroySwapchainKHR);  -- src/vulkan/vulkan.h:3320
 
    type PFN_vkGetSwapchainImagesKHR is access function
         (arg1 : VkDevice;
          arg2 : VkSwapchainKHR;
          arg3 : access stdint_h.uint32_t;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkGetSwapchainImagesKHR);  -- src/vulkan/vulkan.h:3280
+   pragma Convention (C, PFN_vkGetSwapchainImagesKHR);  -- src/vulkan/vulkan.h:3321
 
    type PFN_vkAcquireNextImageKHR is access function
         (arg1 : VkDevice;
@@ -4425,152 +4439,153 @@ package Vulkan is
          arg4 : VkSemaphore;
          arg5 : VkFence;
          arg6 : access stdint_h.uint32_t) return VkResult;
-   pragma Convention (C, PFN_vkAcquireNextImageKHR);  -- src/vulkan/vulkan.h:3281
+   pragma Convention (C, PFN_vkAcquireNextImageKHR);  -- src/vulkan/vulkan.h:3322
 
    type PFN_vkQueuePresentKHR is access function (arg1 : VkQueue; arg2 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkQueuePresentKHR);  -- src/vulkan/vulkan.h:3282
+   pragma Convention (C, PFN_vkQueuePresentKHR);  -- src/vulkan/vulkan.h:3323
 
    function vkCreateSwapchainKHR
-     (device : VkDevice;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pSwapchain : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3285
+     (arg1 : VkDevice;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3326
    pragma Import (C, vkCreateSwapchainKHR, "vkCreateSwapchainKHR");
 
    procedure vkDestroySwapchainKHR
-     (device : VkDevice;
-      swapchain : VkSwapchainKHR;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:3291
+     (arg1 : VkDevice;
+      arg2 : VkSwapchainKHR;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:3332
    pragma Import (C, vkDestroySwapchainKHR, "vkDestroySwapchainKHR");
 
    function vkGetSwapchainImagesKHR
-     (device : VkDevice;
-      swapchain : VkSwapchainKHR;
-      pSwapchainImageCount : access stdint_h.uint32_t;
-      pSwapchainImages : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3296
+     (arg1 : VkDevice;
+      arg2 : VkSwapchainKHR;
+      arg3 : access stdint_h.uint32_t;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3337
    pragma Import (C, vkGetSwapchainImagesKHR, "vkGetSwapchainImagesKHR");
 
    function vkAcquireNextImageKHR
-     (device : VkDevice;
-      swapchain : VkSwapchainKHR;
-      timeout : stdint_h.uint64_t;
-      semaphore : VkSemaphore;
-      fence : VkFence;
-      pImageIndex : access stdint_h.uint32_t) return VkResult;  -- src/vulkan/vulkan.h:3302
+     (arg1 : VkDevice;
+      arg2 : VkSwapchainKHR;
+      arg3 : stdint_h.uint64_t;
+      arg4 : VkSemaphore;
+      arg5 : VkFence;
+      arg6 : access stdint_h.uint32_t) return VkResult;  -- src/vulkan/vulkan.h:3343
    pragma Import (C, vkAcquireNextImageKHR, "vkAcquireNextImageKHR");
 
-   function vkQueuePresentKHR (queue : VkQueue; pPresentInfo : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3310
+   function vkQueuePresentKHR (arg1 : VkQueue; arg2 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3351
    pragma Import (C, vkQueuePresentKHR, "vkQueuePresentKHR");
-
-   type VkDisplayKHR is new System.Address;  -- src/vulkan/vulkan.h:3316
 
    --  skipped empty struct VkDisplayKHR_T
 
-   type VkDisplayModeKHR is new System.Address;  -- src/vulkan/vulkan.h:3317
+   type VkDisplayKHR is new System.Address;  -- src/vulkan/vulkan.h:3357
 
    --  skipped empty struct VkDisplayModeKHR_T
+
+   type VkDisplayModeKHR is new System.Address;  -- src/vulkan/vulkan.h:3358
 
    subtype VkDisplayPlaneAlphaFlagBitsKHR is unsigned;
    VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR : constant VkDisplayPlaneAlphaFlagBitsKHR := 1;
    VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR : constant VkDisplayPlaneAlphaFlagBitsKHR := 2;
    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR : constant VkDisplayPlaneAlphaFlagBitsKHR := 4;
-   VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR : constant VkDisplayPlaneAlphaFlagBitsKHR := 8;  -- src/vulkan/vulkan.h:3323
+   VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR : constant VkDisplayPlaneAlphaFlagBitsKHR := 8;
+   VK_DISPLAY_PLANE_ALPHA_FLAG_BITS_MAX_ENUM_KHR : constant VkDisplayPlaneAlphaFlagBitsKHR := 2147483647;  -- src/vulkan/vulkan.h:3364
 
-   subtype VkDisplayModeCreateFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3329
+   subtype VkDisplayPlaneAlphaFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3371
 
-   subtype VkDisplayPlaneAlphaFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3330
+   subtype VkDisplayModeCreateFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3372
 
-   subtype VkDisplaySurfaceCreateFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3331
+   subtype VkDisplaySurfaceCreateFlagsKHR is VkFlags;  -- src/vulkan/vulkan.h:3373
 
    type VkDisplayPropertiesKHR is record
-      display : VkDisplayKHR;  -- src/vulkan/vulkan.h:3334
-      displayName : Interfaces.C.Strings.chars_ptr;  -- src/vulkan/vulkan.h:3335
-      physicalDimensions : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3336
-      physicalResolution : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3337
-      supportedTransforms : aliased VkSurfaceTransformFlagsKHR;  -- src/vulkan/vulkan.h:3338
-      planeReorderPossible : aliased VkBool32;  -- src/vulkan/vulkan.h:3339
-      persistentContent : aliased VkBool32;  -- src/vulkan/vulkan.h:3340
+      display : VkDisplayKHR;  -- src/vulkan/vulkan.h:3376
+      displayName : Interfaces.C.Strings.chars_ptr;  -- src/vulkan/vulkan.h:3377
+      physicalDimensions : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3378
+      physicalResolution : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3379
+      supportedTransforms : aliased VkSurfaceTransformFlagsKHR;  -- src/vulkan/vulkan.h:3380
+      planeReorderPossible : aliased VkBool32;  -- src/vulkan/vulkan.h:3381
+      persistentContent : aliased VkBool32;  -- src/vulkan/vulkan.h:3382
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDisplayPropertiesKHR);  -- src/vulkan/vulkan.h:3333
+   pragma Convention (C_Pass_By_Copy, VkDisplayPropertiesKHR);  -- src/vulkan/vulkan.h:3375
 
    type VkDisplayModeParametersKHR is record
-      visibleRegion : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3344
-      refreshRate : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3345
+      visibleRegion : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3386
+      refreshRate : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3387
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDisplayModeParametersKHR);  -- src/vulkan/vulkan.h:3343
+   pragma Convention (C_Pass_By_Copy, VkDisplayModeParametersKHR);  -- src/vulkan/vulkan.h:3385
 
    type VkDisplayModePropertiesKHR is record
-      displayMode : VkDisplayModeKHR;  -- src/vulkan/vulkan.h:3349
-      parameters : aliased VkDisplayModeParametersKHR;  -- src/vulkan/vulkan.h:3350
+      displayMode : VkDisplayModeKHR;  -- src/vulkan/vulkan.h:3391
+      parameters : aliased VkDisplayModeParametersKHR;  -- src/vulkan/vulkan.h:3392
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDisplayModePropertiesKHR);  -- src/vulkan/vulkan.h:3348
+   pragma Convention (C_Pass_By_Copy, VkDisplayModePropertiesKHR);  -- src/vulkan/vulkan.h:3390
 
    type VkDisplayModeCreateInfoKHR is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3354
-      pNext : System.Address;  -- src/vulkan/vulkan.h:3355
-      flags : aliased VkDisplayModeCreateFlagsKHR;  -- src/vulkan/vulkan.h:3356
-      parameters : aliased VkDisplayModeParametersKHR;  -- src/vulkan/vulkan.h:3357
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3396
+      pNext : System.Address;  -- src/vulkan/vulkan.h:3397
+      flags : aliased VkDisplayModeCreateFlagsKHR;  -- src/vulkan/vulkan.h:3398
+      parameters : aliased VkDisplayModeParametersKHR;  -- src/vulkan/vulkan.h:3399
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDisplayModeCreateInfoKHR);  -- src/vulkan/vulkan.h:3353
+   pragma Convention (C_Pass_By_Copy, VkDisplayModeCreateInfoKHR);  -- src/vulkan/vulkan.h:3395
 
    type VkDisplayPlaneCapabilitiesKHR is record
-      supportedAlpha : aliased VkDisplayPlaneAlphaFlagsKHR;  -- src/vulkan/vulkan.h:3361
-      minSrcPosition : aliased VkOffset2D;  -- src/vulkan/vulkan.h:3362
-      maxSrcPosition : aliased VkOffset2D;  -- src/vulkan/vulkan.h:3363
-      minSrcExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3364
-      maxSrcExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3365
-      minDstPosition : aliased VkOffset2D;  -- src/vulkan/vulkan.h:3366
-      maxDstPosition : aliased VkOffset2D;  -- src/vulkan/vulkan.h:3367
-      minDstExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3368
-      maxDstExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3369
+      supportedAlpha : aliased VkDisplayPlaneAlphaFlagsKHR;  -- src/vulkan/vulkan.h:3403
+      minSrcPosition : aliased VkOffset2D;  -- src/vulkan/vulkan.h:3404
+      maxSrcPosition : aliased VkOffset2D;  -- src/vulkan/vulkan.h:3405
+      minSrcExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3406
+      maxSrcExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3407
+      minDstPosition : aliased VkOffset2D;  -- src/vulkan/vulkan.h:3408
+      maxDstPosition : aliased VkOffset2D;  -- src/vulkan/vulkan.h:3409
+      minDstExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3410
+      maxDstExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3411
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDisplayPlaneCapabilitiesKHR);  -- src/vulkan/vulkan.h:3360
+   pragma Convention (C_Pass_By_Copy, VkDisplayPlaneCapabilitiesKHR);  -- src/vulkan/vulkan.h:3402
 
    type VkDisplayPlanePropertiesKHR is record
-      currentDisplay : VkDisplayKHR;  -- src/vulkan/vulkan.h:3373
-      currentStackIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3374
+      currentDisplay : VkDisplayKHR;  -- src/vulkan/vulkan.h:3415
+      currentStackIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3416
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDisplayPlanePropertiesKHR);  -- src/vulkan/vulkan.h:3372
+   pragma Convention (C_Pass_By_Copy, VkDisplayPlanePropertiesKHR);  -- src/vulkan/vulkan.h:3414
 
    type VkDisplaySurfaceCreateInfoKHR is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3378
-      pNext : System.Address;  -- src/vulkan/vulkan.h:3379
-      flags : aliased VkDisplaySurfaceCreateFlagsKHR;  -- src/vulkan/vulkan.h:3380
-      displayMode : VkDisplayModeKHR;  -- src/vulkan/vulkan.h:3381
-      planeIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3382
-      planeStackIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3383
-      transform : aliased VkSurfaceTransformFlagBitsKHR;  -- src/vulkan/vulkan.h:3384
-      globalAlpha : aliased float;  -- src/vulkan/vulkan.h:3385
-      alphaMode : aliased VkDisplayPlaneAlphaFlagBitsKHR;  -- src/vulkan/vulkan.h:3386
-      imageExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3387
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3420
+      pNext : System.Address;  -- src/vulkan/vulkan.h:3421
+      flags : aliased VkDisplaySurfaceCreateFlagsKHR;  -- src/vulkan/vulkan.h:3422
+      displayMode : VkDisplayModeKHR;  -- src/vulkan/vulkan.h:3423
+      planeIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3424
+      planeStackIndex : aliased stdint_h.uint32_t;  -- src/vulkan/vulkan.h:3425
+      transform : aliased VkSurfaceTransformFlagBitsKHR;  -- src/vulkan/vulkan.h:3426
+      globalAlpha : aliased float;  -- src/vulkan/vulkan.h:3427
+      alphaMode : aliased VkDisplayPlaneAlphaFlagBitsKHR;  -- src/vulkan/vulkan.h:3428
+      imageExtent : aliased VkExtent2D;  -- src/vulkan/vulkan.h:3429
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDisplaySurfaceCreateInfoKHR);  -- src/vulkan/vulkan.h:3377
+   pragma Convention (C_Pass_By_Copy, VkDisplaySurfaceCreateInfoKHR);  -- src/vulkan/vulkan.h:3419
 
    type PFN_vkGetPhysicalDeviceDisplayPropertiesKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : access stdint_h.uint32_t;
          arg3 : access VkDisplayPropertiesKHR) return VkResult;
-   pragma Convention (C, PFN_vkGetPhysicalDeviceDisplayPropertiesKHR);  -- src/vulkan/vulkan.h:3391
+   pragma Convention (C, PFN_vkGetPhysicalDeviceDisplayPropertiesKHR);  -- src/vulkan/vulkan.h:3433
 
    type PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : access stdint_h.uint32_t;
          arg3 : access VkDisplayPlanePropertiesKHR) return VkResult;
-   pragma Convention (C, PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR);  -- src/vulkan/vulkan.h:3392
+   pragma Convention (C, PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR);  -- src/vulkan/vulkan.h:3434
 
    type PFN_vkGetDisplayPlaneSupportedDisplaysKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : stdint_h.uint32_t;
          arg3 : access stdint_h.uint32_t;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkGetDisplayPlaneSupportedDisplaysKHR);  -- src/vulkan/vulkan.h:3393
+   pragma Convention (C, PFN_vkGetDisplayPlaneSupportedDisplaysKHR);  -- src/vulkan/vulkan.h:3435
 
    type PFN_vkGetDisplayModePropertiesKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : VkDisplayKHR;
          arg3 : access stdint_h.uint32_t;
          arg4 : access VkDisplayModePropertiesKHR) return VkResult;
-   pragma Convention (C, PFN_vkGetDisplayModePropertiesKHR);  -- src/vulkan/vulkan.h:3394
+   pragma Convention (C, PFN_vkGetDisplayModePropertiesKHR);  -- src/vulkan/vulkan.h:3436
 
    type PFN_vkCreateDisplayModeKHR is access function
         (arg1 : VkPhysicalDevice;
@@ -4578,78 +4593,78 @@ package Vulkan is
          arg3 : System.Address;
          arg4 : System.Address;
          arg5 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateDisplayModeKHR);  -- src/vulkan/vulkan.h:3395
+   pragma Convention (C, PFN_vkCreateDisplayModeKHR);  -- src/vulkan/vulkan.h:3437
 
    type PFN_vkGetDisplayPlaneCapabilitiesKHR is access function
         (arg1 : VkPhysicalDevice;
          arg2 : VkDisplayModeKHR;
          arg3 : stdint_h.uint32_t;
          arg4 : access VkDisplayPlaneCapabilitiesKHR) return VkResult;
-   pragma Convention (C, PFN_vkGetDisplayPlaneCapabilitiesKHR);  -- src/vulkan/vulkan.h:3396
+   pragma Convention (C, PFN_vkGetDisplayPlaneCapabilitiesKHR);  -- src/vulkan/vulkan.h:3438
 
    type PFN_vkCreateDisplayPlaneSurfaceKHR is access function
         (arg1 : VkInstance;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateDisplayPlaneSurfaceKHR);  -- src/vulkan/vulkan.h:3397
+   pragma Convention (C, PFN_vkCreateDisplayPlaneSurfaceKHR);  -- src/vulkan/vulkan.h:3439
 
    function vkGetPhysicalDeviceDisplayPropertiesKHR
-     (physicalDevice : VkPhysicalDevice;
-      pPropertyCount : access stdint_h.uint32_t;
-      pProperties : access VkDisplayPropertiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3400
+     (arg1 : VkPhysicalDevice;
+      arg2 : access stdint_h.uint32_t;
+      arg3 : access VkDisplayPropertiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3442
    pragma Import (C, vkGetPhysicalDeviceDisplayPropertiesKHR, "vkGetPhysicalDeviceDisplayPropertiesKHR");
 
    function vkGetPhysicalDeviceDisplayPlanePropertiesKHR
-     (physicalDevice : VkPhysicalDevice;
-      pPropertyCount : access stdint_h.uint32_t;
-      pProperties : access VkDisplayPlanePropertiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3405
+     (arg1 : VkPhysicalDevice;
+      arg2 : access stdint_h.uint32_t;
+      arg3 : access VkDisplayPlanePropertiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3447
    pragma Import (C, vkGetPhysicalDeviceDisplayPlanePropertiesKHR, "vkGetPhysicalDeviceDisplayPlanePropertiesKHR");
 
    function vkGetDisplayPlaneSupportedDisplaysKHR
-     (physicalDevice : VkPhysicalDevice;
-      planeIndex : stdint_h.uint32_t;
-      pDisplayCount : access stdint_h.uint32_t;
-      pDisplays : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3410
+     (arg1 : VkPhysicalDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : access stdint_h.uint32_t;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3452
    pragma Import (C, vkGetDisplayPlaneSupportedDisplaysKHR, "vkGetDisplayPlaneSupportedDisplaysKHR");
 
    function vkGetDisplayModePropertiesKHR
-     (physicalDevice : VkPhysicalDevice;
-      display : VkDisplayKHR;
-      pPropertyCount : access stdint_h.uint32_t;
-      pProperties : access VkDisplayModePropertiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3416
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkDisplayKHR;
+      arg3 : access stdint_h.uint32_t;
+      arg4 : access VkDisplayModePropertiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3458
    pragma Import (C, vkGetDisplayModePropertiesKHR, "vkGetDisplayModePropertiesKHR");
 
    function vkCreateDisplayModeKHR
-     (physicalDevice : VkPhysicalDevice;
-      display : VkDisplayKHR;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pMode : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3422
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkDisplayKHR;
+      arg3 : System.Address;
+      arg4 : System.Address;
+      arg5 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3464
    pragma Import (C, vkCreateDisplayModeKHR, "vkCreateDisplayModeKHR");
 
    function vkGetDisplayPlaneCapabilitiesKHR
-     (physicalDevice : VkPhysicalDevice;
-      mode : VkDisplayModeKHR;
-      planeIndex : stdint_h.uint32_t;
-      pCapabilities : access VkDisplayPlaneCapabilitiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3429
+     (arg1 : VkPhysicalDevice;
+      arg2 : VkDisplayModeKHR;
+      arg3 : stdint_h.uint32_t;
+      arg4 : access VkDisplayPlaneCapabilitiesKHR) return VkResult;  -- src/vulkan/vulkan.h:3471
    pragma Import (C, vkGetDisplayPlaneCapabilitiesKHR, "vkGetDisplayPlaneCapabilitiesKHR");
 
    function vkCreateDisplayPlaneSurfaceKHR
-     (instance : VkInstance;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pSurface : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3435
+     (arg1 : VkInstance;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3477
    pragma Import (C, vkCreateDisplayPlaneSurfaceKHR, "vkCreateDisplayPlaneSurfaceKHR");
 
    type VkDisplayPresentInfoKHR is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3447
-      pNext : System.Address;  -- src/vulkan/vulkan.h:3448
-      srcRect : aliased VkRect2D;  -- src/vulkan/vulkan.h:3449
-      dstRect : aliased VkRect2D;  -- src/vulkan/vulkan.h:3450
-      persistent : aliased VkBool32;  -- src/vulkan/vulkan.h:3451
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3489
+      pNext : System.Address;  -- src/vulkan/vulkan.h:3490
+      srcRect : aliased VkRect2D;  -- src/vulkan/vulkan.h:3491
+      dstRect : aliased VkRect2D;  -- src/vulkan/vulkan.h:3492
+      persistent : aliased VkBool32;  -- src/vulkan/vulkan.h:3493
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDisplayPresentInfoKHR);  -- src/vulkan/vulkan.h:3446
+   pragma Convention (C_Pass_By_Copy, VkDisplayPresentInfoKHR);  -- src/vulkan/vulkan.h:3488
 
    type PFN_vkCreateSharedSwapchainsKHR is access function
         (arg1 : VkDevice;
@@ -4657,65 +4672,72 @@ package Vulkan is
          arg3 : System.Address;
          arg4 : System.Address;
          arg5 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateSharedSwapchainsKHR);  -- src/vulkan/vulkan.h:3455
+   pragma Convention (C, PFN_vkCreateSharedSwapchainsKHR);  -- src/vulkan/vulkan.h:3497
 
    function vkCreateSharedSwapchainsKHR
-     (device : VkDevice;
-      swapchainCount : stdint_h.uint32_t;
-      pCreateInfos : System.Address;
-      pAllocator : System.Address;
-      pSwapchains : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3458
+     (arg1 : VkDevice;
+      arg2 : stdint_h.uint32_t;
+      arg3 : System.Address;
+      arg4 : System.Address;
+      arg5 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3500
    pragma Import (C, vkCreateSharedSwapchainsKHR, "vkCreateSharedSwapchainsKHR");
-
-   type VkDebugReportCallbackEXT is new System.Address;  -- src/vulkan/vulkan.h:3671
 
    --  skipped empty struct VkDebugReportCallbackEXT_T
 
-   type VkDebugReportObjectTypeEXT is
-     (VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_QUEUE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_FENCE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_EVENT_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT,
-      VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT);
-   pragma Convention (C, VkDebugReportObjectTypeEXT);  -- src/vulkan/vulkan.h:3677
+   type VkDebugReportCallbackEXT is new System.Address;  -- src/vulkan/vulkan.h:3718
 
-   type VkDebugReportErrorEXT is
-     (VK_DEBUG_REPORT_ERROR_NONE_EXT,
-      VK_DEBUG_REPORT_ERROR_CALLBACK_REF_EXT);
-   pragma Convention (C, VkDebugReportErrorEXT);  -- src/vulkan/vulkan.h:3709
+   subtype VkDebugReportObjectTypeEXT is unsigned;
+   VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT : constant VkDebugReportObjectTypeEXT := 0;
+   VK_DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT : constant VkDebugReportObjectTypeEXT := 1;
+   VK_DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT : constant VkDebugReportObjectTypeEXT := 2;
+   VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT : constant VkDebugReportObjectTypeEXT := 3;
+   VK_DEBUG_REPORT_OBJECT_TYPE_QUEUE_EXT : constant VkDebugReportObjectTypeEXT := 4;
+   VK_DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE_EXT : constant VkDebugReportObjectTypeEXT := 5;
+   VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER_EXT : constant VkDebugReportObjectTypeEXT := 6;
+   VK_DEBUG_REPORT_OBJECT_TYPE_FENCE_EXT : constant VkDebugReportObjectTypeEXT := 7;
+   VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY_EXT : constant VkDebugReportObjectTypeEXT := 8;
+   VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_EXT : constant VkDebugReportObjectTypeEXT := 9;
+   VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_EXT : constant VkDebugReportObjectTypeEXT := 10;
+   VK_DEBUG_REPORT_OBJECT_TYPE_EVENT_EXT : constant VkDebugReportObjectTypeEXT := 11;
+   VK_DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL_EXT : constant VkDebugReportObjectTypeEXT := 12;
+   VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW_EXT : constant VkDebugReportObjectTypeEXT := 13;
+   VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW_EXT : constant VkDebugReportObjectTypeEXT := 14;
+   VK_DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE_EXT : constant VkDebugReportObjectTypeEXT := 15;
+   VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE_EXT : constant VkDebugReportObjectTypeEXT := 16;
+   VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT_EXT : constant VkDebugReportObjectTypeEXT := 17;
+   VK_DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS_EXT : constant VkDebugReportObjectTypeEXT := 18;
+   VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_EXT : constant VkDebugReportObjectTypeEXT := 19;
+   VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT_EXT : constant VkDebugReportObjectTypeEXT := 20;
+   VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_EXT : constant VkDebugReportObjectTypeEXT := 21;
+   VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL_EXT : constant VkDebugReportObjectTypeEXT := 22;
+   VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_EXT : constant VkDebugReportObjectTypeEXT := 23;
+   VK_DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER_EXT : constant VkDebugReportObjectTypeEXT := 24;
+   VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL_EXT : constant VkDebugReportObjectTypeEXT := 25;
+   VK_DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT : constant VkDebugReportObjectTypeEXT := 26;
+   VK_DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT : constant VkDebugReportObjectTypeEXT := 27;
+   VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT : constant VkDebugReportObjectTypeEXT := 28;
+   VK_DEBUG_REPORT_OBJECT_TYPE_BEGIN_RANGE_EXT : constant VkDebugReportObjectTypeEXT := 0;
+   VK_DEBUG_REPORT_OBJECT_TYPE_END_RANGE_EXT : constant VkDebugReportObjectTypeEXT := 28;
+   VK_DEBUG_REPORT_OBJECT_TYPE_RANGE_SIZE_EXT : constant VkDebugReportObjectTypeEXT := 29;
+   VK_DEBUG_REPORT_OBJECT_TYPE_MAX_ENUM_EXT : constant VkDebugReportObjectTypeEXT := 2147483647;  -- src/vulkan/vulkan.h:3725
+
+   subtype VkDebugReportErrorEXT is unsigned;
+   VK_DEBUG_REPORT_ERROR_NONE_EXT : constant VkDebugReportErrorEXT := 0;
+   VK_DEBUG_REPORT_ERROR_CALLBACK_REF_EXT : constant VkDebugReportErrorEXT := 1;
+   VK_DEBUG_REPORT_ERROR_BEGIN_RANGE_EXT : constant VkDebugReportErrorEXT := 0;
+   VK_DEBUG_REPORT_ERROR_END_RANGE_EXT : constant VkDebugReportErrorEXT := 1;
+   VK_DEBUG_REPORT_ERROR_RANGE_SIZE_EXT : constant VkDebugReportErrorEXT := 2;
+   VK_DEBUG_REPORT_ERROR_MAX_ENUM_EXT : constant VkDebugReportErrorEXT := 2147483647;  -- src/vulkan/vulkan.h:3761
 
    subtype VkDebugReportFlagBitsEXT is unsigned;
    VK_DEBUG_REPORT_INFORMATION_BIT_EXT : constant VkDebugReportFlagBitsEXT := 1;
    VK_DEBUG_REPORT_WARNING_BIT_EXT : constant VkDebugReportFlagBitsEXT := 2;
    VK_DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT : constant VkDebugReportFlagBitsEXT := 4;
    VK_DEBUG_REPORT_ERROR_BIT_EXT : constant VkDebugReportFlagBitsEXT := 8;
-   VK_DEBUG_REPORT_DEBUG_BIT_EXT : constant VkDebugReportFlagBitsEXT := 16;  -- src/vulkan/vulkan.h:3715
+   VK_DEBUG_REPORT_DEBUG_BIT_EXT : constant VkDebugReportFlagBitsEXT := 16;
+   VK_DEBUG_REPORT_FLAG_BITS_MAX_ENUM_EXT : constant VkDebugReportFlagBitsEXT := 2147483647;  -- src/vulkan/vulkan.h:3771
 
-   subtype VkDebugReportFlagsEXT is VkFlags;  -- src/vulkan/vulkan.h:3722
+   subtype VkDebugReportFlagsEXT is VkFlags;  -- src/vulkan/vulkan.h:3779
 
    type PFN_vkDebugReportCallbackEXT is access function
         (arg1 : VkDebugReportFlagsEXT;
@@ -4726,29 +4748,29 @@ package Vulkan is
          arg6 : Interfaces.C.Strings.chars_ptr;
          arg7 : Interfaces.C.Strings.chars_ptr;
          arg8 : System.Address) return VkBool32;
-   pragma Convention (C, PFN_vkDebugReportCallbackEXT);  -- src/vulkan/vulkan.h:3724
+   pragma Convention (C, PFN_vkDebugReportCallbackEXT);  -- src/vulkan/vulkan.h:3781
 
    type VkDebugReportCallbackCreateInfoEXT is record
-      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3736
-      pNext : System.Address;  -- src/vulkan/vulkan.h:3737
-      flags : aliased VkDebugReportFlagsEXT;  -- src/vulkan/vulkan.h:3738
-      pfnCallback : PFN_vkDebugReportCallbackEXT;  -- src/vulkan/vulkan.h:3739
-      pUserData : System.Address;  -- src/vulkan/vulkan.h:3740
+      sType : aliased VkStructureType;  -- src/vulkan/vulkan.h:3793
+      pNext : System.Address;  -- src/vulkan/vulkan.h:3794
+      flags : aliased VkDebugReportFlagsEXT;  -- src/vulkan/vulkan.h:3795
+      pfnCallback : PFN_vkDebugReportCallbackEXT;  -- src/vulkan/vulkan.h:3796
+      pUserData : System.Address;  -- src/vulkan/vulkan.h:3797
    end record;
-   pragma Convention (C_Pass_By_Copy, VkDebugReportCallbackCreateInfoEXT);  -- src/vulkan/vulkan.h:3735
+   pragma Convention (C_Pass_By_Copy, VkDebugReportCallbackCreateInfoEXT);  -- src/vulkan/vulkan.h:3792
 
    type PFN_vkCreateDebugReportCallbackEXT is access function
         (arg1 : VkInstance;
          arg2 : System.Address;
          arg3 : System.Address;
          arg4 : System.Address) return VkResult;
-   pragma Convention (C, PFN_vkCreateDebugReportCallbackEXT);  -- src/vulkan/vulkan.h:3744
+   pragma Convention (C, PFN_vkCreateDebugReportCallbackEXT);  -- src/vulkan/vulkan.h:3801
 
    type PFN_vkDestroyDebugReportCallbackEXT is access procedure
         (arg1 : VkInstance;
          arg2 : VkDebugReportCallbackEXT;
          arg3 : System.Address);
-   pragma Convention (C, PFN_vkDestroyDebugReportCallbackEXT);  -- src/vulkan/vulkan.h:3745
+   pragma Convention (C, PFN_vkDestroyDebugReportCallbackEXT);  -- src/vulkan/vulkan.h:3802
 
    type PFN_vkDebugReportMessageEXT is access procedure
         (arg1 : VkInstance;
@@ -4759,32 +4781,31 @@ package Vulkan is
          arg6 : stdint_h.int32_t;
          arg7 : Interfaces.C.Strings.chars_ptr;
          arg8 : Interfaces.C.Strings.chars_ptr);
-   pragma Convention (C, PFN_vkDebugReportMessageEXT);  -- src/vulkan/vulkan.h:3746
+   pragma Convention (C, PFN_vkDebugReportMessageEXT);  -- src/vulkan/vulkan.h:3803
 
    function vkCreateDebugReportCallbackEXT
-     (instance : VkInstance;
-      pCreateInfo : System.Address;
-      pAllocator : System.Address;
-      pCallback : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3749
+     (arg1 : VkInstance;
+      arg2 : System.Address;
+      arg3 : System.Address;
+      arg4 : System.Address) return VkResult;  -- src/vulkan/vulkan.h:3806
    pragma Import (C, vkCreateDebugReportCallbackEXT, "vkCreateDebugReportCallbackEXT");
 
    procedure vkDestroyDebugReportCallbackEXT
-     (instance : VkInstance;
-      callback : VkDebugReportCallbackEXT;
-      pAllocator : System.Address);  -- src/vulkan/vulkan.h:3755
+     (arg1 : VkInstance;
+      arg2 : VkDebugReportCallbackEXT;
+      arg3 : System.Address);  -- src/vulkan/vulkan.h:3812
    pragma Import (C, vkDestroyDebugReportCallbackEXT, "vkDestroyDebugReportCallbackEXT");
 
    procedure vkDebugReportMessageEXT
-     (instance : VkInstance;
-      flags : VkDebugReportFlagsEXT;
-      objectType : VkDebugReportObjectTypeEXT;
-      object : stdint_h.uint64_t;
-      location : stddef_h.size_t;
-      messageCode : stdint_h.int32_t;
-      pLayerPrefix : Interfaces.C.Strings.chars_ptr;
-      pMessage : Interfaces.C.Strings.chars_ptr);  -- src/vulkan/vulkan.h:3760
+     (arg1 : VkInstance;
+      arg2 : VkDebugReportFlagsEXT;
+      arg3 : VkDebugReportObjectTypeEXT;
+      arg4 : stdint_h.uint64_t;
+      arg5 : stddef_h.size_t;
+      arg6 : stdint_h.int32_t;
+      arg7 : Interfaces.C.Strings.chars_ptr;
+      arg8 : Interfaces.C.Strings.chars_ptr);  -- src/vulkan/vulkan.h:3817
    pragma Import (C, vkDebugReportMessageEXT, "vkDebugReportMessageEXT");
-
 
    --  START: Package structure.
    --  Here lists the various child-packages:
@@ -4838,6 +4859,20 @@ package Vulkan is
    package WSI is
       --  Separate various WSI's into directories for inclusion based on command line options as they are platform
       --  specific.
+      --
+      --  <type requires="X11/Xlib.h" name="Display"/>
+      --  <type requires="X11/Xlib.h" name="VisualID"/>
+      --  <type requires="X11/Xlib.h" name="Window"/>
+      --  <type requires="android/native_window.h" name="ANativeWindow"/>
+      --  <type requires="mir_toolkit/client_types.h" name="MirConnection"/>
+      --  <type requires="mir_toolkit/client_types.h" name="MirSurface"/>
+      --  <type requires="wayland-client.h" name="wl_display"/>
+      --  <type requires="wayland-client.h" name="wl_surface"/>
+      --  <type requires="windows.h" name="HINSTANCE"/>
+      --  <type requires="windows.h" name="HWND"/>
+      --  <type requires="xcb/xcb.h" name="xcb_connection_t"/>
+      --  <type requires="xcb/xcb.h" name="xcb_visualid_t"/>
+      --  <type requires="xcb/xcb.h" name="xcb_window_t"/>
    end WSI;
 
    --  TODO: Other subprograms in the other sections of the API should fit into one of the above packages.
