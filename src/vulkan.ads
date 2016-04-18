@@ -45,7 +45,7 @@ package Vulkan is
          Patch at 0 range 11 ..  0;
       end record;
 
-   API_Version : constant Version := (Major => 1, Minor => 0, Patch => 9);
+   API_Version : constant Version := (Major => 1, Minor => 0, Patch => 10);
 
    --  unsupported macro: VK_NULL_HANDLE 0
    --  unsupported macro: VK_DEFINE_HANDLE(object) typedef struct object ##_T* object;
